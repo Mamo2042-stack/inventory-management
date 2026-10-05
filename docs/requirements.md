@@ -72,6 +72,7 @@ Each item must contain:
 -ReplenishmentMethod
 -Category
 -Storage Unit
+-Last update
 
 ### FR-003 - Update Inventory Quantity
 
@@ -83,14 +84,16 @@ The user must be able to delete an item from the list of registered items.
 
 ### FR-006 - Record Inventory History
 
-The user must be able to record history of each inventory change.
+The user must be able to record history of each inventory change and user activity.
 
 Each history must contain: 
 
--Item
+-Id
+-Item Id
 -Previous quantity
 -New quantity
 -Timestamp
+-User action
 
 ### FR-007 - View Current Inventory State
 
@@ -158,7 +161,6 @@ An item may have zero or more pending orders.
 
 Each order must contain:
 
--Item
 -Id
 -Ordered quantity
 -Received quantity
