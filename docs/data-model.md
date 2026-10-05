@@ -86,7 +86,7 @@ Item {
     expectedQuantity: 5,
     replenishmentMethod: "ORDER",
     category: "Meat",
-    storageUnit: "box"
+    storageUnit: "box",
     pendingOrders: []
 }
 ```
