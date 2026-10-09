@@ -12,6 +12,12 @@ import DeleteItem from './components/Delete/DeleteItem.jsx';
 import AppLayout from "./components/AppLayout.jsx";
 
 function App () {
+  const [appData, setAppData] = useState({
+    storages: [],
+    items: [],
+    inventoryHistory: []
+  })
+
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>

@@ -1,7 +1,8 @@
 import registerStorage from "../../operations/registerStorage";
 import { useNavigate } from "react-router";
+import { useAppData } from "../../context/AppDataContext";
 
-function StorageRegistration ({ setCurrentSection, setWhichReg }){
+function StorageRegistration (){
     function handleSubmit(event){
         event.preventDefault();
         
@@ -9,9 +10,7 @@ function StorageRegistration ({ setCurrentSection, setWhichReg }){
 
     }
 
-    function handleClick(){
-
-    }
+    const navigate = useNavigate("/");
 
     return (
         <div id="storage-registration-section">
@@ -38,7 +37,7 @@ function StorageRegistration ({ setCurrentSection, setWhichReg }){
 
             <button
                 id="back-to-home-btn"
-                onClick={handleClick}
+                onClick={navigate}
             >戻る
             </button>
         </div>
