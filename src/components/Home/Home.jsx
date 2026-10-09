@@ -1,13 +1,15 @@
-function Home({ setCurrentSection }) {
+import { Link } from "react-router";
+
+function Home() {
     return (
-        <div>
+        <section>
             <h1>在庫管理アプリ</h1>
             <div id="selection-btn">
-                <button id="registration" onClick={() => setCurrentSection("registration")}>登録</button>
-                <button id="inventory" onClick={() => setCurrentSection("inventory")}>在庫管理</button>
-                <button id="delete" onClick={() => setCurrentSection("delete")}>削除</button>
+                <Link to="/registration">登録</Link>
+                <Link to="/inventoryManagement">在庫管理</Link>
+                <Link to="/delete">削除</Link>
             </div>
-        </div>
+        </section>
     )
 }
 

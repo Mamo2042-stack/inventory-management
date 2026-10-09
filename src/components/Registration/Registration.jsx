@@ -1,20 +1,11 @@
-function Registration ({ setWhichReg }){
-    return(
-        <div id="registration">
-            <button
-                id="storage-registration-btn"
-                onClick={() => setWhichReg("storage")}
-                >
-                    ストレージ
-            </button>
+import { Link } from "react-router";
 
-            <button
-                id="item-registration-btn"
-                onClick={() => setWhichReg("item")}
-                >
-                    食材
-            </button>
-        </div>
+function Registration (){
+    return(
+        <section id="registration">
+            <Link to="/registration/storage">ストレージ</Link>
+            <Link to="/registration/item">食材</Link>
+        </section>
     )
 }
 
