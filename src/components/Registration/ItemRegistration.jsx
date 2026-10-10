@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { useAppData } from "../../context/AppDataContext";
 import { useState } from "react";
+import registerItem from "../../operations/registerItem";
 
 function ItemRegistration(){
     const [userInput, setUserInput] = useState({
@@ -11,10 +12,17 @@ function ItemRegistration(){
         replenishmentMethod: "ORDER",
         storageUnit: "",
     });
+    const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+    const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+    const [errorMsg, setErrorMsg] = useState([]);
+    const errorMsgs = {
+        "DUPLICATE_NAME": "既に使用されている名前です。",
+        "NO_STORAGE": "ストレージが存在しません。",
+        "INVALID_EXPEC_NUM": "無効な数字入力です。"
+    }
+    const { appData, setAppData } = useAppData(); 
 
-    const { appData, setAppData } = useAppData();
-
-    const storages = appData.storages;
+    const { storages } = appData;
     const navigate = useNavigate();
 
     function handleClick (){
@@ -30,11 +38,39 @@ function ItemRegistration(){
         }));
     }
 
+    function handleSubmit(e){
+        e.preventDefault();
+
+        const result = registerItem(appData, userInput);
+        
+        if(!result.success){
+            setErrorMsg(result.error);
+            setIsErrorModalOpen(true);
+            console.log(result.error);
+            return;
+        }
+
+        setAppData(result.data);
+        setUserInput(previous => ({
+            ...previous,
+            name: "",
+            storageId: "",
+            category: "",
+            expectedQuantity: "",
+            replenishmentMethod: "ORDER",
+            storageUnit: "",            
+        }))
+        setIsSuccessModalOpen(true);
+    }
+
     return (
         <section id="item-registration">
             <h2>食材を登録する</h2>
 
-            <form>
+            <form 
+                id="item-registration-form"
+                onSubmit={e => handleSubmit(e)}
+            >
                 <label htmlFor="name">名前</label>
                 <input
                     name="name"
@@ -52,6 +88,9 @@ function ItemRegistration(){
                     value={userInput.storageId}
                     onChange={e => handleChange(e)}
                 >
+                    <option 
+                        value="">ストレージを洗濯してください。
+                    </option>
                     {storages.map(storage => (
                         <option
                             value={storage.id}
@@ -105,7 +144,8 @@ function ItemRegistration(){
                         type="radio"
                         value="ORDER" 
                         id="order-radio"
-                        selected
+                        checked={userInput.replenishmentMethod === "ORDER"}
+                        onChange={e => handleChange(e)}
                     />
                     <label htmlFor="order-radio">オーダー</label>
 
@@ -114,6 +154,8 @@ function ItemRegistration(){
                         type="radio"
                         value="PURCHASE"
                         id="purchase-radio"
+                        checked={userInput.replenishmentMethod === "PURCHASE"}
+                        onChange={e => handleChange(e)}
                     />
                     <label htmlFor="purchase-radio">買い出し</label>
                 </fieldset>
@@ -130,6 +172,42 @@ function ItemRegistration(){
                 onClick={handleClick}
             >ホームに戻る
             </button>
+
+            {isSuccessModalOpen && (
+                <div id="success-modal">
+                    <p>登録完了しました。</p>
+
+                    <button
+                        type="button"
+                        onClick={() => {
+                        setIsSuccessModalOpen(false)
+                        navigate("/")
+                    }
+                    }>閉じる
+                    </button>
+                </div>
+            )}
+
+            {isErrorModalOpen && (
+                <div id="error-modal">
+                    <p>不正な入力です。</p>
+                    <p>以下を参照ください。</p>
+
+                    <ul>
+                        {errorMsg.map(( err, index ) => (
+                            <li key={index}>{errorMsgs[err]}</li>
+                        ))}
+                    </ul>
+
+                    <button
+                        type="button"
+                        onClick={() => {
+                            setErrorMsg([]);
+                            setIsErrorModalOpen(false);
+                    }}>閉じる
+                        </button>
+                </div>
+            )}
 
         </section>
     )

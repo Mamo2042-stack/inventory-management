@@ -46,9 +46,17 @@ function registerItem (appData, itemData) {
         }
     }
 
+    const updatedData = {
+        ...appData,
+        items: [
+            ...appData.items,
+            newItem
+        ]
+    }
+
     result = {
         success: true,
-        data: newItem
+        data: updatedData
     }
 
     return result;

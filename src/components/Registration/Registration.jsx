@@ -1,4 +1,6 @@
 import { Link } from "react-router";
+import { useState } from "react";
+import { useAppData } from "../../context/AppDataContext";
 
 function Registration (){
     return(

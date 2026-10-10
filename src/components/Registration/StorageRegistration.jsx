@@ -51,7 +51,7 @@ function StorageRegistration (){
             <h2>ストレージ情報を登録する</h2>
             <form 
                 id="storage-registration-form"
-                onSubmit={handleSubmit}
+                onSubmit={e => handleSubmit(e)}
             >
                 <label
                     htmlFor="storage-name"
@@ -59,7 +59,7 @@ function StorageRegistration (){
                 <input
                     type="text"
                     id="storage-name"
-                    value={storageName}
+                    value={userInput.name}
                     onChange={e => handelChange(e)}
                     required
                 />
@@ -67,7 +67,7 @@ function StorageRegistration (){
                 <button
                     id="submit-btn"
                     type="submit"
-                    disabled={userInput.name.trim()}
+                    disabled={!userInput.name.trim()}
                 >登録
                 </button>
             </form>
