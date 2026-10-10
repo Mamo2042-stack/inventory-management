@@ -1,9 +1,9 @@
 function registerStorage(appData, storageData){
-    const inputName = storageData.name;
-    const normalizedName = inputName.trim().normalize("NFKC");
+    const {name} = storageData;
+    const normalizedName = name.trim().normalize("NFKC");
 
     //Validation//
-    if(!inputName.trim()){
+    if(!name.trim()){
         return {
             success: false,
             error: "EMPTY_STRING"
@@ -25,7 +25,7 @@ function registerStorage(appData, storageData){
 
     const newStorage = {
         id: crypto.randomUUID(),
-        name: inputName
+        name: name
     }
 
     const updatedData = {
