@@ -224,28 +224,24 @@ User actions flow upward through callback functions.
 Example:
 
 ```text
-App
- │
- ├── items
+ItemManagement
  ↓
 ItemList
  │
- ├── item
+ ├── item 
  ↓
 ItemCard
  │
  └── onSelect()
  ↓
-App
+ItemManagement
  │
  └── selectedItemId
  ↓
 ItemInteractiveView
 ```
 
-The child component does not directly modify `appData`.
-
-Instead, it calls a callback supplied by `App`.
+selectedItemId manages the item users currently focus on.
 
 ## 8. Operation Layer
 
@@ -278,21 +274,16 @@ Responsibilities:
 
 **Adjust Inventory**
 
-adjustInventory(appData, itemId, quantity, direction)
+adjustInventory(appData, itemId, changeTo)
 
 Responsibilities: 
 
 - Validate the item
 - Validate the adjustment quantity
 - Ensure the output of calculation is not negative
-- Calculate the new quantity
 - Update the item
 - Create an `InventoryHistory` records
 - Return updated application data
-
-`direction` is either:
-- "increase"
-- "decrease"
 
 **Create Order**
 

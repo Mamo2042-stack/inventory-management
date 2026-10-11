@@ -1,8 +1,6 @@
-function adjustInventory (appData, itemId, quantity, direction) {
+function adjustInventory (appData, itemId, changeTo) {
     const selectedItem = appData.items.filter(item => item.id === itemId )[0];
     const previousQuantity = selectedItem.quantity
-    let newQuantity;
-
 
     //Validation//
     if(!selectedItem){
@@ -12,38 +10,21 @@ function adjustInventory (appData, itemId, quantity, direction) {
         }
     }
 
-    if(quantity <= 0){
+    if(changeTo <= 0){
         return {
             success: false,
             error: "INVALID_QUANTITY"
         }
     }
-
-    if(direction === "decrease"){
-        if(quantity > selectedItem.quantity){
-            return {
-                success: false,
-                error: "INSUFFICIENT_STOCK"
-            }
-        }
-    }
-
-    
-    //End of the validation//
-
-    if(direction === "increase"){
-        newQuantity = selectedItem.quantity + quantity;
-    } else {
-        newQuantity = selectedItem.quantity - quantity;
-    }
+    //End of the validation//   
 
     //Create a history records//
     const newHistory = {
         id: crypto.randomUUID(),
         itemId: itemId,
-        userAction: direction === "increase" ? "INCREASE_QUANTITY" : "DECREASE_QUANTITY",
+        userAction: previousQuantity < changeTo ? "INCREASE_QUANTITY" : "DECREASE_QUANTITY",
         previousQuantity: previousQuantity,
-        newQuantity: newQuantity,
+        newQuantity: changeTo,
         timestamp: new Date().toISOString()
     }
 
@@ -53,7 +34,7 @@ function adjustInventory (appData, itemId, quantity, direction) {
             if(item.id === itemId){
                 return {
                     ...item,
-                    quantity: newQuantity
+                    quantity: changeTo
                 }
             }
             return item;

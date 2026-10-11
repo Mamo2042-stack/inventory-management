@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import adjustInventory from "../operations/adjustInventory";
+import { testAppData } from "./fixtures";
 
 describe("adjustInventory", () => {
     it("should return updated appData when inventory increases", () => {
@@ -30,15 +31,14 @@ describe("adjustInventory", () => {
         const result = adjustInventory(
             appData,
             "item-1",
-            2,
-            "increase"
+            5
         );
 
         expect(result.data.items[0].quantity).toBe(5);
-
+        expect(result.data.inventoryHistory[0].userAction).toBe("INCREASE_QUANTITY")
     });
 
-    it("should return updated appData when inventory decreases", () => {
+    it("should return updated appData when inventory decrease", () => {
     const appData = {
         storages: [],
         items: [
@@ -54,11 +54,10 @@ describe("adjustInventory", () => {
     const result = adjustInventory(
         appData,
         "item-1",
-        2,
-        "decrease"
+        2
     );
 
-    expect(result.data.items[0].quantity).toBe(3);
+    expect(result.data.items[0].quantity).toBe(2);
     });
 
     it("should return error object when a quantity is below or equal to zero", () => {
@@ -77,11 +76,43 @@ describe("adjustInventory", () => {
     const result = adjustInventory(
         appData,
         "item-1",
-        -2,
-        "decrease"
+        -2
     );
 
     expect(result.success).toBe(false);
     })
 
+    it("should return a inventoryHistory with a corresponding userAction", () => {
+        const appData = {
+    storages: [
+        {
+            id: 1,
+            name: "FreezerA"
+        }
+    ],
+    items: [
+        {
+            id: "item-1", 
+            name: "Bacon",
+            storageId: 1,
+            quantity: 3,
+            expectedQuantity: 5,
+            replenishmentMethod: "ORDER",
+            category: "meat",
+            storageUnit: "box",
+            pendingOrders: []
+        }
+    ],
+    inventoryHistory: [
+    ]
+};
+
+        const result = adjustInventory(
+            appData,
+            "item-1",
+            5
+        );
+
+        expect(result.data.inventoryHistory[0].userAction).toBe("INCREASE_QUANTITY")
+    });
 });
