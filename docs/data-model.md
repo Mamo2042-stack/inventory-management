@@ -118,7 +118,6 @@ A `pendingOrder` represents an order that have been placed but has not yet been 
 | id | Unique identifier for each order |
 | orderedQuantity | Quantity of the item being ordered |
 | receivedQuantity | Quantity of an item that have been received |
-| purchasingUnit | Unit used when ordering an item |
 | orderDate | Date the order was placed |
 
 ### 4.2 Example
@@ -139,14 +138,12 @@ item {
             id: 101, 
             orderedQuantity: 10,
             receivedQuantity: 6,
-            purchasingUnit : "box",
             orderDate: "2026-09-28"
         },
         {
             id: 102,
             orderedQuantity: 5,
             receivedQuantity: 0,
-            purchasingUnit: "box",
             orderDate: "2026-10-5"
         }
     ]

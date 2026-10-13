@@ -19,6 +19,7 @@ function InventoryManagement(){
             
                     {inventoryView === "item" && (
                         <ItemInteraction
+                            key={selectedItem}
                             selectedItem={selectedItem}
                             setSelectedItem={setSelectedItem}
                             setInventoryView={setInventoryView}

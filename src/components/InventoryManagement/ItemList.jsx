@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useAppData } from "../../context/AppDataContext";
 import ItemCard from "./ItemCard";
-import { testAppData } from "../../test/fixtures";
 
 function ItemList ({ setSelectedItem, setInventoryView }){
-    const { appData } = useAppData();
-    const { storages, items } = testAppData;
+    const { appData, setAppData } = useAppData();
+    const { storages, items } = appData;
 
     return (
         <section>

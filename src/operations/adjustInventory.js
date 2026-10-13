@@ -1,5 +1,5 @@
 function adjustInventory (appData, itemId, changeTo) {
-    const selectedItem = appData.items.filter(item => item.id === itemId )[0];
+    const selectedItem = appData.items.find(item => item.id === itemId );
     const previousQuantity = selectedItem.quantity
 
     //Validation//
@@ -10,7 +10,7 @@ function adjustInventory (appData, itemId, changeTo) {
         }
     }
 
-    if(changeTo <= 0){
+    if(changeTo < 0){
         return {
             success: false,
             error: "INVALID_QUANTITY"

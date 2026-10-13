@@ -110,9 +110,10 @@ describe("adjustInventory", () => {
         const result = adjustInventory(
             appData,
             "item-1",
-            5
+            8
         );
 
+        console.log(result.data)
         expect(result.data.inventoryHistory[0].userAction).toBe("INCREASE_QUANTITY")
     });
 });
