@@ -7,7 +7,8 @@ import CreateOrderForm from "./CreateOrderForm";
 
 
 function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
-    const { items } = testAppData;
+    const { appData, setAppData } = useAppData();
+    const { items } = appData;
     const displayItem = items.find(item => item.id === selectedItem);
     const { storageUnit, pendingOrders } = displayItem;
     const [anyDetailModal, setAnyDetailModal] = useState(null);

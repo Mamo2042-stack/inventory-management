@@ -11,7 +11,7 @@ function createOrder ( appData, itemId, orderData ){
         }
     }
 
-    if(!Object.hasOwn(selectedItem, "pendingOrders")){
+    if(selectedItem.replenishmentMethod !== "ORDER"){
         return {
             success: false,
             error: "CAN_NOT_ORDER"
@@ -41,7 +41,7 @@ function createOrder ( appData, itemId, orderData ){
                 ? {
                     ...item,
                     pendingOrders: [
-                        ...item.pendingOrders,
+                        ...(item.pendingOrders ?? []),
                         newOrder
                     ]
                 }
