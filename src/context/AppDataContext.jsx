@@ -1,13 +1,10 @@
 import { createContext, useContext, useState } from 'react';
+import { testAppData } from '../test/fixtures';
 
 const AppDataContext = createContext(null);
 
 export function AppDataProvider({ children }){
-    const [appData, setAppData] = useState({
-        storages: [],
-        items: [],
-        inventoryHistory: []
-    });
+    const [appData, setAppData] = useState(() => structuredClone(testAppData));
 
     const value = { appData, setAppData };
 
