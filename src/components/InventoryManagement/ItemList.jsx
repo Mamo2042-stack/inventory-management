@@ -9,7 +9,6 @@ function ItemList ({ setSelectedItem, setInventoryView }){
 
     return (
         <section>
-            <h1>在庫管理</h1>
             {storages.map(storage => {
                 const storedItems = items.filter(item => item.storageId === storage.id)
 

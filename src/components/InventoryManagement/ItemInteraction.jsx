@@ -2,10 +2,11 @@ import { useAppData } from "../../context/AppDataContext";
 import { testAppData } from "../../test/fixtures";
 import { useState } from "react";
 import adjustInventory from "../../operations/adjustInventory";
+import PendingOrdersManagement from "./PendingOrdersManagement";
 
 function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
     const { items } = testAppData;
-    const displayItem = items.filter(item => item.id === selectedItem)[0];
+    const displayItem = items.find(item => item.id === selectedItem);
     const [deeperSection, setDeeperSection] = useState(null);
     const [tempQuan, setTempQuan] = useState(displayItem.quantity);//This is only used to display current quantity and reflects users' change responsively//
     const { appData, setAppData } = useAppData();
@@ -25,13 +26,13 @@ function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
 
     return (
         <div id="item-interaction">
-            <h1>{displayItem.name}</h1>
+            <h2>{displayItem.name}</h2>
 
             <form 
                 id="quantity-control"
                 onSubmit={handleSubmit}
             >
-                <h2>数量変更</h2>
+                <h3>数量変更</h3>
                 <button 
                     type="button"
                     name="decrease"
@@ -53,7 +54,20 @@ function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
                 </button>
             </form>
 
+            {displayItem.replenishmentMethod === "ORDER" && (
+                <button
+                    type="button"
+                    onClick={() => setDeeperSection("pending")}
+                >注文
+                </button>
+            )}
 
+            <button
+                type="button"
+                onClick={() => setDeeperSection("history")}
+            >ヒストリー
+            </button>
+            
             <button
                 type="button"
                 onClick={() => {
@@ -61,6 +75,15 @@ function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
                     setInventoryView("item-list")
                 }}>閉じる
             </button>
+
+            <section>
+                {deeperSection === "pending" && (
+                    <PendingOrdersManagement
+                        selectedItem={selectedItem}
+                        setDeeperSection={setDeeperSection}
+                    />
+                )}
+            </section>
         </div>
     )
 }

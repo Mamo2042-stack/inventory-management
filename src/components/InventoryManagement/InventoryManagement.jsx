@@ -8,20 +8,23 @@ function InventoryManagement(){
     const [selectedItem, setSelectedItem] = useState(null);
     return (
         <section>
-            <ItemList 
-                setSelectedItem={setSelectedItem}
-                setInventoryView={setInventoryView}
-            />
+            <h1>在庫管理</h1>
+                <section>
+                    <ItemList 
+                        setSelectedItem={setSelectedItem}
+                        setInventoryView={setInventoryView}
+                    />
+                </section>
 
-            {inventoryView === "item" && (
-                <ItemInteraction
-                    selectedItem={selectedItem}
-                    setSelectedItem={setSelectedItem}
-                    setInventoryView={setInventoryView}
-                />
-            )}
+            
+                    {inventoryView === "item" && (
+                        <ItemInteraction
+                            selectedItem={selectedItem}
+                            setSelectedItem={setSelectedItem}
+                            setInventoryView={setInventoryView}
+                        />
+                    )}
         </section>
-
     )
 }
 
