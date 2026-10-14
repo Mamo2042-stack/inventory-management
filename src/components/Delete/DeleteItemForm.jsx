@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { useAppData } from "../../context/AppDataContext"
 import deleteItem from "../../operations/deleteItem";
-import { useEffect } from "react";
 
 function DeleteItemForm({itemId, setViewMode, setSuccessMsg}){
     const { appData, setAppData } = useAppData();
