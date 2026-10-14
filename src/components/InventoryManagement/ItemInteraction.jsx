@@ -3,6 +3,7 @@ import { testAppData } from "../../test/fixtures";
 import { useState } from "react";
 import adjustInventory from "../../operations/adjustInventory";
 import PendingOrdersManagement from "./OrderManagement/PendingOrdersManagement";
+import InventoryHistoryView from "./HistoryManagement/InventoryHistoryView";
 
 function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
     const { appData, setAppData } = useAppData();
@@ -78,15 +79,21 @@ function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
                 }}>閉じる
             </button>
 
-            <section>
-                {deeperSection === "pending" && (
-                    <PendingOrdersManagement
-                        selectedItem={selectedItem}
-                        setDeeperSection={setDeeperSection}
-                        setInventoryView={setInventoryView}
-                    />
-                )}
-            </section>
+            {deeperSection === "pending" && (
+                <PendingOrdersManagement
+                    selectedItem={selectedItem}
+                    setDeeperSection={setDeeperSection}
+                    setInventoryView={setInventoryView}
+                />
+            )}
+
+            {deeperSection === "history" && (
+                <InventoryHistoryView
+                    setInventoryView={setInventoryView}
+                    selectedItem={selectedItem}
+                />
+            )}
+
         </div>
     )
 }
