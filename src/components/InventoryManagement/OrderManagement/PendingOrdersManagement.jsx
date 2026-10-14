@@ -6,7 +6,7 @@ import ReceivePendingOrderForm from "./ReceivePendingOrderForm";
 import CreateOrderForm from "./CreateOrderForm";
 
 
-function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
+function PendingOrdersManagement ({ selectedItem, setDeeperSection, setInventoryView }){
     const { appData, setAppData } = useAppData();
     const { items } = appData;
     const displayItem = items.find(item => item.id === selectedItem);
@@ -41,7 +41,7 @@ function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
 
             <button
                 type="button"
-                onClick={() => setDeeperSection(null)}
+                onClick={() => setInventoryView("item-list")}
             >閉じる
             </button>
 
@@ -49,8 +49,10 @@ function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
             {anyDetailModal === "receipt" ? (
                 <ReceivePendingOrderForm
                     key={selectedOrder}
-                    selectedOrderData={pendingOrders.find(order => order.id === selectedOrder)}
+                    selectedOrder={selectedOrder}//order.id//
+                    pendingOrders={pendingOrders}
                     setAnyDetailModal={setAnyDetailModal}
+                    selectedItem={selectedItem}
                 />
             )
                 :

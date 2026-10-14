@@ -6,6 +6,7 @@ import { testAppData } from "../../test/fixtures";
 function InventoryManagement(){
     const [inventoryView, setInventoryView] = useState("item-list");
     const [selectedItem, setSelectedItem] = useState(null);
+    
     return (
         <section>
             <h1>在庫管理</h1>

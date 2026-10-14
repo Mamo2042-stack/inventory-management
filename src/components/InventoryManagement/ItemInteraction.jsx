@@ -83,6 +83,7 @@ function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
                     <PendingOrdersManagement
                         selectedItem={selectedItem}
                         setDeeperSection={setDeeperSection}
+                        setInventoryView={setInventoryView}
                     />
                 )}
             </section>

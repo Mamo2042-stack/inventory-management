@@ -77,7 +77,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
 
     const updatedPendingOrder = {
         ...selectedOrder,
-        receivedQuantity: remaining - newReceivedQuantity
+        receivedQuantity: receivedQuantity + newReceivedQuantity
     }
 
     const updatedData = {
