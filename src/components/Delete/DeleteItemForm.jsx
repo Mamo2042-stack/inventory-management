@@ -41,7 +41,7 @@ function DeleteItemForm({itemId, setViewMode, setSuccessMsg}){
             </button>
 
             <button
-                type="submit"
+                type="button"
                 onClick={handleConfirmClick}
             >確定
             </button>

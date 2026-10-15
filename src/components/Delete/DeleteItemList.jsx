@@ -14,7 +14,7 @@ function DeleteItemList({ setSelectedItem, setViewMode }){
                     <div key={storage.id}>
                         <h3>{storage.name}</h3>
 
-                        {storedItems.map(item => (
+                        {storedItems?.map(item => (
                             <DeleteItemCard
                                 key={item.id}
                                 item={item}
@@ -22,6 +22,10 @@ function DeleteItemList({ setSelectedItem, setViewMode }){
                                 setViewMode={setViewMode}
                             />
                         ))}
+
+                        {storedItems.length === 0 && (
+                            <p>表示する食材がありません。</p>
+                        )}
                     </div>
                 )
             })}            

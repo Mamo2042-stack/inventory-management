@@ -1,4 +1,4 @@
-function DeleteItemCard({item, setSelectedItem, setViewMode }){
+function DeleteItemCard({ item, setSelectedItem, setViewMode }){
     function handleClick (){
         setSelectedItem(item.id);
         setViewMode("confirmation")

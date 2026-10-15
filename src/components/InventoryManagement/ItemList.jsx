@@ -1,20 +1,19 @@
-import { useState } from "react";
 import { useAppData } from "../../context/AppDataContext";
 import ItemCard from "./ItemCard";
 
 function ItemList ({ setSelectedItem, setInventoryView }){
-    const { appData, setAppData } = useAppData();
+    const { appData } = useAppData();
     const { storages, items } = appData;
 
     return (
         <section>
-            {storages.map(storage => {
+            {storages?.map(storage => {
                 const storedItems = items.filter(item => item.storageId === storage.id)
 
                 return (
                     <div key={storage.id}>
                         <h2>{storage.name}</h2>
-                        {storedItems.map(item => (
+                        {storedItems?.map(item => (
                         <ItemCard 
                             key={item.id}
                             item={item}
