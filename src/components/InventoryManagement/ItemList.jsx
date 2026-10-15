@@ -3,7 +3,7 @@ import ItemCard from "./ItemCard";
 
 function ItemList ({ setSelectedItem, setInventoryView }){
     const { appData } = useAppData();
-    const { storages, items } = appData;
+    const { storages, items, inventoryHistory} = appData;
 
     return (
         <section>
@@ -19,6 +19,7 @@ function ItemList ({ setSelectedItem, setInventoryView }){
                             item={item}
                             setSelectedItem={setSelectedItem}
                             setInventoryView={setInventoryView}
+                            history={inventoryHistory}
                         />
                         ))}
 
