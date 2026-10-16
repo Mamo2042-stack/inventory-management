@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useAppData } from "../../context/AppDataContext";
-import filterItems from "../../utils/sortOutItems";
+
 
 function FilteringSection({ userInput, setUserInput }){
     const { appData } = useAppData();
@@ -30,8 +29,6 @@ function FilteringSection({ userInput, setUserInput }){
             onlyExpected: !prev.onlyExpected
         }))
     }
-
-    console.log(userInput)
 
     return (
         <div>
