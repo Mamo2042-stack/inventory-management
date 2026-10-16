@@ -4,6 +4,8 @@ import ItemCard from "./ItemCard";
 import ItemListControls from "./ItemListControls";
 import filterItems from "../../utils/filterItems";
 import sortItems from "../../utils/sortItems";
+import SearchSection from "./SearchSection";
+import searchItems from "../../operations/searchItems";
 
 function ItemList ({ setSelectedItem, setInventoryView }){
     const { appData } = useAppData();
@@ -14,16 +16,25 @@ function ItemList ({ setSelectedItem, setInventoryView }){
         storages: storageArry,
         onlyExpected: false
     })//Used to determine filtering condition//
+    const [searchWord, setSearchWord] = useState("");
     const [sortingOption, setSortingOption] = useState("");
     const displayedItems = filterItems(appData, userInput)//Recalculate whenver appData is updated//
-    const sortedItems = sortItems(displayedItems, sortingOption);
-    const { storages, items, inventoryHistory } = sortedItems;
+    const searchedItems = searchItems(displayedItems, searchWord);
+    const sortedItems = sortItems(searchedItems, sortingOption);
+    const { storages, items, inventoryHistory } = searchedItems;
     const [isControlOpen, setIsControlOpen] = useState(false);
 
     console.log(userInput);
 
     return (
         <section>
+            <div>
+                <SearchSection
+                    searchWord={searchWord}
+                    setSearchWord={setSearchWord}
+                />
+            </div>
+    
             <div>
                 <button
                     type="button"
