@@ -1,12 +1,42 @@
+import { useState } from "react";
 import { useAppData } from "../../context/AppDataContext";
 import ItemCard from "./ItemCard";
+import ItemListControls from "./ItemListControls";
+import filterItems from "../../utils/sortOutItems";
 
 function ItemList ({ setSelectedItem, setInventoryView }){
     const { appData } = useAppData();
-    const { storages, items, inventoryHistory} = appData;
+    const storageArry = [];
+    appData.storages.forEach(storage => storageArry.push(storage.id));
+    const [userInput, setUserInput] = useState({
+        category: "",
+        storages: storageArry,
+        onlyExpected: false
+    })
+    const displayedItems = filterItems(appData, userInput)
+    const { storages, items } = displayedItems;
+    const [isControlOpen, setIsControlOpen] = useState(false);
+
+    console.log(storageArry)
+    console.log(displayedItems)
 
     return (
         <section>
+            <div>
+                <button
+                    type="button"
+                    onClick={() => setIsControlOpen(prev => !prev)}
+                >{ isControlOpen ?   "閉じる" : "フィルター : ソート"}
+                </button>
+
+                {isControlOpen && (
+                    <ItemListControls
+                        userInput={userInput}
+                        setUserInput={setUserInput}
+                    />
+                )}
+            </div>
+
             {storages?.map(storage => {
                 const storedItems = items.filter(item => item.storageId === storage.id)
 
