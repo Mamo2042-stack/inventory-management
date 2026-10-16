@@ -89,7 +89,7 @@ function ItemRegistration(){
                     onChange={e => handleChange(e)}
                 >
                     <option 
-                        value="">ストレージを洗濯してください。
+                        value="">ストレージを選択してください。
                     </option>
                     {storages.map(storage => (
                         <option

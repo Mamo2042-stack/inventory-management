@@ -83,7 +83,7 @@ The persistence layer should not contain UI logic or inventory business rules.
 
 ## 4. Application State
 
-The application's central state is stored in `App.jsx`.
+The application's central state is stored in `AppDataContext.jsx`.
 
 ```text
 const [appData, setAppData] = useState({
@@ -135,8 +135,6 @@ APP
 
 Responsibilities:
 
-- Own `appData`
-- Own applicaiton-level navigation state
 - Provide event handlers to child components for operations
 - Compose the major application views
 

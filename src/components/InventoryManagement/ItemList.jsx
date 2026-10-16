@@ -13,8 +13,8 @@ function ItemList ({ setSelectedItem, setInventoryView }){
         storages: storageArry,
         onlyExpected: false
     })
-    const displayedItems = filterItems(appData, userInput)
-    const { storages, items } = displayedItems;
+    const displayedItems = filterItems(appData, userInput)//Recalculate whenver appData is updated//
+    const { storages, items, inventoryHistory } = displayedItems;
     const [isControlOpen, setIsControlOpen] = useState(false);
 
     console.log(storageArry)

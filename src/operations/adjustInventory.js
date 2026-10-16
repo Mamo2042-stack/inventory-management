@@ -1,8 +1,6 @@
 function adjustInventory (appData, itemId, changeTo) {
     const selectedItem = appData.items.find(item => item.id === itemId );
-    const previousQuantity = selectedItem.quantity
 
-    //Validation//
     if(!selectedItem){
         return {
             success: false,
@@ -10,13 +8,15 @@ function adjustInventory (appData, itemId, changeTo) {
         }
     }
 
+    const previousQuantity = selectedItem.quantity
+
     if(changeTo < 0){
         return {
             success: false,
             error: "INVALID_QUANTITY"
         }
     }
-    //End of the validation//   
+  
 
     //Create a history records//
     const newHistory = {

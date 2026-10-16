@@ -9,7 +9,9 @@ function AppLayout () {
                     {" | "}
                     <Link to="/registration">Registration</Link>
                     {" / "}
-                    <Link to="/inventoryManagement"></Link>
+                    <Link to="/inventoryManagement">Inventory Management</Link>
+                    {" / "}
+                    <Link to="/delete">Delete</Link>
                 </nav>
             </header>
 
