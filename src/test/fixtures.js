@@ -37,6 +37,26 @@ export const testAppData = {
             replenishmentMethod: "PURCHASE",
             category: "others",
             storageUnit: "roaf"
+        },
+        {
+            id:"item-3",
+            name: "Rice",
+            storageId: "storage-1",
+            quantity: 3,
+            expectedQuantity: 5,
+            replenishmentMethod: "ORDER",
+            category: "vegetable",
+            storageUnit: "kg"
+        },
+        {
+            id:"item-4",
+            name: "Chicken",
+            storageId: "storage-2",
+            quantity: 3,
+            expectedQuantity: 5,
+            replenishmentMethod: "ORDER",
+            category: "meat",
+            storageUnit: "kg"
         }
     ],
     inventoryHistory: []

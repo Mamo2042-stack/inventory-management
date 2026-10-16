@@ -1,31 +1,27 @@
 function filterItems(appData, filterBy){
     const { category, storages, onlyExpected } = filterBy;
-    const condition = (item) => {
+    const condition = (category, onlyExpected, item) => {
 
-        if(category === ""){
-            return true;
-        }
-
-        if(item.category === category){
-            return true;
-        }
+        let result = false;
 
         if(onlyExpected){
             const needForRestock = item.quantity < item.expectedQuantity;
             if(needForRestock){
-                return true;
-            } else {
-                return false;
+                if(category === "" || item.category === category){
+                    result = true;
+                }
             }
+        } else if(category === "" || item.category === category){
+            result = true;
         }
 
-        return true;
+        return result;
     }
 
     return {
         ...appData,
         storages: appData.storages.filter(storage => storages.includes(storage.id)),
-        items: appData.items.filter(item => condition(item))
+        items: appData.items.filter(item => condition(category, onlyExpected, item))
     }
 }
 

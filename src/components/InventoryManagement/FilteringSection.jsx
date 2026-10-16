@@ -1,10 +1,10 @@
 import { useAppData } from "../../context/AppDataContext";
-
+import { CATEGORIES } from "../../constants/categories";
 
 function FilteringSection({ userInput, setUserInput }){
     const { appData } = useAppData();
-    const { storages, items } = appData;
-    const categories = [...new Set(items.map(item => item.category).filter(category => category))];
+    const { storages } = appData;
+    const categories = CATEGORIES;
 
     function handleStoragesChange(e, storageId){
 
@@ -46,9 +46,9 @@ function FilteringSection({ userInput, setUserInput }){
                         >全カテゴリー</option>
                         {categories.map(category => (
                             <option
-                                key={category}
-                                value={category}
-                            >{category}</option>
+                                key={category.type}
+                                value={category.type}
+                            >{category.word}</option>
                         ))}
                     </select>
                 </div>
