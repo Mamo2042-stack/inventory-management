@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 import ItemInteraction from "./ItemInteraction";
-import { testAppData } from "../../test/fixtures";
 
 function InventoryManagement(){
     const [inventoryView, setInventoryView] = useState("item-list");
