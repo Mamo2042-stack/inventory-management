@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { useAppData } from "../../context/AppDataContext";
 import { useState } from "react";
 import registerItem from "../../operations/registerItem";
+import { CATEGORIES } from "../../constants/categories";
 
 function ItemRegistration(){
     const [userInput, setUserInput] = useState({
@@ -21,6 +22,7 @@ function ItemRegistration(){
         "INVALID_EXPEC_NUM": "無効な数字入力です。"
     }
     const { appData, setAppData } = useAppData(); 
+    const categories = CATEGORIES;
 
     const { storages } = appData;
     const navigate = useNavigate();
@@ -107,14 +109,13 @@ function ItemRegistration(){
                     value={userInput.category}
                     onChange={e => handleChange(e)}
                 >
-                    <option value=""></option>
-                    <option value="meat">肉</option>
-                    <option value="seafood">魚介</option>
-                    <option value="vegetable">野菜</option>
-                    <option value="tenshin">天心</option>
-                    <option value="drink">ドリンク</option>
-                    <option value="seasoning">調味料</option>
-                    <option value="others">その他</option>
+                    {categories.map(category => (
+                        <option
+                            key={category.type}
+                            value={category.type}
+                        >{category.word}
+                        </option>
+                    ))}
                 </select>
 
                 <label htmlFor="storage-unit">単位</label>
