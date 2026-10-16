@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useAppData } from "../../context/AppDataContext";
 import ItemCard from "./ItemCard";
 import ItemListControls from "./ItemListControls";
-import filterItems from "../../utils/sortOutItems";
+import filterItems from "../../utils/filterItems";
+import sortItems from "../../utils/sortItems";
 
 function ItemList ({ setSelectedItem, setInventoryView }){
     const { appData } = useAppData();
@@ -12,13 +13,12 @@ function ItemList ({ setSelectedItem, setInventoryView }){
         category: "",
         storages: storageArry,
         onlyExpected: false
-    })
+    })//Used to determine filtering condition//
+    const [sortingOption, setSortingOption] = useState("");
     const displayedItems = filterItems(appData, userInput)//Recalculate whenver appData is updated//
-    const { storages, items, inventoryHistory } = displayedItems;
+    const sortedItems = sortItems(displayedItems, sortingOption);
+    const { storages, items, inventoryHistory } = sortedItems;
     const [isControlOpen, setIsControlOpen] = useState(false);
-
-    console.log(storageArry)
-    console.log(displayedItems)
 
     return (
         <section>
@@ -33,6 +33,7 @@ function ItemList ({ setSelectedItem, setInventoryView }){
                     <ItemListControls
                         userInput={userInput}
                         setUserInput={setUserInput}
+                        setSortingOption={setSortingOption}
                     />
                 )}
             </div>
