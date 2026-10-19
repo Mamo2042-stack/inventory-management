@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router"
-import { useState } from 'react';
+import "./App.css";
 import Home from './components/Home/Home.jsx';
 import Registration from './components/Registration/Registration.jsx';
 import Delete from './components/Delete/Delete.jsx';
