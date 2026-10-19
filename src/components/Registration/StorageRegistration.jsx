@@ -7,8 +7,8 @@ function StorageRegistration (){
     const [userInput, setUserInput] = useState({
         name: ""
     });
-    const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
+    const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
     const { appData, setAppData } = useAppData();
 
     const navigate = useNavigate();
@@ -28,8 +28,8 @@ function StorageRegistration (){
         const result = registerStorage(appData, userInput)
 
         if(!result.success){
-            setIsErrorModalOpen(true);
             setErrorMsg(result.error);
+            console.log(result.error);
             return;
         }
 
@@ -38,11 +38,11 @@ function StorageRegistration (){
             ...previous,
             name: ""
         }));
-        navigate("/");
+        setIsSuccessModalOpen(true);
     }
 
     function handleClick (){
-        navigate("/");
+        navigate("/registration");
     }
 
     return (
@@ -52,6 +52,7 @@ function StorageRegistration (){
             <form 
                 id="storage-registration-form"
                 onSubmit={e => handleSubmit(e)}
+                noValidate
             >
                 <label
                     htmlFor="storage-name"
@@ -64,6 +65,10 @@ function StorageRegistration (){
                     required
                 />
 
+                {errorMsg && (
+                    <p id="storage-error">このストレージ名は既に登録されています。</p>
+                )}
+
                 <button
                     id="submit-btn"
                     type="submit"
@@ -75,28 +80,24 @@ function StorageRegistration (){
             <button
                 className="back-to-home-btn"
                 onClick={handleClick}
-            >戻る
+            >⇠
             </button>
+
+            {isSuccessModalOpen && (
+                <div htmlFor="success-modal">
+                    <p>ストレージが登録されました。</p>
+
+                    <button
+                        type="button"
+                        onClick={() => {
+                            navigate("/")
+                            setIsSuccessModalOpen(false)
+                        }}
+                    >⌫
+                    </button>
+                </div>
+            )}
         </section>
-
-        {isErrorModalOpen && (
-            <div role="alertdialog" aria-modal="true">   
-                <p>{"このストレージ名は既に使用されています。"}</p>
-
-                <button
-                    type="button"
-                    onClick={() => {
-                        setIsErrorModalOpen(false);
-                        setErrorMsg("");
-                        setUserInput(previous => ({
-                            ...previous,
-                            name: ""
-                        }));
-                    }}
-                >閉じる
-                </button>
-            </div>
-        )}
     </>
     )
 }

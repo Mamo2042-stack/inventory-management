@@ -6,6 +6,11 @@ function registerItem (appData, itemData) {
     }
     //Validation//
     const normalizedName = name.trim().normalize("NFKC");
+
+    if(normalizedName === ""){
+        result.error.push("EMPTY_INPUT");
+    }
+
     const isDuplicate = appData.items.some(item => 
         item.name.normalize("NFKC") === normalizedName
     );
@@ -18,8 +23,14 @@ function registerItem (appData, itemData) {
         result.error.push("NO_STORAGE");
     }
 
-    if(expectedQuantity && Number(expectedQuantity) < 0){
-        result.error.push("INVALID_EXPEC_NUM");
+    if(!storageId.trim()){
+        result.error.push("NO_STORAGE_UNIT");
+    }
+
+    if(Number(expectedQuantity)){
+        if(Number(expectedQuantity) < 0 || Number(expectedQuantity) > 100){
+            result.error.push("INVALID_NUMBER");
+        }
     }
 
 

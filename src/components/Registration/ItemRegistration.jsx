@@ -13,14 +13,8 @@ function ItemRegistration(){
         replenishmentMethod: "ORDER",
         storageUnit: "",
     });
-    const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
     const [errorMsg, setErrorMsg] = useState([]);
-    const errorMsgs = {
-        "DUPLICATE_NAME": "既に使用されている名前です。",
-        "NO_STORAGE": "ストレージが存在しません。",
-        "INVALID_EXPEC_NUM": "無効な数字入力です。"
-    }
     const { appData, setAppData } = useAppData(); 
     const categories = CATEGORIES;
 
@@ -28,7 +22,7 @@ function ItemRegistration(){
     const navigate = useNavigate();
 
     function handleClick (){
-        navigate("/");
+        navigate("/registration");
     }
 
     function handleChange(e) {
@@ -47,7 +41,6 @@ function ItemRegistration(){
         
         if(!result.success){
             setErrorMsg(result.error);
-            setIsErrorModalOpen(true);
             console.log(result.error);
             return;
         }
@@ -72,6 +65,7 @@ function ItemRegistration(){
             <form 
                 id="item-registration-form"
                 onSubmit={e => handleSubmit(e)}
+                noValidate
             >
                 <label htmlFor="name">名前</label>
                 <input
@@ -82,6 +76,14 @@ function ItemRegistration(){
                     onChange={e => handleChange(e)}
                     required
                 />
+
+                {errorMsg.some(err => err === "EMPTY_INPUT") && (
+                    <p>名前を入力して下さい。</p>
+                )}
+
+                {errorMsg.some(err => err === "DUPLICATE_NAME") && (
+                    <p id="name-error">既に使用されている名前です。</p>
+                )}
             
                 <label htmlFor="place">保管先ストレージ</label>
                 <select 
@@ -91,7 +93,8 @@ function ItemRegistration(){
                     onChange={e => handleChange(e)}
                 >
                     <option 
-                        value="">ストレージを選択してください。
+                        value=""
+                    >ストレージを選択してください。
                     </option>
                     {storages.map(storage => (
                         <option
@@ -101,6 +104,10 @@ function ItemRegistration(){
                         </option>
                     ))}
                 </select>
+
+                {errorMsg.some(err => err === "NO_STORAGE") && (
+                    <p id="storage-error">ストレージを選択して下さい。</p>
+                )}
                     
                 <label htmlFor="category">カテゴリー</label>    
                 <select 
@@ -128,14 +135,25 @@ function ItemRegistration(){
                     required
                 />
 
-                <label htmlFor="expected-quantity">最低在庫数:({userInput.storageUnit})</label>
+                {errorMsg.some(err => err === "NO_STORAGE_UNIT") && (
+                    <p id="storageUnit-error">単位を入力して下さい。</p>
+                )}
+
+                <label htmlFor="expected-quantity">最低在庫数
                 <input
                     name="expectedQuantity"
                     type="number"
                     id="expected-quantity"
+                    min="0"
                     value={userInput.expectedQuantity}
                     onChange={e => handleChange(e)}
                 />
+                ({userInput.storageUnit})
+                </label>
+
+                {errorMsg.some(err => err === "INVALID_NUMBER") && (
+                    <p id="number-error">有効な数字(0~100)を入力して下さい。</p>
+                )}
 
                 <fieldset>
                     <legend>リストック方法</legend>
@@ -171,45 +189,23 @@ function ItemRegistration(){
             <button
                 className="back-to-home-btn"
                 onClick={handleClick}
-            >ホームに戻る
+            >⇠
             </button>
 
             {isSuccessModalOpen && (
-                <div id="success-modal">
-                    <p>登録完了しました。</p>
+                <div htmlFor="success-modal">
+                    <p>食材が登録されました。</p>
 
                     <button
                         type="button"
                         onClick={() => {
-                        setIsSuccessModalOpen(false)
-                        navigate("/")
+                            setIsSuccessModalOpen(false)
+                            navigate("/")
                     }
-                    }>閉じる
+                    }>⌫
                     </button>
                 </div>
             )}
-
-            {isErrorModalOpen && (
-                <div id="error-modal">
-                    <p>不正な入力です。</p>
-                    <p>以下を参照ください。</p>
-
-                    <ul>
-                        {errorMsg.map(( err, index ) => (
-                            <li key={index}>{errorMsgs[err]}</li>
-                        ))}
-                    </ul>
-
-                    <button
-                        type="button"
-                        onClick={() => {
-                            setErrorMsg([]);
-                            setIsErrorModalOpen(false);
-                    }}>閉じる
-                        </button>
-                </div>
-            )}
-
         </section>
     )
 }
