@@ -1,0 +1,23 @@
+
+
+.app-header {
+    background-color: var(--color-header);
+    padding: 16px 24px;
+}
+
+.app-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.app-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.app-nav a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+/*Typography*/
+    --primary-font-family: 'Noto Sans JP', sans-serif;
+    --font-weight-normal: 400;
+
+
+/*Colors*/
+    --color-primary: #ffb380;
+    --color-header: #FF8938;
+
+    --color-input: #FFF2EB;
+
+/*Layout*/
+    --content-max-width: 1200px;
+}
+
+body {
+    margin: 0;
+
+    font-family: var(--primary-font-family);
+    font-size: 16px;
+    line-height: 1.5;
+    color: #222222;
+    background-color: var(--color-primary);
+}
