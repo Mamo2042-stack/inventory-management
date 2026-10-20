@@ -11,7 +11,7 @@ function InventoryHistoryView({ setInventoryView, selectedItem }){
             <button
                 type="button"
                 onClick={() => setInventoryView("item-list")}
-            >❌
+            >✕
             </button>
         </section>
     )

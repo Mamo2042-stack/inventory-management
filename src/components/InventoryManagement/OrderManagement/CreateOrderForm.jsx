@@ -5,6 +5,7 @@ import createOrder from "../../../operations/createOrder";
 
 function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
     const [userInput, setUserInput] = useState("1");
+    const [errorMsg, setErrorMsg] = useState("");
     const { appData, setAppData } = useAppData();
 
     function handleChange(e){
@@ -18,6 +19,14 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
 
         if(!result.success){
             console.log(result.error);
+            if(result.error === "EMPTY_INPUT"){
+                setErrorMsg("有効な数字を入力して下さい。");
+            }
+
+            if(result.error === "INVALID_QUANTITY"){
+                setErrorMsg("一度に注文できる数は1~100です。")
+            }
+            return;
         }
 
         setAppData(result.data);
@@ -31,16 +40,23 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
             <form 
                 id="new-order-creation"
                 onSubmit={e => handleSubmit(e)}
+                noValidate
             >
                 <label htmlFor="order-quantity">数量</label>
                 <input
                     type="number"
                     min="1"
+                    max="100"
                     id="order-quantity"
                     value={userInput}
+                    required
                     onChange={e => handleChange(e)}
                 />
                 <p> {storageUnit}</p>
+
+                {errorMsg && (
+                    <p>{errorMsg}</p>
+                )}
 
                 <button
                     type="submit"

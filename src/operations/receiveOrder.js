@@ -29,7 +29,21 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
         }
     }
 
-    if(newReceivedQuantity > remaining){
+    if(newReceivedQuantity === ""){
+        return {
+            success: false,
+            error: "EMPTY_INPUT"
+        }
+    }
+
+    if(Number(newReceivedQuantity) <= 0){
+        return {
+            success: false,
+            error: "INVALID_QUANTITY"
+        }
+    }
+
+    if(Number(newReceivedQuantity) > remaining){
         return {
             success: false,
             error: "INSUFFICIENT_QUANTITY"
@@ -37,14 +51,14 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
     }
   
 
-    const isFullyReceived = remaining === newReceivedQuantity;
+    const isFullyReceived = remaining === Number(newReceivedQuantity);
 
     const newInventoryHistory = {
         id: crypto.randomUUID(),
         itemId: itemId,
         userAction: isFullyReceived ? "RECEIVE_FULL_ORDER" : "RECEIVE_PARTIAL_ORDER",
         previousQuantity: beforeAdd,
-        newQuantity: selectedItem.quantity + newReceivedQuantity,
+        newQuantity: selectedItem.quantity + Number(newReceivedQuantity),
         timestamp: new Date().toISOString()
     }
 
@@ -56,7 +70,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
                 if(item.id === itemId){
                     return {
                         ...item,
-                        quantity: beforeAdd + newReceivedQuantity,
+                        quantity: beforeAdd + Number(newReceivedQuantity),
                         pendingOrders: updatedOrderList
                     }
                 }
@@ -77,7 +91,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
 
     const updatedPendingOrder = {
         ...selectedOrder,
-        receivedQuantity: receivedQuantity + newReceivedQuantity
+        receivedQuantity: receivedQuantity + Number(newReceivedQuantity)
     }
 
     const updatedData = {
@@ -86,7 +100,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
             if(item.id === itemId){
                 return {
                     ...item,
-                    quantity: beforeAdd + newReceivedQuantity,
+                    quantity: beforeAdd + Number(newReceivedQuantity),
                     pendingOrders: item.pendingOrders.map(order => {
                         if(order.id === orderId){
                             return updatedPendingOrder;

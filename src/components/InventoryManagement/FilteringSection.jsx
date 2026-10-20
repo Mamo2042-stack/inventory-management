@@ -36,7 +36,7 @@ function FilteringSection({ userInput, setUserInput }){
                 <legend>フィルター</legend>
 
                 <div>
-                    <h3>カテゴリー別</h3>
+                    <h2>カテゴリー別</h2>
                     <select
                         id="category_selection"
                         onChange={handleCategoryChange}
@@ -54,7 +54,7 @@ function FilteringSection({ userInput, setUserInput }){
                 </div>
 
                 <div>
-                    <h3>ストレージ別</h3>
+                    <h2>ストレージ別</h2>
                     {storages?.map(storage => (
                         <div key={storage.id}>
                             <input

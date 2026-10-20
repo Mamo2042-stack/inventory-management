@@ -15,7 +15,7 @@ function PendingOrderCard ({ order, unit, setSelectedOrder, setAnyDetailModal })
                     setAnyDetailModal("receipt")
                 }}
             >
-                <h4>{displayDate}</h4>
+                <h5>{displayDate}</h5>
 
                 <p>注文数: {orderedQuantity}{unit}</p>
                 <p>受取済み: {receivedQuantity}{unit}</p>
