@@ -6,7 +6,7 @@ function SortingSection({ setSortingOption }){
 
     return (
         <div>
-            <h4>並び替え</h4>
+            <h2>並び替え</h2>
 
             <select
                 onChange={handleChange}

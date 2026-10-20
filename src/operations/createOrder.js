@@ -18,12 +18,20 @@ function createOrder ( appData, itemId, orderData ){
         }
     }
 
-    if(Number(orderData) <= 0){
+    if(orderData.trim() === ""){
         return {
             success: false,
-            error: "INVALID_NUMBER"
+            error: "EMPTY_INPUT"
         }
     }
+
+    if(Number(orderData) <= 0 || Number(orderData) > 100){
+        return {
+            success: false,
+            error: "INVALID_QUANTITY"
+        }
+    }
+
     
     //End of Validation//
 

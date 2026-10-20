@@ -46,7 +46,8 @@ export const testAppData = {
             expectedQuantity: 5,
             replenishmentMethod: "ORDER",
             category: "vegetable",
-            storageUnit: "kg"
+            storageUnit: "kg",
+            pendingOrders: []
         },
         {
             id:"item-4",
@@ -56,7 +57,8 @@ export const testAppData = {
             expectedQuantity: 5,
             replenishmentMethod: "ORDER",
             category: "meat",
-            storageUnit: "kg"
+            storageUnit: "kg",
+            pendingOrders: []
         }
     ],
     inventoryHistory: []

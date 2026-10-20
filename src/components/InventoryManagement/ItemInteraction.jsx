@@ -1,9 +1,9 @@
 import { useAppData } from "../../context/AppDataContext";
-import { testAppData } from "../../test/fixtures";
 import { useState } from "react";
 import adjustInventory from "../../operations/adjustInventory";
 import PendingOrdersManagement from "./OrderManagement/PendingOrdersManagement";
 import InventoryHistoryView from "./HistoryManagement/InventoryHistoryView";
+import calUpcomingQuantity from "../../utils/calUpcomingQuan";
 
 function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
     const { appData, setAppData } = useAppData();
@@ -11,7 +11,7 @@ function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
     const displayItem = items.find(item => item.id === selectedItem);
     const [deeperSection, setDeeperSection] = useState(null);//Holds null, pending, or history//
     const [tempQuan, setTempQuan] = useState(displayItem.quantity);//This is only used to display current quantity and reflects users' change responsively//
-
+    const upcomingQuantity = calUpcomingQuantity(displayItem);
 
     function handleSubmit(e){
         e.preventDefault();
@@ -27,21 +27,29 @@ function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
     }
 
     return (
-        <div id="item-interaction">
-            <h2>{displayItem.name}</h2>
+        <section id="item-interaction">
+            <h3>{displayItem.name}</h3>
 
             <form 
                 id="quantity-control"
                 onSubmit={handleSubmit}
             >
-                <h3>数量変更</h3>
+                <h4>数量変更</h4>
                 <button 
                     type="button"
                     name="decrease"
                     onClick={() => setTempQuan(previous => previous - 1)}
                     disabled={tempQuan <= 0}
                 >-</button>
-                    <p>{tempQuan}</p>
+                    <p>
+                        {tempQuan}
+                    </p>
+                    {upcomingQuantity ? (
+                            <p> + (注文済み {upcomingQuantity})</p>
+                        ) 
+                        : 
+                        ""
+                    }
                 <button
                     type="button"
                     name="increase"
@@ -76,7 +84,7 @@ function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
                 onClick={() => {
                     setSelectedItem(null)
                     setInventoryView("item-list")
-                }}>閉じる
+                }}>✕
             </button>
 
             {deeperSection === "pending" && (
@@ -94,7 +102,7 @@ function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
                 />
             )}
 
-        </div>
+        </section>
     )
 }
 

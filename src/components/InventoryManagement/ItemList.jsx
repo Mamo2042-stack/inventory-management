@@ -24,8 +24,6 @@ function ItemList ({ setSelectedItem, setInventoryView }){
     const { storages, items, inventoryHistory } = searchedItems;
     const [isControlOpen, setIsControlOpen] = useState(false);
 
-    console.log(userInput);
-
     return (
         <section>
             <div>

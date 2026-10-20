@@ -1,5 +1,4 @@
 import { useAppData } from "../../../context/AppDataContext";
-import { testAppData } from "../../../test/fixtures";
 import PendingOrderCard from "./PendingOrderCard";
 import { useState } from "react";
 import ReceivePendingOrderForm from "./ReceivePendingOrderForm";
@@ -7,7 +6,7 @@ import CreateOrderForm from "./CreateOrderForm";
 
 
 function PendingOrdersManagement ({ selectedItem, setDeeperSection, setInventoryView }){
-    const { appData, setAppData } = useAppData();
+    const { appData } = useAppData();
     const { items } = appData;
     const displayItem = items.find(item => item.id === selectedItem);
     const { storageUnit, pendingOrders } = displayItem;
@@ -16,7 +15,7 @@ function PendingOrdersManagement ({ selectedItem, setDeeperSection, setInventory
 
     return (
         <section>
-            <h3>オーダー管理</h3>
+            <h4>オーダー管理</h4>
 
             {pendingOrders.length ? 
                 pendingOrders.map(order => (
@@ -42,7 +41,7 @@ function PendingOrdersManagement ({ selectedItem, setDeeperSection, setInventory
             <button
                 type="button"
                 onClick={() => setInventoryView("item-list")}
-            >閉じる
+            >✕
             </button>
 
             {/*More Detailed Modals below*/}

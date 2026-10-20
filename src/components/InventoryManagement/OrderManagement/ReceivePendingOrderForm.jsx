@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { use, useState } from "react"
 import receiveOrder from "../../../operations/receiveOrder";
 import { useAppData } from "../../../context/AppDataContext";
 
@@ -8,14 +8,15 @@ function ReceivePendingOrderForm ({ selectedOrder, pendingOrders, setAnyDetailMo
     const selectedOrderData = pendingOrders.find(order => order.id === selectedOrder)
     const { orderedQuantity, receivedQuantity } = selectedOrderData;
     const [userInput, setUserInput] = useState(orderedQuantity - receivedQuantity);
-
-    console.log(selectedOrder, selectedOrderData, orderedQuantity)
+    const [errorMsg, setErrorMsg] = useState("");
 
     function handleCheckboxChange(e){
         setIsChecked(e.target.checked);
+        setUserInput(orderedQuantity - receivedQuantity);
     }
 
     function handleInputChange(e){
+        console.log(e.target.value)
         setUserInput(e.target.value);
     }
 
@@ -23,11 +24,24 @@ function ReceivePendingOrderForm ({ selectedOrder, pendingOrders, setAnyDetailMo
     function handleSubmit(e){
         e.preventDefault();
 
-        const input = Number(userInput);
+        const input = userInput;
         const result = receiveOrder(appData, selectedItem, selectedOrder, input);
         
         if(!result.success){
             console.log(result.error);
+
+            if(result.error === "EMPTY_INPUT"){
+                setErrorMsg("有効な数字を入力して下さい。");
+            }
+
+            if(result.error === "INVALID_QUANTITY"){
+                setErrorMsg("1以上の数字を入力して下さい。");
+            }
+
+            if(result.error === "INSUFFICIENT_QUANTITY"){
+                setErrorMsg("注文数を超えています。");
+            }
+
             return;
         }
 
@@ -38,6 +52,7 @@ function ReceivePendingOrderForm ({ selectedOrder, pendingOrders, setAnyDetailMo
     return (
         <form 
             onSubmit={e => handleSubmit(e)} 
+            noValidate
         >
             <fieldset>
                 <legend>オーダー受取</legend>
@@ -61,9 +76,14 @@ function ReceivePendingOrderForm ({ selectedOrder, pendingOrders, setAnyDetailMo
                         min="1"
                         id="received-quantity"
                         value={userInput}
+                        required
                         onChange={e => handleInputChange(e)}
                     />
                     </div>
+                    )}
+
+                    {errorMsg && (
+                        <p className="error-message">{errorMsg}</p>
                     )}
 
                     <button
