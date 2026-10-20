@@ -7,12 +7,21 @@
 :root {
 /*Typography*/
     --primary-font-family: 'Noto Sans JP', sans-serif;
+
+/*Fonts*/
     --font-weight-normal: 400;
 
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.5rem;
+    --font-size-h3: 1.25rem;
+    --font-size-h4: 1.125rem;
+    --font-size-link: 1.8rem;
 
 /*Colors*/
     --color-primary: #ffb380;
     --color-header: #FF8938;
+    --color-a-font: #222222;
+    --color-a-background: #FFE6D1;
 
     --color-input: #FFF2EB;
 
@@ -28,4 +37,27 @@ body {
     line-height: 1.5;
     color: #222222;
     background-color: var(--color-primary);
+}
+
+a {
+    color: var(--color-a);
+    text-decoration: none;
+
+    transition: all 0.3s;
+}
+
+a:not(.nav-link){
+    font-size: var(--font-size-link);
+    border: 2px solid gray;
+    border-radius: 20px;
+    padding:20px;
+    background-color: var(--color-a-background);
+}
+
+a:hover {
+    transform: scale(1.2);
+}
+
+h1 {
+    font-size: var(--font-size-h1);
 }
