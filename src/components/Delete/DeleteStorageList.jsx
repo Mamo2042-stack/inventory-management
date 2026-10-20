@@ -7,7 +7,7 @@ function DeleteStorageList({ setSelectedStorage, setViewMode }){
 
     return (
         <section>
-            <h2>ストレージ選択</h2>
+            <h1>ストレージ選択</h1>
             {storages?.map(storage => (
                 <DeleteStorageCard
                    key={storage.id}

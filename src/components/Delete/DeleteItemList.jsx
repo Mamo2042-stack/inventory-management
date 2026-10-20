@@ -12,7 +12,7 @@ function DeleteItemList({ setSelectedItem, setViewMode }){
 
                 return (
                     <div key={storage.id}>
-                        <h3>{storage.name}</h3>
+                        <h2>{storage.name}</h2>
 
                         {storedItems?.map(item => (
                             <DeleteItemCard
