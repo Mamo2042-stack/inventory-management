@@ -1,15 +1,17 @@
 import { useState } from "react";
 import DeleteItemForm from "./DeleteItemForm";
 import DeleteItemList from "./DeleteItemList";
+import { useNavigate } from "react-router";
 
 function DeleteItem(){
     const [viewMode, setViewMode] = useState("item-list");
     const [selectedItem, setSelectedItem] = useState(null);
     const [successMsg, setSuccessMsg] = useState("");
+    const navigate = useNavigate();
 
     return (
         <section>
-            <h2>食材の削除</h2>
+            <h1>食材の削除</h1>
 
             <DeleteItemList
                 setSelectedItem={setSelectedItem}
@@ -31,10 +33,16 @@ function DeleteItem(){
                     <button
                         type="button"
                         onClick={() => setSuccessMsg("")}    
-                    >❌
+                    >✕
                     </button>
                 </div>                
             )}
+
+            <button
+                type="button"
+                onClick={() => navigate("/delete")}
+            >⇠
+            </button>
 
         </section>
     )

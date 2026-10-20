@@ -36,14 +36,14 @@ function DeleteItemForm({itemId, setViewMode, setSuccessMsg}){
 
             <button
                 type="button"
-                onClick={() => setViewMode("item-list")}
-            >戻る
+                onClick={handleConfirmClick}
+            >確定
             </button>
 
             <button
                 type="button"
-                onClick={handleConfirmClick}
-            >確定
+                onClick={() => setViewMode("item-list")}
+            >✕
             </button>
         </section>
     )

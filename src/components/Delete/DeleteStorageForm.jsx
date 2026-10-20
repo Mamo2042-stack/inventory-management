@@ -9,6 +9,7 @@ function DeleteStorageForm({ selectedStorage, setViewMode, setSuccessMsg }){
 
         if(!result.success){
             console.log(result.error);
+            return;
         }
 
         setAppData(result.data);
