@@ -32,13 +32,13 @@ function FilteringSection({ userInput, setUserInput }){
 
     return (
         <div>
-            <fieldset>
-                <legend>フィルター</legend>
+            <h2>フィルター</h2>
 
                 <div>
-                    <h2>カテゴリー別</h2>
+                    <h3>カテゴリー別</h3>
                     <select
                         id="category_selection"
+                        value={userInput.category}
                         onChange={handleCategoryChange}
                     >
                         <option 
@@ -54,7 +54,7 @@ function FilteringSection({ userInput, setUserInput }){
                 </div>
 
                 <div>
-                    <h2>ストレージ別</h2>
+                    <h3>ストレージ別</h3>
                     {storages?.map(storage => (
                         <div key={storage.id}>
                             <input
@@ -79,7 +79,6 @@ function FilteringSection({ userInput, setUserInput }){
                     />
                     <label htmlFor="under_expected">最低在庫数より少ない</label>                    
                 </div>
-            </fieldset>
         </div>
     )
 }

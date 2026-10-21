@@ -1,4 +1,4 @@
-function SortingSection({ setSortingOption }){
+function SortingSection({ sortingOption, setSortingOption }){
 
     function handleChange(e){
         setSortingOption(e.target.value)
@@ -9,6 +9,7 @@ function SortingSection({ setSortingOption }){
             <h2>並び替え</h2>
 
             <select
+                value={sortingOption}
                 onChange={handleChange}
             >
                 <option

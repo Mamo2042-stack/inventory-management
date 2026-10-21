@@ -24,7 +24,9 @@ function ItemList ({ setSelectedItem, setInventoryView }){
     const sortedItems = sortItems(searchedItems, sortingOption);
     const { storages, items, inventoryHistory } = sortedItems;
     const [isControlOpen, setIsControlOpen] = useState(false);
-    
+
+    console.log(sortingOption)
+
     return (
         <section>
             <div>
@@ -44,6 +46,7 @@ function ItemList ({ setSelectedItem, setInventoryView }){
                 {isControlOpen && (
                     <ItemListControls
                         userInput={userInput}
+                        sortingOption={sortingOption}
                         setUserInput={setUserInput}
                         setSortingOption={setSortingOption}
                     />
