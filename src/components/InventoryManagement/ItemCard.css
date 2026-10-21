@@ -1,0 +1,54 @@
+p {
+    display: block;
+    line-height: 1.2rem;
+}
+
+.item-card {
+    width: 90%;
+    min-width: 800px;
+    height: 8rem;
+    margin-bottom: 10px;
+}
+
+.item-name {
+    margin: 0;
+    padding: 0 15px;
+    line-height: 1.4;
+}
+
+.secondary-content {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: left;
+    gap: 10px;
+    min-height: 2rem;
+    height: auto;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.main-content p {
+    font-size: 1.4rem;
+}
+
+.low-stock--indicator {
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #617AFF;
+    color: #ffffff;
+}
+
+.current-quantity {
+    font-size: 1.7rem;
+}
+
+.additional-info {
+    font-size: 1.2rem;
+}
