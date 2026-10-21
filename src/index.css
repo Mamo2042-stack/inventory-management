@@ -20,10 +20,24 @@
 /*Colors*/
     --color-primary: #ffb380;
     --color-header: #FF8938;
-    --color-a-font: #222222;
+    --color-background: #fdfaf7;
+    --color-font: #222222;
     --color-a-background: #FFE6D1;
 
     --color-input: #FFF2EB;
+
+    --color-meat: #FF6B6B;
+    --color-mear-hover: #FFF0F0;
+    --color-seafood: #5DADE2;
+    --color-seafood-hover: #EDF7FE;
+    --color-vegetable: #7ED957;
+    --color-vegetable-hover: #F1FBEA;
+    --color-tenshin: #FFC857;
+    --color-tenshin-hover: #FFF8E5;
+    --color-drink: #6EC6E6;
+    --color-drink-hover: #EAF9FD;
+    --color-seasoning: #A78BFA;
+    --color-others: #9E9E9E;
 
 /*Layout*/
     --content-max-width: 1200px;
@@ -36,11 +50,27 @@ body {
     font-size: 16px;
     line-height: 1.5;
     color: #222222;
-    background-color: var(--color-primary);
+    background-color: var(--color-background);
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+}
+
+h4 {
+    font-size: var(--font-size-h4);
 }
 
 a {
-    color: var(--color-a);
+    color: var(--color-font);
     text-decoration: none;
 
     transition: all 0.3s;
@@ -58,6 +88,57 @@ a:hover {
     transform: scale(1.2);
 }
 
-h1 {
-    font-size: var(--font-size-h1);
+.item-card--meat {
+    --category-color: #FF6B6B;
+    --category-hover: #E85454;
+}
+
+.item-card--seafood {
+    --category-color: #5DADE2;
+    --category-hover: #3498DB;
+}
+
+.item-card--vegetable {
+    --category-color: #7ED957;
+    --category-hover: #62BD3B;
+}
+
+.item-card--tenshin {
+    --category-color: #FFC857;
+    --category-hover: #F0B52D;
+}
+
+.item-card--drink {
+    --category-color: #6EC6E6;
+    --category-hover: #42B5D8;
+}
+
+.item-card--seasoning {
+    --category-color: #A78BFA;
+    --category-hover: #8B6CE0;
+}
+
+.item-card--others {
+    --category-color: #9E9E9E;
+    --category-hover: #858585;
+}
+
+.item-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 4px solid var(--category-color);
+    border-radius: 10px;
+    color: var(--color-font);
+    background-color: var(--color-background);
+    transition: border-color 0.2s ease;
+}
+
+.item-card:hover {
+    border-color: var(--category-hover);
+}
+
+.item-name {
+    border: 4px solid var(--category-color);
+    border-radius: 10px;
 }

@@ -6,6 +6,7 @@ import filterItems from "../../utils/filterItems";
 import sortItems from "../../utils/sortItems";
 import SearchSection from "./SearchSection";
 import searchItems from "../../operations/searchItems";
+import "./ItemList.css"
 
 function ItemList ({ setSelectedItem, setInventoryView }){
     const { appData } = useAppData();
@@ -21,7 +22,7 @@ function ItemList ({ setSelectedItem, setInventoryView }){
     const displayedItems = filterItems(appData, userInput)//Recalculate whenver appData is updated//
     const searchedItems = searchItems(displayedItems, searchWord);
     const sortedItems = sortItems(searchedItems, sortingOption);
-    const { storages, items, inventoryHistory } = searchedItems;
+    const { storages, items, inventoryHistory } = sortedItems;
     const [isControlOpen, setIsControlOpen] = useState(false);
 
     return (
@@ -53,8 +54,8 @@ function ItemList ({ setSelectedItem, setInventoryView }){
                 const storedItems = items.filter(item => item.storageId === storage.id)
 
                 return (
-                    <div key={storage.id}>
-                        <h2>{storage.name}</h2>
+                    <div key={storage.id} className="storage-container">
+                        <h2 className="storage-name">{storage.name}</h2>
                         {storedItems?.map(item => (
                         <ItemCard 
                             key={item.id}
