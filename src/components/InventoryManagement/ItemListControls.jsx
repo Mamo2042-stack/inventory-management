@@ -1,10 +1,11 @@
 import FilteringSection from "./FilteringSection";
 import SortingSection from "./SortingSection";
 
-function ItemListControls({ userInput, setUserInput, setSortingOption }) {
+function ItemListControls({ userInput, sortingOption, setUserInput, setSortingOption }) {
     return (
         <section>
             <SortingSection
+                sortingOption={sortingOption}
                 setSortingOption={setSortingOption}
             />
 
