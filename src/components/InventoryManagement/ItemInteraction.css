@@ -1,0 +1,134 @@
+.item-interaction {
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+
+    z-index: 1000;
+
+    background-color: #fff;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 600px;
+    width: 50vw;
+    min-height: 400px;
+    height: 50vh;
+
+    transform: translateY(70%);
+    visibility: hidden;
+    opacity: 0;
+    transition: transform 0.5s ease, visibility 0.5s ease, opacity 0.5s ease;
+}
+
+.item-interaction.is-open {
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+    transition: transform 0.5s ease, visibility 0.5s ease, opacity 0.5s ease;
+}
+
+.item-interaction h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    background-color: #ffb380;
+    border-radius: 10px 10px 0 0;
+    padding: 10px 20px;
+    margin-top: 0;
+    width: 100%;
+}
+
+.item-interaction h4 {
+    text-align: center;
+}
+
+.quantity-control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0 60px;
+    background: none;
+
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.quantity-control button:not(.confirmation-btn) {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50px;
+    background-color: #FFE6D1;
+    transform: scale(3);
+}
+
+.quantity-control button:hover:not(.confirmation-btn) {
+    background-color: #FFC99E;
+}
+
+.quantity {
+    font-size: 2.5rem;
+}
+
+.additional-info {
+    text-align: center;
+    font-size : 1rem;
+    background: none;
+    margin: 0;
+    width: 100%;
+}
+
+.confirmation-btn {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+}
+
+.confirmation-btn:not(:disabled) {
+    background-color: #FFE6D1;
+}
+
+.confirmation-btn:not(:disabled):hover {
+    background-color: #FFC99E;
+}
+
+.deeper-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    width: 100%;
+}
+
+.deeper-section button {
+    background-color: #FFE6D1;
+    border-radius: 10px;
+    border: none;
+
+    padding: 10px 20px;
+}
+
+.deeper-section button:hover {
+    background-color: #FFC99E;
+}
+
+.exit {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    transform: scale(2);
+
+    border: none;
+    border-radius: 10px;
+    background: none;
+    padding: 4px 8px;
+}
+
+.exit:hover {
+    background-color: azure;
+}

@@ -1,16 +1,33 @@
 import { useAppData } from "../../context/AppDataContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import adjustInventory from "../../operations/adjustInventory";
 import PendingOrdersManagement from "./OrderManagement/PendingOrdersManagement";
 import InventoryHistoryView from "./HistoryManagement/InventoryHistoryView";
 import calUpcomingQuantity from "../../utils/calUpcomingQuan";
+import "./ItemInteraction.css"
 
-function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
+function ItemInteraction ({ selectedItem, setSelectedItem, inventoryView, setInventoryView }){
     const { appData, setAppData } = useAppData();
     const { items } = appData;
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        if(inventoryView === "item") {
+            requestAnimationFrame(() => {
+                setIsVisible(true);
+            });
+        } else {
+            setIsVisible(false);
+        }
+    }, [inventoryView, selectedItem])
+
     const displayItem = items.find(item => item.id === selectedItem);
     const [deeperSection, setDeeperSection] = useState(null);//Holds null, pending, or history//
-    const [tempQuan, setTempQuan] = useState(displayItem.quantity);//This is only used to display current quantity and reflects users' change responsively//
+    const [tempQuan, setTempQuan] = useState(displayItem?.quantity ?? 0);//This is only used to display current quantity and reflects users' change responsively//
+    if(!displayItem){
+        return null;
+    }
+
     const upcomingQuantity = calUpcomingQuantity(displayItem);
 
     function handleSubmit(e){
@@ -27,81 +44,103 @@ function ItemInteraction ({ selectedItem, setSelectedItem, setInventoryView }){
     }
 
     return (
-        <section id="item-interaction">
-            <h3>{displayItem.name}</h3>
-
-            <form 
-                id="quantity-control"
-                onSubmit={handleSubmit}
-            >
-                <h4>数量変更</h4>
-                <button 
-                    type="button"
-                    name="decrease"
-                    onClick={() => setTempQuan(previous => previous - 1)}
-                    disabled={tempQuan <= 0}
-                >-</button>
-                    <p>
-                        {tempQuan}
-                    </p>
-                    {upcomingQuantity ? (
-                            <p> + (注文済み {upcomingQuantity})</p>
-                        ) 
-                        : 
-                        ""
+        <section>
+            <div className={`item-interaction 
+                ${isVisible ? "is-open" : ""}`}
+                onTransitionEnd={e => {
+                    if(
+                        e.target === e.currentTarget &&
+                        e.propertyName === "transform" && 
+                        inventoryView !== "item"
+                    ){
+                        setTempQuan(displayItem.quantity)
+                        setInventoryView("item-list");
                     }
+                }}>
+                
+                <h3>{displayItem.name}</h3>
+
+                <form 
+                    onSubmit={handleSubmit}
+                >
+                    <h4>数量変更</h4>
+
+                    <div className="quantity-control">
+                        <button 
+                            type="button"
+                            name="decrease"
+                            onClick={() => setTempQuan(previous => previous - 1)}
+                            disabled={tempQuan <= 0}
+                        >-</button>
+
+                        <p className="quantity">
+                            {tempQuan}
+                        </p>
+
+                        <button
+                            type="button"
+                            name="increase"
+                            onClick={() => setTempQuan(previous => previous + 1)}
+                        >+
+                        </button>
+
+                        {upcomingQuantity ? (
+                            <p className="additional-info"> + (注文済み {upcomingQuantity})</p>
+                            ) 
+                            : 
+                            <p className="additional-info"></p>
+                        }
+
+                        <button
+                            type="submit"
+                            className="confirmation-btn"
+                            disabled={displayItem.quantity === tempQuan}
+                        >確定
+                        </button>                        
+                    </div>
+                </form>
+
+                <div className="deeper-section">
+                    {displayItem.replenishmentMethod === "ORDER" && (
+                        <button
+                            type="button"
+                            onClick={() => setDeeperSection("pending")}
+                        >⬅︎ 注文
+                        </button>
+                    )}
+
+                    <button
+                        type="button"
+                        onClick={() => setDeeperSection("history")}
+                    >ヒストリー ➡
+                    </button>
+                </div>
+
                 <button
                     type="button"
-                    name="increase"
-                    onClick={() => setTempQuan(previous => previous + 1)}
-                >+
-                </button>
+                    className="exit"
+                    onClick={() => {
+                        setInventoryView("item-list")
+                    }}>✕
+                </button>                
+            </div>
 
-                <button
-                    type="submit"
-                    id="confirmation-btn"
-                    disabled={displayItem.quantity === tempQuan}
-                >確定
-                </button>
-            </form>
+            <div>
+                {deeperSection === "pending" && (
+                    <PendingOrdersManagement
+                        selectedItem={selectedItem}
+                        setDeeperSection={setDeeperSection}
+                        setInventoryView={setInventoryView}
+                    />
+                )}
 
-            {displayItem.replenishmentMethod === "ORDER" && (
-                <button
-                    type="button"
-                    onClick={() => setDeeperSection("pending")}
-                >注文
-                </button>
-            )}
-
-            <button
-                type="button"
-                onClick={() => setDeeperSection("history")}
-            >ヒストリー
-            </button>
-            
-            <button
-                type="button"
-                onClick={() => {
-                    setSelectedItem(null)
-                    setInventoryView("item-list")
-                }}>✕
-            </button>
-
-            {deeperSection === "pending" && (
-                <PendingOrdersManagement
-                    selectedItem={selectedItem}
-                    setDeeperSection={setDeeperSection}
-                    setInventoryView={setInventoryView}
-                />
-            )}
-
-            {deeperSection === "history" && (
-                <InventoryHistoryView
-                    setInventoryView={setInventoryView}
-                    selectedItem={selectedItem}
-                />
-            )}
-
+                {deeperSection === "history" && (
+                    <InventoryHistoryView
+                        setInventoryView={setInventoryView}
+                        selectedItem={selectedItem}
+                    />
+                )}
+            </div>
         </section>
     )
 }

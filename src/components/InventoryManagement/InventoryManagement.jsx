@@ -18,15 +18,22 @@ function InventoryManagement(){
                 setInventoryView={setInventoryView}
             />
 
-            
-            {inventoryView === "item" && (
+            <div>
+                {inventoryView === "item" && (
+                    <div 
+                        className="interaction-backdrop"
+                        onClick={() => setInventoryView("item-list")}
+            />
+                )}
+        
                 <ItemInteraction
                     key={selectedItem}
                     selectedItem={selectedItem}
                     setSelectedItem={setSelectedItem}
+                    inventoryView={inventoryView}
                     setInventoryView={setInventoryView}
                 />
-            )}
+            </div>
 
             <button
                 type="button"
