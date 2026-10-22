@@ -1,0 +1,83 @@
+.search-section input {
+    border: none;
+    border-radius: 20px;
+    background-color: #FFE6D1;
+
+    padding: 10px 15px 10px 15px;
+}
+
+.search-section input:focus {
+    outline: none;
+}
+
+.controls-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+
+    background-color: rgb(0 0 0 / 30%);
+}
+
+.item-list-controls {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px 0 0 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+
+    width: 320px;
+    max-width: 90vw;
+    height: 100vh;
+    box-sizing: border-box;
+
+    /*Initial, closed state*/
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    /*transition*/
+    transition: transform 0.5s ease, opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.item-list-controls.is-open {
+    /*Open state */
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transition: transform 0.5s ease, opacity 0.3s ease, visibility 0s;
+}
+
+.control-panel-button {
+    border-radius: 20px;
+    border: none;
+    background-color: #FFE6D1;
+
+    padding: 10px 15px 10px 15px;
+}
+
+.control-panel-button:hover {
+    background-color: #FFC99E;
+}
+
+.item-list-controls button {
+    border: none;
+    border-radius: 50px;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.item-list-controls button:hover {
+    background-color: azure;
+}
+
+hr {
+    margin-top: 30px;
+}

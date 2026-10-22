@@ -7,6 +7,7 @@ import sortItems from "../../utils/sortItems";
 import SearchSection from "./SearchSection";
 import searchItems from "../../operations/searchItems";
 import "./ItemList.css"
+import "./ItemListControl.css"
 
 function ItemList ({ setSelectedItem, setInventoryView }){
     const { appData } = useAppData();
@@ -29,28 +30,38 @@ function ItemList ({ setSelectedItem, setInventoryView }){
 
     return (
         <section>
-            <div>
-                <SearchSection
-                    searchWord={searchWord}
-                    setSearchWord={setSearchWord}
-                />
-            </div>
-    
-            <div>
-                <button
-                    type="button"
-                    onClick={() => setIsControlOpen(prev => !prev)}
-                >{ isControlOpen ?   "閉じる" : "フィルター : ソート"}
-                </button>
-
-                {isControlOpen && (
-                    <ItemListControls
-                        userInput={userInput}
-                        sortingOption={sortingOption}
-                        setUserInput={setUserInput}
-                        setSortingOption={setSortingOption}
+            <div className="item-controlers">
+                <div className="search-section">
+                    <SearchSection
+                        searchWord={searchWord}
+                        setSearchWord={setSearchWord}
                     />
-                )}
+                </div>
+    
+                <div>
+                    <button
+                        type="button"
+                        onClick={() => setIsControlOpen(prev => !prev)}
+                        className="control-panel-button"
+                    > フィルター | ソート 
+                    </button>
+
+                    {isControlOpen && (
+                        <div
+                            className="controls-backdrop"
+                            onClick={() => setIsControlOpen(false)}
+                        />
+                    )}
+
+                    <ItemListControls
+                            userInput={userInput}
+                            sortingOption={sortingOption}
+                            setUserInput={setUserInput}
+                            setSortingOption={setSortingOption}
+                            isControlOpen={isControlOpen}
+                            setIsContorlOpen={setIsControlOpen}
+                    />
+                </div>
             </div>
 
             {storages?.map(storage => {
