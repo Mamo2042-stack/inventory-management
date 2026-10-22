@@ -2,6 +2,7 @@ import { useState } from "react";
 import ItemList from "./ItemList";
 import ItemInteraction from "./ItemInteraction";
 import { useNavigate } from "react-router";
+import "./InventoryManagement.css"
 
 function InventoryManagement(){
     const [inventoryView, setInventoryView] = useState("item-list");
