@@ -29,6 +29,10 @@
     transition: transform 0.5s ease, visibility 0.5s ease, opacity 0.5s ease;
 }
 
+.regular-section {
+    width: 100%;
+}
+
 .item-interaction h3 {
     font-size: 1.5rem;
     text-align: center;
@@ -110,6 +114,7 @@
     border-radius: 10px;
     border: none;
 
+    margin-top: 20px;
     padding: 10px 20px;
 }
 

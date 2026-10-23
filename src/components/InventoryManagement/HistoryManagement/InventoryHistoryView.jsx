@@ -1,6 +1,6 @@
 import InventoryHistoryList from "./InventoryHistoryList";
 
-function InventoryHistoryView({ setInventoryView, selectedItem }){
+function InventoryHistoryView({ setDeeperSection, selectedItem }){
 
     return (
         <section>
@@ -10,7 +10,7 @@ function InventoryHistoryView({ setInventoryView, selectedItem }){
 
             <button
                 type="button"
-                onClick={() => setInventoryView("item-list")}
+                onClick={() => setDeeperSection(null)}
             >✕
             </button>
         </section>

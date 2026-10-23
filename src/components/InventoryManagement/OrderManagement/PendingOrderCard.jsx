@@ -10,15 +10,18 @@ function PendingOrderCard ({ order, unit, setSelectedOrder, setAnyDetailModal })
         <>
             <button
                 type="button"
+                className="order-card"
                 onClick={() => {
                     setSelectedOrder(order.id)
                     setAnyDetailModal("receipt")
                 }}
             >
-                <h5>{displayDate}</h5>
+                <h5 className="order-date">{displayDate}</h5>
 
-                <p>注文数: {orderedQuantity}{unit}</p>
-                <p>受取済み: {receivedQuantity}{unit}</p>
+                <div class="order-quantity">
+                    <p>注文数: {orderedQuantity} {unit}</p>
+                    <p>受取済み: {receivedQuantity} {unit}</p>
+                </div>
             </button>
         </>
     )
