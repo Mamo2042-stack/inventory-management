@@ -8,6 +8,7 @@ import ItemRegistration from './components/Registration/ItemRegistration.jsx';
 import InventoryManagement from './components/InventoryManagement/InventoryManagement.jsx'
 import DeleteStorage from './components/Delete/DeleteStorage.jsx';
 import DeleteItem from './components/Delete/DeleteItem.jsx';
+import { InventoryNavigationProvider } from "./context/InventoryNavigationContext.jsx";
 
 import AppLayout from "./components/AppLayout.jsx";
 
@@ -24,7 +25,12 @@ function App () {
         </Route>
 
         <Route path="inventoryManagement">
-          <Route index element={<InventoryManagement />} />
+          <Route index element={
+            <InventoryNavigationProvider>
+              <InventoryManagement />
+            </InventoryNavigationProvider>
+            } 
+            />
         </Route>
 
         <Route path="delete">
