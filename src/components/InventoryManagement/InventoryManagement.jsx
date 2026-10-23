@@ -3,9 +3,10 @@ import ItemList from "./ItemList";
 import ItemInteraction from "./ItemInteraction";
 import { useNavigate } from "react-router";
 import "./InventoryManagement.css"
+import { useInventoryNavigation } from "../../context/InventoryNavigationContext";
 
 function InventoryManagement(){
-    const [inventoryView, setInventoryView] = useState("item-list");
+    const { inventoryView, setInventoryView, closeAllPanels } = useInventoryNavigation();
     const [selectedItem, setSelectedItem] = useState(null);
     const navigate = useNavigate();
     
@@ -18,15 +19,21 @@ function InventoryManagement(){
                 setInventoryView={setInventoryView}
             />
 
-            
-            {inventoryView === "item" && (
+            <div>
+                {inventoryView === "item" && (
+                    <div 
+                        className="interaction-backdrop"
+                        onClick={closeAllPanels}
+                    />
+                )}
+        
                 <ItemInteraction
                     key={selectedItem}
                     selectedItem={selectedItem}
-                    setSelectedItem={setSelectedItem}
+                    inventoryView={inventoryView}
                     setInventoryView={setInventoryView}
                 />
-            )}
+            </div>
 
             <button
                 type="button"

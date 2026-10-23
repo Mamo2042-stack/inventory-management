@@ -1,5 +1,4 @@
 import { useAppData } from "../../../context/AppDataContext";
-import { testAppData } from "../../../test/fixtures";
 import { useState } from "react";
 import createOrder from "../../../operations/createOrder";
 
@@ -34,7 +33,7 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
     }
 
     return (
-        <div>
+        <div className="create-order-form">
             <h5>新規注文</h5>
 
             <form 
