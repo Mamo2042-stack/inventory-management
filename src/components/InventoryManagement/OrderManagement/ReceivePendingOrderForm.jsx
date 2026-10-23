@@ -1,12 +1,11 @@
-import { use, useState } from "react"
+import { useState } from "react"
 import receiveOrder from "../../../operations/receiveOrder";
 import { useAppData } from "../../../context/AppDataContext";
 
-function ReceivePendingOrderForm ({ selectedOrder, pendingOrders, setAnyDetailModal, selectedItem }){
+function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
     const { appData, setAppData } = useAppData();
     const [isChecked, setIsChecked] = useState(false);
-    const selectedOrderData = pendingOrders.find(order => order.id === selectedOrder)
-    const { orderedQuantity, receivedQuantity } = selectedOrderData;
+    const { orderedQuantity, receivedQuantity } = order;
     const [userInput, setUserInput] = useState(orderedQuantity - receivedQuantity);
     const [errorMsg, setErrorMsg] = useState("");
 
@@ -16,7 +15,6 @@ function ReceivePendingOrderForm ({ selectedOrder, pendingOrders, setAnyDetailMo
     }
 
     function handleInputChange(e){
-        console.log(e.target.value)
         setUserInput(e.target.value);
     }
 
@@ -25,7 +23,7 @@ function ReceivePendingOrderForm ({ selectedOrder, pendingOrders, setAnyDetailMo
         e.preventDefault();
 
         const input = userInput;
-        const result = receiveOrder(appData, selectedItem, selectedOrder, input);
+        const result = receiveOrder(appData, selectedItem, order.id, input);
         
         if(!result.success){
             console.log(result.error);
@@ -46,7 +44,7 @@ function ReceivePendingOrderForm ({ selectedOrder, pendingOrders, setAnyDetailMo
         }
 
         setAppData(result.data);
-        setAnyDetailModal(null);
+        setIsReceiving(false);
     }
 
     return (
@@ -55,7 +53,7 @@ function ReceivePendingOrderForm ({ selectedOrder, pendingOrders, setAnyDetailMo
             noValidate
         >
             <fieldset>
-                <legend>オーダー受取</legend>
+                <h6>オーダー受取</h6>
 
                 <input
                     type="checkbox"
@@ -94,7 +92,7 @@ function ReceivePendingOrderForm ({ selectedOrder, pendingOrders, setAnyDetailMo
                         type="button"
                         onClick={() => {
                             setIsChecked(false)
-                            setAnyDetailModal(null)
+                            setIsReceiving(false)
                         }}
                     >閉じる
                     </button>

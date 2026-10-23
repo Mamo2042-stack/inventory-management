@@ -12,8 +12,7 @@ function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
     const { items } = appData;
     const { anyDetailModal, setAnyDetailModal } = useInventoryNavigation();
     const displayItem = items.find(item => item.id === selectedItem);
-    const { storageUnit, pendingOrders } = displayItem;
-    const [selectedOrder, setSelectedOrder] = useState(null);
+    const { storageUnit, pendingOrders } = displayItem
 
     return (
         <section className="pending-order-management">
@@ -28,8 +27,7 @@ function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
                         key={order.id}
                         order={order}
                         unit={storageUnit}
-                        setSelectedOrder={setSelectedOrder}
-                        setAnyDetailModal={setAnyDetailModal}
+                        selectedItem={selectedItem}
                     />
                 ))
                 : (
@@ -66,26 +64,13 @@ function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
                 />
             )}
 
-            {anyDetailModal === "receipt" ? (
-                <ReceivePendingOrderForm
-                    key={selectedOrder}
-                    selectedOrder={selectedOrder}//order.id//
-                    pendingOrders={pendingOrders}
-                    setAnyDetailModal={setAnyDetailModal}
-                    selectedItem={selectedItem}
-                />
-            )
-                :
-                anyDetailModal === "create" ? (
+            {anyDetailModal === "create" && (
                     <CreateOrderForm
                         storageUnit={storageUnit}
                         setAnyDetailModal={setAnyDetailModal}
                         selectedItem={selectedItem}
                     />
-                )
-                :
-                null
-        }
+                )}
         </section>
     )
 }
