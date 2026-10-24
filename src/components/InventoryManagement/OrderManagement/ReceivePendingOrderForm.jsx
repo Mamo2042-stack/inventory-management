@@ -12,6 +12,7 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
     function handleCheckboxChange(e){
         setIsChecked(e.target.checked);
         setUserInput(orderedQuantity - receivedQuantity);
+        setErrorMsg("");
     }
 
     function handleInputChange(e){
@@ -52,50 +53,50 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
             onSubmit={e => handleSubmit(e)} 
             noValidate
         >
-            <fieldset>
+            <fieldset className="receipt">
                 <h6>オーダー受取</h6>
 
-                <input
-                    type="checkbox"
-                    id="is-partial-receive"
-                    checked={isChecked}
-                    onChange={handleCheckboxChange}              
-                />
-                <label htmlFor="is-partial-receive">一部受取</label>
-                    
-                {isChecked && (
-                    <div>
-                    <p>未受取数: {orderedQuantity - receivedQuantity}</p>
-
-                    <label htmlFor="received-quantity">受取数</label>
+                <div className="partial-receipt">
                     <input
-                        type="number"
-                        max={orderedQuantity - receivedQuantity}
-                        min="1"
-                        id="received-quantity"
-                        value={userInput}
-                        required
-                        onChange={e => handleInputChange(e)}
+                        type="checkbox"
+                        id="is-partial-receive"
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}              
                     />
-                    </div>
-                    )}
+                    <label htmlFor="is-partial-receive">一部受取</label>
+                
+                    {isChecked && (
+                        <div>
+                            <p>未受取数: {orderedQuantity - receivedQuantity}</p>
 
-                    {errorMsg && (
-                        <p className="error-message">{errorMsg}</p>
-                    )}
+                            <div className="user-input-for-receipt">
+                                <div>
+                                <label htmlFor="received-quantity">受取数: </label>
+                                <input
+                                    type="number"
+                                    max={orderedQuantity - receivedQuantity}
+                                    min="1"
+                                    id="received-quantity"
+                                    value={userInput}
+                                    required
+                                    onChange={e => handleInputChange(e)}
+                                    />
+                                </div>
+                                {errorMsg && (
+                                    <p className="error-message">{errorMsg}</p>
+                                )}
+                            </div>
+                        </div>
+                    )}    
 
-                    <button
-                        type="submit"
-                    >登録</button>
 
-                    <button
-                        type="button"
-                        onClick={() => {
-                            setIsChecked(false)
-                            setIsReceiving(false)
-                        }}
-                    >閉じる
-                    </button>
+
+                </div>
+                <button
+                    type="submit"
+                    className="receipt-button"
+                >{!isChecked ? "全て受取" : "登録"}
+                </button>
             </fieldset>
         </form>
     )
