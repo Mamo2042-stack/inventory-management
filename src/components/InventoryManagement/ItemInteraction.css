@@ -113,21 +113,13 @@
 }
 
 .deeper-section button {
-    background-color: #FFE6D1;
-    border-radius: 10px;
-    border: none;
-
     margin-top: 40px;
     padding: 10px 20px;
 }
 
-.deeper-section button:hover {
-    background-color: #FFC99E;
-}
-
 .exit {
     position: absolute;
-    top: 5%;
+    top: 3%;
     right: 5%;
     transform: scale(2);
 

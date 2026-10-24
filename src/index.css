@@ -24,6 +24,9 @@
     --color-font: #222222;
     --color-a-background: #FFE6D1;
 
+    --color-button: #FFE6D1;
+    --color-button-hover: #FFC99E;
+
     --color-input: #FFF2EB;
 
     --color-meat: #FF6B6B;
@@ -142,4 +145,14 @@ a:hover {
 .item-name {
     border: 4px solid var(--category-color);
     border-radius: 10px;
+}
+
+button {
+    background-color: var(--color-button);
+    border: none;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: var(--color-button-hover);
 }

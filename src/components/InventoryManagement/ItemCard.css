@@ -10,6 +10,10 @@ p {
     margin-bottom: 10px;
 }
 
+.item-card:hover {
+    background-color: #ffffff;
+}
+
 .item-name {
     margin: 0;
     padding: 0 15px;

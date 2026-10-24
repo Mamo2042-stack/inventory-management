@@ -11,7 +11,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     const { appData, setAppData } = useAppData();
     const { items } = appData;
     const [isVisible, setIsVisible] = useState(false);
-    const { deeperSection, setDeeperSection } = useInventoryNavigation();//Holds null, pending, or history//
+    const { deeperSection, setDeeperSection, closeAllPanels } = useInventoryNavigation();//deeperSection holds null, pending, or history//
 
     useEffect(() => {
         if(inventoryView === "item") {
@@ -128,15 +128,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                             onClick={(e) => handleClick(e)}
                         >ヒストリー ➡
                         </button>
-                    </div>
-
-                    <button
-                        type="button"
-                        className="exit"
-                        onClick={() => {
-                            setInventoryView("item-list")
-                        }}>✕
-                    </button>       
+                    </div>      
                 </div>
                 )}         
 
@@ -153,6 +145,12 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                         selectedItem={selectedItem}
                     />
                 )}
+
+                <button
+                    type="button"
+                    className="exit"
+                    onClick={closeAllPanels}>✕
+                </button> 
             </div>
         </section>
     )

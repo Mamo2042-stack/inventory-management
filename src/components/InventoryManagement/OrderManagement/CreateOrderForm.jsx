@@ -63,6 +63,7 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
 
                 <button
                     type="submit"
+                    className="create-order-button"
                 >確定</button>
             </form>
 

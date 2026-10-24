@@ -38,6 +38,12 @@
     align-items: center;
     width: 100%;
     margin: 0;
+
+    background-color: #EBEBEB;
+}
+
+.order-button:hover {
+    background-color: #DEDEDE;
 }
 
 .receipt {
@@ -61,6 +67,8 @@
     border: none;
     border-radius: 10px;
     padding: 10px 0;
+
+    background-color: #EBEBEB;
 }
 
 .receipt-button:hover {
@@ -91,15 +99,7 @@
 }
 
 .buttons button {
-    background-color: #FFE6D1;
-    border-radius: 10px;
-    border: none;
-
     padding: 10px 20px;
-}
-
-.buttons button:hover {
-    background-color: #FFC99E;
 }
 
 .create-order-backdrop {

@@ -34,14 +34,9 @@
 
 .new-order-form button {
     width: 30%;
-    border-radius: 10px;
-    border: none;
     padding: 10px 15px;
 }
 
-.new-order-form button:hover {
-    background-color: #DEDEDE;
-}
 
 .new-quantity {
     display: flex;
