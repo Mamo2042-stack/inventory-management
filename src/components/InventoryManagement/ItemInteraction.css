@@ -10,8 +10,9 @@
 
     min-width: 600px;
     width: 50vw;
-    min-height: 400px;
+    min-height: 500px;
     height: 70vh;
+    max-height: 700px;
 
     transform: translateY(70%);
     visibility: hidden;
@@ -30,6 +31,8 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
 }
 
 .item-interaction h3 {
@@ -55,10 +58,8 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 0 60px;
-    background: none;
 
     width: 100%;
-    box-sizing: border-box;
 }
 
 .quantity-control button:not(.confirmation-btn) {

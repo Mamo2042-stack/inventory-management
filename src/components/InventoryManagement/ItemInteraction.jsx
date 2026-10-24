@@ -67,16 +67,16 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                     }
                 }}>
 
+                <h3>{displayItem.name}</h3>
+
                 {deeperSection === null && (
-                <div className="regular-section">
-                
-                    <h3>{displayItem.name}</h3>
+                <div className="regular-section"> 
+
+                    <h4>数量変更</h4>
 
                     <form 
                         onSubmit={handleSubmit}
                     >
-                        <h4>数量変更</h4>
-
                         <div className="quantity-control">
                             <button 
                                 type="button"
@@ -138,7 +138,6 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                         }}>✕
                     </button>       
                 </div>
-
                 )}         
 
                 {deeperSection === "pending" && (

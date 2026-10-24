@@ -14,7 +14,6 @@ function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
 
     return (
         <section className="pending-order-management">
-            <h3>{displayItem.name}</h3>
 
             <h4>オーダー管理</h4>
 
