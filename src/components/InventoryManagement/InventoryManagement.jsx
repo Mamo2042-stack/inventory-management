@@ -37,8 +37,9 @@ function InventoryManagement(){
 
             <button
                 type="button"
+                className="back-to-home-button"
                 onClick={() => navigate("/")}
-            >⇠
+            >⬅︎
             </button>
         </div>
     )
