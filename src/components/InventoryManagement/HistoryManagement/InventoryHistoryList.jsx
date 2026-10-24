@@ -13,7 +13,7 @@ function InventoryHistoryList({ selectedItem }){
     }
 
     return (
-        <div>
+        <div className="history-container">
             {sortedHistory.length > 0 ? 
                 sortedHistory.map(history => {
                     const date = formatDateTime(history.timestamp);

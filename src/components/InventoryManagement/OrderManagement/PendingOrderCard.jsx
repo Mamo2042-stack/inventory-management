@@ -10,12 +10,12 @@ function PendingOrderCard ({ order, unit, selectedItem }){
 
     return (
         <>
-        <div className={`order-info ${isReceiving ? "is-open" : ""}`}>
+        <div className={`order-card ${isReceiving ? "is-open" : ""}`}>
             <button
                 type="button"
-                className="order-card"
+                className="order-button"
                 onClick={() => {
-                    setIsReceiving(true)
+                    setIsReceiving(prev => !prev)
                 }}
             >
                 <h5 className="order-date">{displayDate}</h5>
@@ -25,16 +25,16 @@ function PendingOrderCard ({ order, unit, selectedItem }){
                     <p>受取済み: {receivedQuantity} {unit}</p>
                 </div>
             </button>
-        </div>
 
-        <div className="receipt">
-            {isReceiving && (
-                <ReceivePendingOrderForm
-                    order={order}//order data//
-                    setIsReceiving={setIsReceiving}
-                    selectedItem={selectedItem}
-                />
-            )}
+            <div>
+                {isReceiving && (
+                    <ReceivePendingOrderForm
+                        order={order}//order data//
+                        setIsReceiving={setIsReceiving}
+                        selectedItem={selectedItem}
+                    />
+                )}
+            </div>
         </div>
         </>
     )

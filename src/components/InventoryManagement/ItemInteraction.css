@@ -1,6 +1,6 @@
 .item-interaction {
     position: fixed;
-    top: 25vh;
+    top: 15vh;
     left: 25vw;
 
     z-index: 1000;
@@ -8,13 +8,11 @@
     background-color: #fff;
     border-radius: 20px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     min-width: 600px;
     width: 50vw;
-    min-height: 400px;
-    height: 50vh;
+    min-height: 500px;
+    height: 70vh;
+    max-height: 700px;
 
     transform: translateY(70%);
     visibility: hidden;
@@ -31,6 +29,10 @@
 
 .regular-section {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
 }
 
 .item-interaction h3 {
@@ -45,19 +47,19 @@
 
 .item-interaction h4 {
     text-align: center;
+    flex-shrink: 0;
 }
 
 .quantity-control {
     display: flex;
     flex-direction: row;
+    flex: 1;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 0 60px;
-    background: none;
 
     width: 100%;
-    box-sizing: border-box;
 }
 
 .quantity-control button:not(.confirmation-btn) {
@@ -105,26 +107,19 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-shrink: 0;
 
     width: 100%;
 }
 
 .deeper-section button {
-    background-color: #FFE6D1;
-    border-radius: 10px;
-    border: none;
-
-    margin-top: 20px;
+    margin-top: 40px;
     padding: 10px 20px;
-}
-
-.deeper-section button:hover {
-    background-color: #FFC99E;
 }
 
 .exit {
     position: absolute;
-    top: 5%;
+    top: 3%;
     right: 5%;
     transform: scale(2);
 

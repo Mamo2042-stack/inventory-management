@@ -11,7 +11,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     const { appData, setAppData } = useAppData();
     const { items } = appData;
     const [isVisible, setIsVisible] = useState(false);
-    const { deeperSection, setDeeperSection } = useInventoryNavigation();//Holds null, pending, or history//
+    const { deeperSection, setDeeperSection, closeAllPanels } = useInventoryNavigation();//deeperSection holds null, pending, or history//
 
     useEffect(() => {
         if(inventoryView === "item") {
@@ -67,16 +67,16 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                     }
                 }}>
 
+                <h3>{displayItem.name}</h3>
+
                 {deeperSection === null && (
-                <div className="regular-section">
-                
-                    <h3>{displayItem.name}</h3>
+                <div className="regular-section"> 
+
+                    <h4>数量変更</h4>
 
                     <form 
                         onSubmit={handleSubmit}
                     >
-                        <h4>数量変更</h4>
-
                         <div className="quantity-control">
                             <button 
                                 type="button"
@@ -128,17 +128,8 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                             onClick={(e) => handleClick(e)}
                         >ヒストリー ➡
                         </button>
-                    </div>
-
-                    <button
-                        type="button"
-                        className="exit"
-                        onClick={() => {
-                            setInventoryView("item-list")
-                        }}>✕
-                    </button>       
+                    </div>      
                 </div>
-
                 )}         
 
                 {deeperSection === "pending" && (
@@ -154,6 +145,12 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                         selectedItem={selectedItem}
                     />
                 )}
+
+                <button
+                    type="button"
+                    className="exit"
+                    onClick={closeAllPanels}>✕
+                </button> 
             </div>
         </section>
     )

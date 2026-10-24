@@ -1,6 +1,7 @@
 import { useAppData } from "../../../context/AppDataContext";
 import { useState } from "react";
 import createOrder from "../../../operations/createOrder";
+import "./CreateOrderForm.css"
 
 function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
     const [userInput, setUserInput] = useState("1");
@@ -33,41 +34,46 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
     }
 
     return (
-        <div className="create-order-form">
+        <div className="create-order-panel">
             <h5>新規注文</h5>
 
             <form 
-                id="new-order-creation"
+                className="new-order-form"
                 onSubmit={e => handleSubmit(e)}
                 noValidate
             >
-                <label htmlFor="order-quantity">数量</label>
-                <input
-                    type="number"
-                    min="1"
-                    max="100"
-                    id="order-quantity"
-                    value={userInput}
-                    required
-                    onChange={e => handleChange(e)}
-                />
-                <p> {storageUnit}</p>
+                <div className="new-quantity">
+                    <label htmlFor="order-quantity">数量:</label>
+                    <input
+                        type="number"
+                        min="1"
+                        max="100"
+                        id="order-quantity"
+                        value={userInput}
+                        required
+                        onChange={e => handleChange(e)}
+                    />
+                    <p>{storageUnit}</p>
+                
 
-                {errorMsg && (
-                    <p>{errorMsg}</p>
-                )}
+                    {errorMsg && (
+                        <p className="error-msg">{errorMsg}</p>
+                    )}
+                </div>
 
                 <button
                     type="submit"
-                >登録</button>
+                    className="create-order-button"
+                >確定</button>
             </form>
 
             <button
                 type="button"
+                className="close-create-order-button"
                 onClick={() => {
                     setAnyDetailModal(null)
                 }}
-            >戻る
+            >✕
             </button>
         </div>
     )
