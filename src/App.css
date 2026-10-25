@@ -1,5 +1,5 @@
 .app-main {
-    width: min(100% - 32px, 1200px);
+    width: min(cal(100% - 32px), 1200px);
     margin-inline: auto;
     padding-block: 32px;
 }
