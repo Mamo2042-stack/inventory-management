@@ -165,10 +165,11 @@ button:hover {
 }
 
 .back-to-previous-button {
-    padding: 20px 30px;
+    padding: 10px 20px;
     background-color: var(--color-button);
     border: none;
     border-radius: 10px;
+    margin-bottom: 60px;
 }
 
 .back-to-previous-button:hover {
