@@ -3,6 +3,7 @@ import { useAppData } from "../../context/AppDataContext";
 import { useState } from "react";
 import registerItem from "../../operations/registerItem";
 import { CATEGORIES } from "../../constants/categories";
+import "./ItemRegistration.css"
 
 function ItemRegistration(){
     const [userInput, setUserInput] = useState({
@@ -59,14 +60,15 @@ function ItemRegistration(){
     }
 
     return (
-        <section id="item-registration">
-            <h2>食材を登録する</h2>
+        <section className="item-registration">
+            <h1>食材を登録する</h1>
 
             <form 
-                id="item-registration-form"
+                className="item-registration-form"
                 onSubmit={e => handleSubmit(e)}
                 noValidate
             >
+                <div>
                 <label htmlFor="name">名前</label>
                 <input
                     name="name"
@@ -78,13 +80,15 @@ function ItemRegistration(){
                 />
 
                 {errorMsg.some(err => err === "EMPTY_INPUT") && (
-                    <p>名前を入力して下さい。</p>
+                    <p className="error-message">名前を入力して下さい。</p>
                 )}
 
                 {errorMsg.some(err => err === "DUPLICATE_NAME") && (
-                    <p id="name-error">既に使用されている名前です。</p>
+                    <p className="error-message">既に使用されている名前です。</p>
                 )}
-            
+                </div>
+
+                <div>
                 <label htmlFor="place">保管先ストレージ</label>
                 <select 
                     id="place" 
@@ -106,9 +110,11 @@ function ItemRegistration(){
                 </select>
 
                 {errorMsg.some(err => err === "NO_STORAGE") && (
-                    <p id="storage-error">ストレージを選択して下さい。</p>
+                    <p className="error-message">ストレージを選択して下さい。</p>
                 )}
-                    
+                </div>    
+
+                <div>
                 <label htmlFor="category">カテゴリー</label>    
                 <select 
                     id="category" 
@@ -124,7 +130,9 @@ function ItemRegistration(){
                         </option>
                     ))}
                 </select>
+                </div>
 
+                <div>
                 <label htmlFor="storage-unit">単位</label>
                 <input
                     name="storageUnit"
@@ -136,10 +144,13 @@ function ItemRegistration(){
                 />
 
                 {errorMsg.some(err => err === "NO_STORAGE_UNIT") && (
-                    <p id="storageUnit-error">単位を入力して下さい。</p>
+                    <p className="error-message">単位を入力して下さい。</p>
                 )}
+                </div>
 
-                <label htmlFor="expected-quantity">最低在庫数
+                <div>
+                <label htmlFor="expected-quantity">最低在庫数</label>
+                <div className="quantity-with-unit">
                 <input
                     name="expectedQuantity"
                     type="number"
@@ -148,18 +159,20 @@ function ItemRegistration(){
                     value={userInput.expectedQuantity}
                     onChange={e => handleChange(e)}
                 />
-                ({userInput.storageUnit})
-                </label>
-
+                <p>({userInput.storageUnit})</p>
+                </div>
                 {errorMsg.some(err => err === "INVALID_NUMBER") && (
-                    <p id="number-error">有効な数字(0~100)を入力して下さい。</p>
+                    <p className="error-message">有効な数字(0~100)を入力して下さい。</p>
                 )}
+                </div>
 
-                <fieldset>
+                <fieldset className="replenishment-method-field">
                     <legend>リストック方法</legend>
 
+                    <div>
                     <input
                         name="replenishmentMethod"
+                        className="replenishmethod-option"
                         type="radio"
                         value="ORDER" 
                         id="order-radio"
@@ -167,9 +180,12 @@ function ItemRegistration(){
                         onChange={e => handleChange(e)}
                     />
                     <label htmlFor="order-radio">オーダー</label>
+                    </div>
 
+                    <div>
                     <input 
                         name="replenishmentMethod"
+                        className="replenishment-option"
                         type="radio"
                         value="PURCHASE"
                         id="purchase-radio"
@@ -177,6 +193,7 @@ function ItemRegistration(){
                         onChange={e => handleChange(e)}
                     />
                     <label htmlFor="purchase-radio">買い出し</label>
+                    </div>
                 </fieldset>
 
                 <button
@@ -189,7 +206,7 @@ function ItemRegistration(){
             <button
                 className="back-to-home-btn"
                 onClick={handleClick}
-            >⇠
+            >⬅︎
             </button>
 
             {isSuccessModalOpen && (
