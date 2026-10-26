@@ -29,7 +29,7 @@ function ItemList ({ setSelectedItem, setInventoryView }){
     console.log(sortingOption)
 
     return (
-        <section>
+        <section className="inventory-management-section">
             <div className="item-controlers">
                 <div className="search-section">
                     <SearchSection

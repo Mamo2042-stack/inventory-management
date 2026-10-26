@@ -1,3 +1,8 @@
+.inventory-management-section {
+    width: 90%;
+    margin: auto;
+}
+
 .item-controlers {
     display: flex;
     justify-content: space-between;
@@ -22,7 +27,7 @@
     text-align: center;
     width: 100%;
     background-color: #ffb380;
-    border-radius: 10px 10px 0 0;
+    border-radius: 5px 5px 0 0;
     margin: 0 0 10px 0;
     padding: 10px;
 }

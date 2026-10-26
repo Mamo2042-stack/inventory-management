@@ -11,7 +11,7 @@ function InventoryManagement(){
     const navigate = useNavigate();
     
     return (
-        <div>
+        <div className="inventory-management">
             <h1>在庫管理</h1>
                  
             <ItemList 
