@@ -1,5 +1,5 @@
 .app-layout {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -35,6 +35,4 @@
     max-width: 1200px;
     margin-inline: auto;
     padding-block: 32px;
-
-    overflow-y: auto;
 }
