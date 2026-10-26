@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+    min-height: 100%;
+}
+
 :root {
 /*Typography*/
     --primary-font-family: 'Noto Sans JP', sans-serif;
@@ -50,6 +56,7 @@ body {
     margin: 0;
 
     min-width: 900px;
+    min-height: 100vh;
     font-family: var(--primary-font-family);
     font-size: 16px;
     line-height: 1.5;

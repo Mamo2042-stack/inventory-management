@@ -1,9 +1,9 @@
 import { Outlet, Link } from "react-router"
-import '/Users/towa/Documents/inventory-management/src/AppLayout.css'
+import '../AppLayout.css'
 
 function AppLayout () {
     return (
-        <>
+        <div className="app-layout">
             <header className="app-header">
                 <nav className="app-nav">
                     <Link to="/" className="nav-link">ホーム</Link>
@@ -16,7 +16,7 @@ function AppLayout () {
             <main className="app-main">
                 <Outlet />
             </main>
-        </>
+        </div>
     )
 }
 

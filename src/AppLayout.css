@@ -1,4 +1,8 @@
-
+.app-layout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
 .app-header {
     background-color: var(--color-header);
@@ -20,4 +24,15 @@
 
 .app-nav a:hover {
     text-decoration: underline;
+}
+
+.app-main {
+    flex: 1;
+    min-height: 0;
+    width: calc(100% - 32px);
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-block: 32px;
+
+    overflow-y: auto;
 }
