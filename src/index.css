@@ -164,6 +164,18 @@ button:hover {
     background-color: var(--color-button-hover);
 }
 
+.back-to-previous-button {
+    padding: 20px 30px;
+    background-color: var(--color-button);
+    border: none;
+    border-radius: 10px;
+}
+
+.back-to-previous-button:hover {
+    background-color: var(--color-button-hover);
+}
+
 .error-message {
     color: red;
+    margin: 0;
 }

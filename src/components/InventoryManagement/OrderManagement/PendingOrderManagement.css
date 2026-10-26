@@ -125,7 +125,4 @@ fieldset {
     flex-direction: row;
     justify-content: space-between;
 }
-.user-input-for-receipt p {
-    color: red;
-    margin: 0;
-}
+
