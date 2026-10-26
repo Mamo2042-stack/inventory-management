@@ -69,101 +69,101 @@ function ItemRegistration(){
                 noValidate
             >
                 <div>
-                <label htmlFor="name">名前</label>
-                <input
-                    name="name"
-                    type="text"
-                    id="name"
-                    value={userInput.name}
-                    onChange={e => handleChange(e)}
-                    required
-                />
+                    <label htmlFor="name">名前</label>
+                    <input
+                        name="name"
+                        type="text"
+                        id="name"
+                        value={userInput.name}
+                        onChange={e => handleChange(e)}
+                        required
+                    />
 
-                {errorMsg.some(err => err === "EMPTY_INPUT") && (
-                    <p className="error-message">名前を入力して下さい。</p>
-                )}
+                    {errorMsg.some(err => err === "EMPTY_INPUT") && (
+                        <p className="error-message">名前を入力して下さい。</p>
+                    )}
 
-                {errorMsg.some(err => err === "DUPLICATE_NAME") && (
-                    <p className="error-message">既に使用されている名前です。</p>
-                )}
+                    {errorMsg.some(err => err === "DUPLICATE_NAME") && (
+                        <p className="error-message">既に使用されている名前です。</p>
+                    )}
                 </div>
 
                 <div>
-                <label htmlFor="place">保管先ストレージ</label>
-                <select 
-                    id="place" 
-                    name="storageId"
-                    value={userInput.storageId}
-                    onChange={e => handleChange(e)}
-                >
-                    <option 
-                        value=""
-                    >ストレージを選択してください。
-                    </option>
-                    {storages.map(storage => (
-                        <option
-                            value={storage.id}
-                            key={storage.id}
-                        >{storage.name}
+                    <label htmlFor="place">保管先ストレージ</label>
+                    <select 
+                        id="place" 
+                        name="storageId"
+                        value={userInput.storageId}
+                        onChange={e => handleChange(e)}
+                    >
+                        <option 
+                            value=""
+                        >ストレージを選択してください。
                         </option>
-                    ))}
-                </select>
+                        {storages.map(storage => (
+                            <option
+                                value={storage.id}
+                                key={storage.id}
+                            >{storage.name}
+                            </option>
+                        ))}
+                    </select>
 
-                {errorMsg.some(err => err === "NO_STORAGE") && (
-                    <p className="error-message">ストレージを選択して下さい。</p>
-                )}
+                    {errorMsg.some(err => err === "NO_STORAGE") && (
+                        <p className="error-message">ストレージを選択して下さい。</p>
+                    )}
                 </div>    
 
                 <div>
-                <label htmlFor="category">カテゴリー</label>    
-                <select 
-                    id="category" 
-                    name="category" 
-                    value={userInput.category}
-                    onChange={e => handleChange(e)}
-                >
-                    {categories.map(category => (
-                        <option
-                            key={category.type}
-                            value={category.type}
-                        >{category.word}
-                        </option>
-                    ))}
-                </select>
+                    <label htmlFor="category">カテゴリー</label>    
+                    <select 
+                        id="category" 
+                        name="category" 
+                        value={userInput.category}
+                        onChange={e => handleChange(e)}
+                    >
+                        {categories.map(category => (
+                            <option
+                                key={category.type}
+                                value={category.type}
+                            >{category.word}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <div>
-                <label htmlFor="storage-unit">単位</label>
-                <input
-                    name="storageUnit"
-                    id="storage-unit"
-                    type="text"
-                    value={userInput.storageUnit}
-                    onChange={e => handleChange(e)}
-                    required
-                />
+                    <label htmlFor="storage-unit">単位</label>
+                    <input
+                        name="storageUnit"
+                        id="storage-unit"
+                        type="text"
+                        value={userInput.storageUnit}
+                        onChange={e => handleChange(e)}
+                        required
+                    />
 
-                {errorMsg.some(err => err === "NO_STORAGE_UNIT") && (
-                    <p className="error-message">単位を入力して下さい。</p>
-                )}
-                </div>
+                    {errorMsg.some(err => err === "NO_STORAGE_UNIT") && (
+                        <p className="error-message">単位を入力して下さい。</p>
+                    )}
+                    </div>
 
                 <div>
                 <label htmlFor="expected-quantity">最低在庫数</label>
                 <div className="quantity-with-unit">
-                <input
-                    name="expectedQuantity"
-                    type="number"
-                    id="expected-quantity"
-                    min="0"
-                    value={userInput.expectedQuantity}
-                    onChange={e => handleChange(e)}
-                />
-                <p>({userInput.storageUnit})</p>
+                    <input
+                        name="expectedQuantity"
+                        type="number"
+                        id="expected-quantity"
+                        min="0"
+                        value={userInput.expectedQuantity}
+                        onChange={e => handleChange(e)}
+                    />
+                    <p>({userInput.storageUnit})</p>
                 </div>
-                {errorMsg.some(err => err === "INVALID_NUMBER") && (
-                    <p className="error-message">有効な数字(0~100)を入力して下さい。</p>
-                )}
+                    {errorMsg.some(err => err === "INVALID_NUMBER") && (
+                        <p className="error-message">有効な数字(0~100)を入力して下さい。</p>
+                    )}
                 </div>
 
                 <fieldset className="replenishment-method-field">
@@ -197,32 +197,36 @@ function ItemRegistration(){
                 </fieldset>
 
                 <button
-                    id="submit-btn"
+                    className="submit-button"
                     type="submit"
                 >登録
                 </button>
             </form>
 
             <button
-                className="back-to-home-btn"
+                className="back-to-previous-button"
                 onClick={handleClick}
             >⬅︎
             </button>
 
             {isSuccessModalOpen && (
-                <div htmlFor="success-modal">
-                    <p>食材が登録されました。</p>
-
-                    <button
-                        type="button"
-                        onClick={() => {
-                            setIsSuccessModalOpen(false)
-                            navigate("/")
-                    }
-                    }>⌫
-                    </button>
-                </div>
+                <div className="success-modal-backdrop"
+                />
             )}
+
+
+            <div className={`success-modal ${isSuccessModalOpen ? "is-open" : ""}`}>
+                <p>食材が登録されました。</p>
+
+                <button
+                    type="button"
+                    onClick={() => {
+                        setIsSuccessModalOpen(false)
+                        navigate("/")
+                }
+                }>⬅︎ ホーム
+                </button>
+            </div>
         </section>
     )
 }

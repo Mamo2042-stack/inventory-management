@@ -80,7 +80,7 @@ function StorageRegistration (){
             </form>
 
             <button
-                className="storage-registration-to-home-button"
+                className="back-to-previous-button"
                 onClick={handleClick}
             >⬅︎
             </button>

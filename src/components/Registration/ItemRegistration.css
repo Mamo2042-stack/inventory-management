@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 80px;
+    gap: 50px;
 
     flex: 1;
     min-height: 500px;
@@ -18,9 +18,11 @@
 
     flex: 1;
     width: 100%;
+
+    background-color: red;
 }
 
-.item-registration-form div {
+.item-registration-form > div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,21 +42,71 @@
     font-size: 1.4rem;
 }
 
+.item-registration-form input:focus,
+.item-registration-form select:focus {
+    outline: none;
+}
+
 .item-registration-form label{
     text-align: center;
     width: 100%;
 }
+
+/* expected quantity */
+.quantity-with-unit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 50%;
+}
+
+.quantity-with-unit input[type="number"] {
+    flex: 1;
+}
+
+/* radio buttons */
 .replenishment-method-field {
     width: 50%;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: 80px;
+    padding: 10px 0;
+
+    background-color: #FFE6D1;
+
+    border: none;
+    border-radius: 10px;
 }
 
-.replenishment-method-field div {
+.replenishment-method-field > div {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+
+    margin-bottom: 0;
 }
 
 .replenishment-method-field label {
+    width: auto;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.replenishment-method-field input[type="radio"] {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.item-registration-form button {
+    padding: 10px 15px;
+    margin-top: 40px;
+
+    font-size: 1.2rem;
 }
