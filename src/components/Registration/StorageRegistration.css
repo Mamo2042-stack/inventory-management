@@ -1,0 +1,129 @@
+.storage-registration-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+
+    min-height: 500px;
+}
+
+.storage-registration-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    width: 80%;
+    padding: 20px;
+
+}
+
+
+/* Submission button coloring */
+.storage-registration-form button {
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    background-color: #fdfaf7;
+}
+
+.storage-registration-form button:not(:disabled) {
+    background-color: #FFE6D1;
+}
+
+.storage-registration-form button:not(:disabled):hover {
+    background-color: #FFC99E;
+}
+
+
+.storage-name-input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.3rem;
+
+    width: 100%;
+}
+
+/* input element */
+.storage-name-input-section input {
+    padding: 10px;
+    margin-top: 15px;
+    width: 500px;
+
+    border-radius: 10px;
+    border: none;
+    background-color: #FFE6D1;
+
+    font-size: 1.5rem;
+}
+
+.storage-name-input-section input:focus {
+    outline: none;
+}
+
+/* error message */
+.storage-name-input-section p {
+    color: red;
+
+}
+
+.storage-registration-to-home-button {
+    padding: 20px 30px;
+}
+
+/* success modal */
+.success-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+
+    background-color: rgb(0 0 0 / 30%);
+}
+
+.success-modal {
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+    z-index: 1000;
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 300px;
+    width: 50vw;
+    min-height: 300px;
+    height: 50vh;
+    border-radius: 20px;
+
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: transform 0.5s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.success-modal.is-open {
+    /*Open state */
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.success-modal p {
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+}
+
+.success-modal button {
+    padding: 10px 15px;
+}
+
+.storage-registration-section h1 {
+    margin: 0;
+}
