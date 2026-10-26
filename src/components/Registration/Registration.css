@@ -1,0 +1,22 @@
+.registration-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 150px;
+    flex: 1;
+
+    min-height: 500px;
+}
+
+.registration-home nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 150px;
+}
+
+.registration-home button {
+    padding: 20px 30px;
+}
