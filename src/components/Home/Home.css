@@ -1,18 +1,18 @@
-section {
-    width: 80%;
-    margin: auto;
+.home {
+    height: 80%;
 }
 
 h1 {
     text-align: center;
 }
 
-.section-links {
+.section-links-container {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    justify-content: space-evenly;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
+    height: 100%;
 }
 
 .secondary-links {

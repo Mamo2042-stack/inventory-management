@@ -1,11 +1,12 @@
 import { Link } from "react-router";
-import '/Users/towa/Documents/inventory-management/src/components/Home/Home.css'
+import './Home.css'
 
 function Home() {
     return (
-        <section>
+        <section className="home">
             <h1>在庫管理アプリ</h1>
-            <div className="section-links">
+
+            <div className="section-links-container">
                 <Link to="/inventoryManagement" className="inventory-link">
                     在庫管理
                 </Link>
