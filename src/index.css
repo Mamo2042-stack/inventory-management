@@ -163,3 +163,7 @@ button {
 button:hover {
     background-color: var(--color-button-hover);
 }
+
+.error-message {
+    color: red;
+}

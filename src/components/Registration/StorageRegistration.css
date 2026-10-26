@@ -62,12 +62,6 @@
     outline: none;
 }
 
-/* error message */
-.storage-name-input-section p {
-    color: red;
-
-}
-
 .storage-registration-to-home-button {
     padding: 20px 30px;
 }

@@ -1,0 +1,61 @@
+.item-registration {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+
+    flex: 1;
+    min-height: 500px;
+}
+
+.item-registration-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 1.2rem;
+
+    flex: 1;
+    width: 100%;
+}
+
+.item-registration-form div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.item-registration-form input,
+.item-registration-form select {
+    border: none;
+    border-radius: 10px;
+    background-color: #FFE6D1;
+
+    padding: 10px;
+    width: 50%;
+    
+    font-size: 1.4rem;
+}
+
+.item-registration-form label{
+    text-align: center;
+    width: 100%;
+}
+.replenishment-method-field {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
+
+.replenishment-method-field div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.replenishment-method-field label {
+
+}
