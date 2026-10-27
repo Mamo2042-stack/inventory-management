@@ -7,6 +7,8 @@ function Delete () {
 
     return (
         <section className="delete">
+            <h1>削除</h1>
+
             <nav>
                 <Link to="/delete/storage">ストレージ削除</Link>
                 <Link to="/delete/item">食材削除</Link>
