@@ -1,8 +1,12 @@
 import { useAppData } from "../../context/AppDataContext";
+import { useState } from "react";
 import deleteStorage from "../../operations/deleteStorage";
+import { useNavigate } from "react-router";
 
-function DeleteStorageForm({ selectedStorage, setViewMode, setSuccessMsg }){
+function DeleteStorageForm({ selectedStorage, isModalOpen, setIsModalOpen }){
     const { appData, setAppData } = useAppData();
+    const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+    const navigate = useNavigate();
 
     function handleClick(){
         const result = deleteStorage(appData, selectedStorage);
@@ -13,25 +17,43 @@ function DeleteStorageForm({ selectedStorage, setViewMode, setSuccessMsg }){
         }
 
         setAppData(result.data);
-        setViewMode("storage-list");
-        setSuccessMsg("SUCCEED");
+        setIsSuccessModalOpen(true)
     }
 
     return (
-        <div>
-            <h3>本当に削除しますか？</h3>
+        <div className={`confirmation-modal ${isModalOpen ? "is-open" : ""}`}>
+            {!isSuccessModalOpen && (
+                <div className="confirmation-section">
+                    <div>
+                        <p className="confirmation-message">本当に削除しますか？</p>
 
-            <button
-                type="button"
-                onClick={handleClick}
-            >確定
-            </button>
+                        <button
+                            type="button"
+                            onClick={handleClick}
+                        >確定
+                        </button>
+                    </div>
 
-            <button
-                type="button"
-                onClick={() => setViewMode("storage-list")}
-            >❌
-            </button>
+                    <button
+                        type="button"
+                        className="back-to-previous-button"
+                        onClick={() => setIsModalOpen(false)}
+                    >⬅︎
+                    </button>
+                </div>
+            )}
+
+            {isSuccessModalOpen && (
+                <div className="success-section">
+                    <p>ストレージが削除されました。</p>
+
+                    <button
+                        type="button"
+                        onClick={() => navigate("/")}
+                    >ホームに戻る
+                    </button>
+                </div>
+            )}
         </div>
     )
 }
