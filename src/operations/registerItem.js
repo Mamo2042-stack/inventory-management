@@ -23,7 +23,7 @@ function registerItem (appData, itemData) {
         result.error.push("NO_STORAGE");
     }
 
-    if(!storageId.trim()){
+    if(!storageUnit.trim()){
         result.error.push("NO_STORAGE_UNIT");
     }
 
