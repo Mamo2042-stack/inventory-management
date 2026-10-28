@@ -74,6 +74,7 @@ function ItemRegistration(){
                         name="name"
                         type="text"
                         id="name"
+                        maxLength={10}
                         value={userInput.name}
                         onChange={e => handleChange(e)}
                         required
@@ -86,6 +87,11 @@ function ItemRegistration(){
                     {errorMsg.some(err => err === "DUPLICATE_NAME") && (
                         <p className="error-message">既に使用されている名前です。</p>
                     )}
+
+                    {errorMsg.some(err => err === "TOO_MANY_LETTERS_NAME") && (
+                        <p className="error-message">文字数の上限は10文字です。</p>
+                    )}
+
                 </div>
 
                 <div>
@@ -138,6 +144,7 @@ function ItemRegistration(){
                         name="storageUnit"
                         id="storage-unit"
                         type="text"
+                        maxLength={8}
                         value={userInput.storageUnit}
                         onChange={e => handleChange(e)}
                         required
@@ -146,6 +153,8 @@ function ItemRegistration(){
                     {errorMsg.some(err => err === "NO_STORAGE_UNIT") && (
                         <p className="error-message">単位を入力して下さい。</p>
                     )}
+
+                    {errorMsg.some(err => err === "TOO_MANY_LETTERS_UNIT")}
                     </div>
 
                 <div>

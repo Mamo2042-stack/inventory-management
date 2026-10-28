@@ -11,6 +11,10 @@ function registerItem (appData, itemData) {
         result.error.push("EMPTY_INPUT");
     }
 
+    if(normalizedName.length > 10){
+        result.error.push("TOO_MANY_LETTERS_NAME")
+    }
+
     const isDuplicate = appData.items.some(item => 
         item.name.normalize("NFKC") === normalizedName
     );
@@ -25,6 +29,10 @@ function registerItem (appData, itemData) {
 
     if(!storageUnit.trim()){
         result.error.push("NO_STORAGE_UNIT");
+    }
+
+    if(storageUnit.trim().length > 8){
+        result.error.push("TOO_MANY_LETTERS_UNIT")
     }
 
     if(Number(expectedQuantity)){
