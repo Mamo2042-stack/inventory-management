@@ -57,9 +57,13 @@ function ItemCard ({ item, setSelectedItem, setInventoryView, history }) {
                     ""                  
                     }
                 </p>
-                {item.expectedQuantity && (
-                <p>最低在庫数: {item.expectedQuantity / 10} {item.storageUnit}</p>
-                )}
+                <p>
+                    {item.expectedQuantity ?
+                        `最低在庫数: ${item.expectedQuantity / 10} ${item.storageUnit}`
+                        :
+                        ""
+                    }
+                </p>
              </div>
         </button>
         </>
