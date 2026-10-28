@@ -7,9 +7,19 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
     const [userInput, setUserInput] = useState("1");
     const [errorMsg, setErrorMsg] = useState("");
     const { appData, setAppData } = useAppData();
+    const [isDisabled, setIsDisabled] = useState(false);
 
     function handleChange(e){
-        setUserInput(e.target.value);
+
+        const value = e.target.value;
+
+        setUserInput(value);
+
+        if(/^\d*\.?\d?$/.test(value)){
+            setIsDisabled(false);
+        } else {
+            setIsDisabled(true);
+        }
     }
 
     function handleSubmit(e){
@@ -48,6 +58,7 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
                         type="number"
                         min="1"
                         max="100"
+                        step="1"
                         id="order-quantity"
                         value={userInput}
                         required
@@ -57,13 +68,14 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
                 
 
                     {errorMsg && (
-                        <p className="error-msg">{errorMsg}</p>
+                        <p className="error-message">{errorMsg}</p>
                     )}
                 </div>
 
                 <button
                     type="submit"
                     className="create-order-button"
+                    disabled={isDisabled}
                 >確定</button>
             </form>
 

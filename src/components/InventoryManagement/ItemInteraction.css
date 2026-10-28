@@ -77,6 +77,16 @@
 
 .quantity {
     font-size: 2.5rem;
+    border: none;
+    text-align: center;
+    width: 30%;
+}
+
+/* Chrome, Safari, Edge, and other WebKit/Blink browsers */
+.quantity::-webkit-inner-spin-button,
+.quantity::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .additional-info {

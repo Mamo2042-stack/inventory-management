@@ -11,9 +11,9 @@ function calUpcomingQuantity (item){
 
     let totalQuantity = 0;
 
-    totalQuantity += pendingOrders.reduce((sum, order) => sum + (order.orderedQuantity - order.receivedQuantity), 0);
+    totalQuantity += pendingOrders.reduce((sum, order) => sum + Math.round((order.orderedQuantity - order.receivedQuantity)), 0);
 
-    return totalQuantity;
+    return Math.round(totalQuantity);
 }
 
 export default calUpcomingQuantity;

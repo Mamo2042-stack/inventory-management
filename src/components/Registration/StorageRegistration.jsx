@@ -62,13 +62,18 @@ function StorageRegistration (){
                     <input
                         type="text"
                         id="storage-name"
+                        maxLength={15}
                         value={userInput.name}
                         onChange={e => handelChange(e)}
                         required
                     />
 
-                    {errorMsg && (
-                        <p id="storage-error">このストレージ名は既に登録されています。</p>
+                    {errorMsg === "DUPLICATE_NAME" && (
+                        <p className="error-message">このストレージ名は既に登録されています。</p>
+                    )}
+
+                    {errorMsg === "TOO_MANY_LETTERS" && (
+                        <p className="error-message">文字数の上限は15文字です。</p>
                     )}
                 </div>
                 <button

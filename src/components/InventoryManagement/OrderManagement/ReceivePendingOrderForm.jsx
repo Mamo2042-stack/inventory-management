@@ -8,6 +8,7 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
     const { orderedQuantity, receivedQuantity } = order;
     const [userInput, setUserInput] = useState(orderedQuantity - receivedQuantity);
     const [errorMsg, setErrorMsg] = useState("");
+    const [isDisabled , setIsDisabled] = useState(false);
 
     function handleCheckboxChange(e){
         setIsChecked(e.target.checked);
@@ -16,7 +17,14 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
     }
 
     function handleInputChange(e){
-        setUserInput(e.target.value);
+        const value = e.target.value;
+        setUserInput(value);
+
+        if(/^\d*\.?\d?$/.test(value)){
+            setIsDisabled(false);
+        } else {
+            setIsDisabled(true);
+        }
     }
 
 
@@ -46,6 +54,7 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
 
         setAppData(result.data);
         setIsReceiving(false);
+        console.log(result.data)
     }
 
     return (
@@ -92,9 +101,11 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
 
 
                 </div>
+
                 <button
                     type="submit"
                     className="receipt-button"
+                    disabled={isDisabled}
                 >{!isChecked ? "全て受取" : "登録"}
                 </button>
             </fieldset>
