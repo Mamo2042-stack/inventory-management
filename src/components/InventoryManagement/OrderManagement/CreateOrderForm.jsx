@@ -28,7 +28,7 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
         const result = createOrder( appData, selectedItem, userInput);
 
         if(!result.success){
-            console.log(result.error);
+            console.error(result.error);
             if(result.error === "EMPTY_INPUT"){
                 setErrorMsg("有効な数字を入力して下さい。");
             }

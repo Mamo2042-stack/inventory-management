@@ -12,7 +12,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     const { items } = appData;
     const [isVisible, setIsVisible] = useState(false);
     const { deeperSection, setDeeperSection, closeAllPanels } = useInventoryNavigation();//deeperSection holds null, pending, or history//
-    const [isDisabled, setIsDisabled] = useState();
+    const [isDisabled, setIsDisabled] = useState(false); // Checks whether the input has a number with at most one decimal place //
 
     useEffect(() => {
         if(inventoryView === "item") {
@@ -29,7 +29,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     useEffect(() => {
         if(displayItem){
-            setTempQuan(displayItem.quantity)
+            setTempQuan(displayItem.quantity);
         }
     }, [displayItem])
 
@@ -45,11 +45,10 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     function handleChange(e){
         const value = e.target.value;
-
-        setTempQuan(Number(value) * 10);
         
         if(/^\d*\.?\d?$/.test(value)){
             setIsDisabled(false);
+            setTempQuan(Number(value) * 10);
         } else {
             setIsDisabled(true);
         }
@@ -80,6 +79,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                     ){
                         setTempQuan(displayItem.quantity)
                         setInventoryView("item-list");
+                        setIsDisabled(false);
                     }
                 }}>
 
@@ -125,10 +125,14 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                                 <p className="additional-info"></p>
                             }
 
+                            {(isDisabled || tempQuan > 10000 || tempQuan < 0) && (
+                                <p className="error-message">有効な数字(0~1000、小数点第1位まで)を入力して下さい。</p>
+                            )}
+
                             <button
                                 type="submit"
                                 className="confirmation-btn"
-                                disabled={isDisabled || displayItem.quantity === tempQuan}
+                                disabled={isDisabled || displayItem.quantity === tempQuan || tempQuan > 10000}
                             >確定
                             </button>                        
                         </div>
