@@ -12,6 +12,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     const { items } = appData;
     const [isVisible, setIsVisible] = useState(false);
     const { deeperSection, setDeeperSection, closeAllPanels } = useInventoryNavigation();//deeperSection holds null, pending, or history//
+    const [isClickable, setIsClickable] = useState();
 
     useEffect(() => {
         if(inventoryView === "item") {
@@ -37,6 +38,18 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     function handleClick(e){
         setDeeperSection(e.target.name);
+    }
+
+    function handleChange(e){
+        const value = e.target.value;
+
+        setTempQuan(Number(value));
+
+        if(/^\d*\.?\d?$/.test(value)){
+            setIsClickable(false);
+        } else {
+            setIsClickable(true);
+        }
     }
 
     function handleSubmit(e){
@@ -81,23 +94,29 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                             <button 
                                 type="button"
                                 name="decrease"
-                                onClick={() => setTempQuan(previous =>  previous - 1)}
+                                onClick={() => setTempQuan(previous =>  Math.round((previous - 1) * 10 ) / 10)}
                                 disabled={tempQuan <= 0}
                             >-</button>
 
-                            <p className="quantity">
-                                {tempQuan}
-                            </p>
+                            <input
+                                type="number"
+                                className="quantity"
+                                min="0"
+                                max="1000"
+                                step="0.1"
+                                value={tempQuan}
+                                onChange={e => handleChange(e)}
+                            />
 
                             <button
                                 type="button"
                                 name="increase"
-                                onClick={() => setTempQuan(previous =>      previous + 1)}
+                                onClick={() => setTempQuan(previous => Math.round((previous + 1) * 10 ) / 10)}
                             >+
                             </button>
 
                             {upcomingQuantity ? (
-                                <p className="additional-info"> + (注文済み     {upcomingQuantity})</p>
+                                <p className="additional-info"> + (注文済み {upcomingQuantity})</p>
                                 ) 
                                 : 
                                 <p className="additional-info"></p>
@@ -106,7 +125,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                             <button
                                 type="submit"
                                 className="confirmation-btn"
-                                disabled={displayItem.quantity === tempQuan}
+                                disabled={isClickable || displayItem.quantity === tempQuan}
                             >確定
                             </button>                        
                         </div>
