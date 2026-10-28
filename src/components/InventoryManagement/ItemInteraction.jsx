@@ -12,7 +12,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     const { items } = appData;
     const [isVisible, setIsVisible] = useState(false);
     const { deeperSection, setDeeperSection, closeAllPanels } = useInventoryNavigation();//deeperSection holds null, pending, or history//
-    const [isClickable, setIsClickable] = useState();
+    const [isDisabled, setIsDisabled] = useState();
 
     useEffect(() => {
         if(inventoryView === "item") {
@@ -47,11 +47,11 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
         const value = e.target.value;
 
         setTempQuan(Number(value) * 10);
-
+        
         if(/^\d*\.?\d?$/.test(value)){
-            setIsClickable(false);
+            setIsDisabled(false);
         } else {
-            setIsClickable(true);
+            setIsDisabled(true);
         }
     }
 
@@ -61,7 +61,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
         const confirmedQuanData = adjustInventory(appData, selectedItem, tempQuan);
 
         if(!confirmedQuanData.success){
-            console.log(confirmedQuanData.error);
+            console.error(confirmedQuanData.error);
             return;
         }
 
@@ -98,7 +98,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                                 type="button"
                                 name="decrease"
                                 onClick={() => setTempQuan(previous => previous - 10 )}
-                                disabled={tempQuan <= 0}
+                                disabled={tempQuan - 10 < 0}
                             >-</button>
 
                             <input
@@ -128,7 +128,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                             <button
                                 type="submit"
                                 className="confirmation-btn"
-                                disabled={isClickable || displayItem.quantity === tempQuan}
+                                disabled={isDisabled || displayItem.quantity === tempQuan}
                             >確定
                             </button>                        
                         </div>
