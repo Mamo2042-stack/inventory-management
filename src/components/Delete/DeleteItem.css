@@ -1,0 +1,57 @@
+.delete-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    flex: 1;
+    min-height: 500px;
+    width: 100%;
+}
+
+.item-list-container {
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    flex: 1;
+    max-height: 60vh;
+    overflow-y: auto;
+
+    margin-bottom: 30px;
+}
+
+.item-container {
+    border: 2px solid #ffb380;
+    border-radius: 10px;
+}
+
+.item-container > h2 {
+    text-align: center;
+    background-color: #ffb380;
+
+    padding: 10px 15px;
+    width: 100%;
+    margin: 0 0 20px 0;
+}
+
+.item-container > P {
+    margin-left: 20px;
+}
+
+.items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-left: 20px;
+}
+
+.items > .item-card {
+    height: 120px;
+    padding: 10px 20px;
+    width: 150px;
+    min-width: 0;
+}

@@ -2,44 +2,40 @@ import { useState } from "react";
 import DeleteStorageList from "./DeleteStorageList";
 import DeleteStorageForm from "./DeleteStorageForm";
 import { useNavigate } from "react-router";
+import "./DeleteStorage.css"
 
 function DeleteStorage (){
     const [selectedStorage, setSelectedStorage] = useState(null);
-    const [viewMode, setViewMode] = useState("storage-list");
-    const [successMsg, setSuccessMsg] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
 
     return (
-        <section>
+        <section className="storage-delete">
+            <h1>ストレージ選択</h1>
+
             <DeleteStorageList
                 setSelectedStorage={setSelectedStorage}
-                setViewMode={setViewMode}
+                setIsModalOpen={setIsModalOpen}
             />
 
-            {viewMode === "confirmation" && (
-                <DeleteStorageForm
-                    selectedStorage={selectedStorage}
-                    setViewMode={setViewMode}
-                    setSuccessMsg={setSuccessMsg}
+            {isModalOpen && (
+                <div 
+                    className="backdrop-container"
+                    onClick={() => setIsModalOpen(false)}
                 />
             )}
 
-            {successMsg && (
-                <div>
-                    <p>ストレージが削除されました。</p>
-
-                    <button
-                        type="button"
-                        onClick={() => setSuccessMsg("")}
-                    >✕
-                    </button>
-                </div>
-            )}
+            <DeleteStorageForm
+                selectedStorage={selectedStorage}
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+            />
 
             <button
                 type="button"
+                className="back-to-previous-button"
                 onClick={() => navigate("/delete")}
-            >⇠                
+            >⬅︎          
             </button>
         </section>
     )

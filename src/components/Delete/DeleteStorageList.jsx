@@ -1,22 +1,25 @@
 import DeleteStorageCard from "./DeleteStorageCard";
 import { useAppData } from "../../context/AppDataContext"
 
-function DeleteStorageList({ setSelectedStorage, setViewMode }){
+function DeleteStorageList({ setSelectedStorage, setIsModalOpen }){
     const { appData } = useAppData();
     const { storages } = appData;
 
     return (
-        <section>
-            <h1>ストレージ選択</h1>
+        <div className="storages-container">
             {storages?.map(storage => (
                 <DeleteStorageCard
                    key={storage.id}
                    storageData={storage}
                    setSelectedStorage={setSelectedStorage}
-                   setViewMode={setViewMode}
+                   setIsModalOpen={setIsModalOpen}
                 /> 
             ))}
-        </section>
+
+            {storages.length % 2 === 1 && (
+                <div className="empty-box"></div>
+            )}
+        </div>
     )
 }
 

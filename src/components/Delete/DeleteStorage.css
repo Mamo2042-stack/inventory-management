@@ -1,0 +1,53 @@
+.storage-delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    flex: 1;
+    min-height: 500px;
+    width: 100%;
+}
+
+.storages-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-height: 60vh;
+
+    width: 80%;
+
+    overflow-y: auto;
+}
+
+.storage-card {
+    width: 300px;
+    height: 80px;
+
+    padding: 10px;
+
+}
+
+.storage-card:disabled {
+    background-color: #fdfaf7;
+    border: 1px dotted;
+}
+
+.empty-box { 
+    width: 300px;
+    height: 80px;
+}
+
+/* success message section */
+.success-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
