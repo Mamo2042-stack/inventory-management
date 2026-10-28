@@ -10,6 +10,13 @@ function registerStorage(appData, storageData){
         }
     }
 
+    if(normalizedName.length > 15){
+        return {
+            success: false,
+            error: "TOO_MANY_LETTERS"
+        };
+    }
+
     const isDuplicate = appData.storages.some(
         storage => 
             storage.name.trim().normalize("NFKC") === normalizedName
