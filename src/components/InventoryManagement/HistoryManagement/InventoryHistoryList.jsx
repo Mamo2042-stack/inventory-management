@@ -24,7 +24,7 @@ function InventoryHistoryList({ selectedItem }){
                             <h4>{date} : {message}</h4>
                             
                             <h5>在庫変動</h5>
-                            <p>{history.previousQuantity}  → {history.newQuantity}</p>
+                            <p>{history.previousQuantity / 10}  → {history.newQuantity / 10}</p>
                         </div>
                     )
                 })

@@ -21,8 +21,8 @@ function PendingOrderCard ({ order, unit, selectedItem }){
                 <h5 className="order-date">{displayDate}</h5>
 
                 <div className="order-quantity">
-                    <p>注文数: {orderedQuantity} {unit}</p>
-                    <p>受取済み: {receivedQuantity} {unit}</p>
+                    <p>注文数: {orderedQuantity / 10} {unit}</p>
+                    <p>受取済み: {receivedQuantity / 10} {unit}</p>
                 </div>
             </button>
 

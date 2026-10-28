@@ -6,13 +6,13 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
     const { appData, setAppData } = useAppData();
     const [isChecked, setIsChecked] = useState(false);
     const { orderedQuantity, receivedQuantity } = order;
-    const [userInput, setUserInput] = useState(orderedQuantity - receivedQuantity);
+    const [userInput, setUserInput] = useState((orderedQuantity - receivedQuantity) / 10);
     const [errorMsg, setErrorMsg] = useState("");
     const [isDisabled , setIsDisabled] = useState(false);
 
     function handleCheckboxChange(e){
         setIsChecked(e.target.checked);
-        setUserInput(orderedQuantity - receivedQuantity);
+        setUserInput((orderedQuantity - receivedQuantity) / 10);
         setErrorMsg("");
     }
 
@@ -54,7 +54,6 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
 
         setAppData(result.data);
         setIsReceiving(false);
-        console.log(result.data)
     }
 
     return (
@@ -76,14 +75,14 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
                 
                     {isChecked && (
                         <div>
-                            <p>未受取数: {orderedQuantity - receivedQuantity}</p>
+                            <p>未受取数: {(orderedQuantity - receivedQuantity) / 10}</p>
 
                             <div className="user-input-for-receipt">
                                 <div>
                                 <label htmlFor="received-quantity">受取数: </label>
                                 <input
                                     type="number"
-                                    max={orderedQuantity - receivedQuantity}
+                                    max={(orderedQuantity - receivedQuantity) / 10}
                                     min="1"
                                     id="received-quantity"
                                     value={userInput}

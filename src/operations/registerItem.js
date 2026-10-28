@@ -52,7 +52,7 @@ function registerItem (appData, itemData) {
         name: name,
         storageId: storageId,
         quantity: 0,
-        expectedQuantity: Number(expectedQuantity),
+        expectedQuantity: Number(expectedQuantity) * 10,
         replenishmentMethod: replenishmentMethod,
         category: category,
         storageUnit: storageUnit,

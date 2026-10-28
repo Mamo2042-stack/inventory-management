@@ -30,12 +30,13 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
         return null;
     }
 
+    console.log(tempQuan)
+
     useEffect(() => {
         setTempQuan(displayItem.quantity)
     }, [items])
 
     const upcomingQuantity = calUpcomingQuantity(displayItem);
-    console.log(upcomingQuantity)
 
     function handleClick(e){
         setDeeperSection(e.target.name);
@@ -44,7 +45,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     function handleChange(e){
         const value = e.target.value;
 
-        setTempQuan(Number(value));
+        setTempQuan(Number(value) * 10);
 
         if(/^\d*\.?\d?$/.test(value)){
             setIsClickable(false);
@@ -95,7 +96,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                             <button 
                                 type="button"
                                 name="decrease"
-                                onClick={() => setTempQuan(previous =>  Math.round((previous - 1) * 10 ) / 10)}
+                                onClick={() => setTempQuan(previous => previous - 10 )}
                                 disabled={tempQuan <= 0}
                             >-</button>
 
@@ -105,19 +106,19 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                                 min="0"
                                 max="1000"
                                 step="0.1"
-                                value={tempQuan}
+                                value={tempQuan / 10}
                                 onChange={e => handleChange(e)}
                             />
 
                             <button
                                 type="button"
                                 name="increase"
-                                onClick={() => setTempQuan(previous => Math.round((previous + 1) * 10 ) / 10)}
+                                onClick={() => setTempQuan(previous => previous + 10)}
                             >+
                             </button>
 
                             {upcomingQuantity ? (
-                                <p className="additional-info"> + (注文済み {upcomingQuantity})</p>
+                                <p className="additional-info"> + (注文済み {upcomingQuantity / 10})</p>
                                 ) 
                                 : 
                                 <p className="additional-info"></p>

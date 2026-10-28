@@ -37,7 +37,7 @@ function createOrder ( appData, itemId, orderData ){
 
     const newOrder = {
         id: crypto.randomUUID(),
-        orderedQuantity: Number(orderData),
+        orderedQuantity: Number(orderData) * 10,
         receivedQuantity: 0,
         orderDate: new Date().toISOString()
     }

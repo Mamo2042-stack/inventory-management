@@ -34,7 +34,7 @@ function adjustInventory (appData, itemId, changeTo) {
             if(item.id === itemId){
                 return {
                     ...item,
-                    quantity: changeTo
+                    quantity: changeTo 
                 }
             }
             return item;

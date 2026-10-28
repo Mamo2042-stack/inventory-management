@@ -50,15 +50,15 @@ function ItemCard ({ item, setSelectedItem, setInventoryView, history }) {
 
             <div className="main-content">
                 <p>
-                    在庫数:<span className="current-quantity"> {item.quantity} </span>{item.storageUnit}
+                    在庫数:<span className="current-quantity"> {item.quantity / 10} </span>{item.storageUnit}
                     {upcomingQuantity ?  
-                    <span className="additional-info"> + (注文済み: {upcomingQuantity}{item.storageUnit})</span> 
+                    <span className="additional-info"> + (注文済み: {upcomingQuantity / 10}{item.storageUnit})</span> 
                     :
                     ""                  
                     }
                 </p>
                 {item.expectedQuantity && (
-                <p>最低在庫数: {item.expectedQuantity} {item.storageUnit}</p>
+                <p>最低在庫数: {item.expectedQuantity / 10} {item.storageUnit}</p>
                 )}
              </div>
         </button>

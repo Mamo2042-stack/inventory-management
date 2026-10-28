@@ -23,7 +23,7 @@ function DeleteItemCard({ item, setSelectedItem, setIsModalOpen }){
             onClick={handleClick}
         >
             <h3>{item.name}</h3>
-            <p>在庫数:{item.quantity}</p>
+            <p>在庫数:{item.quantity / 10}</p>
         </button>
         </>
     )

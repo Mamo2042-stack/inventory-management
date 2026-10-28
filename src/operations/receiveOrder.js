@@ -18,7 +18,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
     }
 
     const { orderedQuantity, receivedQuantity } = selectedOrder;
-    const remaining = Math.round((orderedQuantity - receivedQuantity) * 10) / 10;
+    const remaining = orderedQuantity - receivedQuantity;
     const beforeAdd = selectedItem.quantity;
 
 
@@ -43,7 +43,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
         }
     }
 
-    if(Number(newReceivedQuantity) > remaining){
+    if(Number(newReceivedQuantity) * 10 > remaining){
         return {
             success: false,
             error: "INSUFFICIENT_QUANTITY"
@@ -51,7 +51,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
     }
   
 
-    const isFullyReceived = remaining === Number(newReceivedQuantity);
+    const isFullyReceived = remaining === Number(newReceivedQuantity) * 10;
 
 // new inventory hisotory //    
     const newInventoryHistory = {
@@ -59,7 +59,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
         itemId: itemId,
         userAction: isFullyReceived ? "RECEIVE_FULL_ORDER" : "RECEIVE_PARTIAL_ORDER",
         previousQuantity: beforeAdd,
-        newQuantity: Math.round((selectedItem.quantity + Number(newReceivedQuantity)) * 10) / 10,
+        newQuantity: selectedItem.quantity + Number(newReceivedQuantity) * 10,
         timestamp: new Date().toISOString()
     }
 
@@ -72,7 +72,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
                 if(item.id === itemId){
                     return {
                         ...item,
-                        quantity: Math.round((beforeAdd + Number(newReceivedQuantity)) * 10) / 10,
+                        quantity: beforeAdd + Number(newReceivedQuantity) * 10,
                         pendingOrders: updatedOrderList
                     }
                 }
@@ -94,7 +94,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
 // partial receiving //
     const updatedPendingOrder = {
         ...selectedOrder,
-        receivedQuantity: Math.round((receivedQuantity + Number(newReceivedQuantity)) * 10) / 10
+        receivedQuantity: receivedQuantity + Number(newReceivedQuantity) * 10
     }
 
     const updatedData = {
@@ -103,7 +103,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
             if(item.id === itemId){
                 return {
                     ...item,
-                    quantity: Math.round((beforeAdd + Number(newReceivedQuantity)) * 10) / 10,
+                    quantity: beforeAdd + Number(newReceivedQuantity) * 10,
                     pendingOrders: item.pendingOrders.map(order => {
                         if(order.id === orderId){
                             return updatedPendingOrder;
