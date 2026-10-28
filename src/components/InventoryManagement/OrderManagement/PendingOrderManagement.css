@@ -75,6 +75,10 @@
     background-color: #DEDEDE;
 }
 
+.receipt-button:disabled {
+    background-color: #fff;
+}
+
 .order-date {
     border-bottom: 1px solid gray;
     width: 50%;
