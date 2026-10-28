@@ -1,12 +1,24 @@
 import { useAppData } from "../../context/AppDataContext"
+import { useState } from "react";
 import deleteItem from "../../operations/deleteItem";
+import { useNavigate } from "react-router";
 
-function DeleteItemForm({itemId, setViewMode, setSuccessMsg}){
+function DeleteItemForm({ itemId, isModalOpen, setIsModalOpen }){
     const { appData, setAppData } = useAppData();
+    const [hasSucceeded, setHasSucceeded] = useState(false);
+    const navigate = useNavigate();
+
+    // when no items are selelcted //
+    if(!itemId){
+        return (
+            <div className="confirmation-modal"></div>
+        );
+    }
+
     const selectedItem = appData.items.find(item => item.id === itemId);
     const itemData = {
-        hasStock: selectedItem.quantity > 0 ? true : false,
-        hasPending: selectedItem.pendingOrders?.length > 0 ? true : false,
+        hasStock: selectedItem?.quantity > 0 ? true : false,
+        hasPending: selectedItem?.pendingOrders?.length > 0 ? true : false,
     }
 
     function handleConfirmClick(){
@@ -18,34 +30,53 @@ function DeleteItemForm({itemId, setViewMode, setSuccessMsg}){
         }
 
         setAppData(result.data);
-        setViewMode("item-list");
-        setSuccessMsg("SUCCEED");
+        setHasSucceeded(true);
     }
 
     return (
-        <section>
-            <h3>本当に削除しますか？</h3>
+        <div className={`confirmation-modal ${isModalOpen ? "is-open" : ""}`}>
+            {itemId && !hasSucceeded && (
+                <div className="confirmation-section">
+                    <p className="confirmation-message">本当に削除しますか？</p>
 
-            {itemData.hasStock && (
-                <p>在庫が残っています。</p>
+                    <div>
+                    {itemData.hasStock && (
+                        <p>在庫が残っています。</p>
+                    )}
+
+                    {itemData.hasPending && (
+                        <p>未受取の注文があります。</p>
+                    )}
+
+                    <button
+                        type="button"
+                        onClick={handleConfirmClick}
+                    >確定
+                    </button>
+                    </div>
+
+                    <button
+                        type="button"
+                        className="back-to-previous-button"
+                        onClick={() => setIsModalOpen(false)}
+                    >⬅︎
+                    </button>
+                </div>
             )}
 
-            {itemData.hasPending && (
-                <p>未受取の注文があります。</p>
+            {itemId && hasSucceeded && (
+                <div className="success-section">
+                    <p>食材が削除されました。</p>
+
+                    <button
+                        type="button"
+                        className="back-to-previous-button"
+                        onClick={() => navigate("/")}    
+                    >ホームに戻る
+                    </button>
+                </div>  
             )}
-
-            <button
-                type="button"
-                onClick={handleConfirmClick}
-            >確定
-            </button>
-
-            <button
-                type="button"
-                onClick={() => setViewMode("item-list")}
-            >✕
-            </button>
-        </section>
+        </div>
     )
 }
 

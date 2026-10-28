@@ -42,66 +42,6 @@
     height: 80px;
 }
 
-/* confirmation section */
-.confirmation-modal {
-    position: fixed;
-    top: 25vh;
-    left: 25vw;
-    z-index: 1000;
-    background-color: #fff;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    min-width: 300px;
-    width: 50vw;
-    min-height: 300px;
-    height: 50vh;
-    border-radius: 20px;
-
-    transform: translateY(100%);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transition: transform 0.5s ease, opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.confirmation-modal.is-open {
-    /*Open state */
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-.confirmation-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
-}
-
-.confirmation-message {
-    font-size: 1.3rem;
-}
-
-.confirmation-section > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    flex: 1;
-}
-
-.confirmation-modal button:not(.back-to-previous-button) {
-    padding: 10px 15px;
-}
-
 /* success message section */
 .success-section {
     display: flex;
