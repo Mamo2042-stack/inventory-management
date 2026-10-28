@@ -37,6 +37,10 @@
     padding: 10px 15px;
 }
 
+.new-order-form button:disabled {
+    background-color: #fff;
+}
+
 
 .new-quantity {
     display: flex;
