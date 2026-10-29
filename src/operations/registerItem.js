@@ -36,7 +36,7 @@ function registerItem (appData, itemData) {
     }
 
     if(expectedQuantity){
-        if(!Number.isFinite(Number(expectedQuantity)) || !/^\d*\.?\d?$/.test(expectedQuantity) ||  Number(expectedQuantity) < 0 || Number(expectedQuantity) > 100){
+        if(!Number.isFinite(Number(expectedQuantity)) || !/^\d*\.?\d?$/.test(expectedQuantity) ||  Number(expectedQuantity) < 0 || Number(expectedQuantity) > 1000){
             result.error.push("INVALID_NUMBER");
         }
     }
