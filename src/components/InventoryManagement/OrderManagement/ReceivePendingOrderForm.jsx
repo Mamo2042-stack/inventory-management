@@ -49,6 +49,10 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
                 setErrorMsg("注文数を超えています。");
             }
 
+            if(result.error === "INSUFFICIENT_SPACE_IN_STORAGE"){
+                setErrorMsg("ストレージに十分な空きがありません。");
+            }
+
             return;
         }
 
@@ -90,17 +94,16 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
                                     onChange={e => handleInputChange(e)}
                                     />
                                 </div>
-                                {errorMsg && (
-                                    <p className="error-message">{errorMsg}</p>
-                                )}
+
                             </div>
                         </div>
                     )}    
-
-
-
                 </div>
 
+                {errorMsg && (
+                    <p className="error-message">{errorMsg}</p>
+                )}
+                
                 <button
                     type="submit"
                     className="receipt-button"

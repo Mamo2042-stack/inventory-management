@@ -49,6 +49,13 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
             error: "INSUFFICIENT_QUANTITY"
         }
     }
+
+    if(Number(newReceivedQuantity) * 10 + beforeAdd > 10000){
+        return {
+            success: false,
+            error: "INSUFFICIENT_SPACE_IN_STORAGE"
+        }
+    }
   
 
     const isFullyReceived = remaining === Number(newReceivedQuantity) * 10;
