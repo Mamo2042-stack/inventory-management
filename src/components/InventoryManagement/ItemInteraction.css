@@ -81,6 +81,14 @@
     background-color: #FFC99E;
 }
 
+.quantity-control button:disabled {
+    background-color: #fff;
+}
+
+.quantity-control button:disabled:hover {
+    background-color: #fff;
+}
+
 .quantity {
     font-size: 2.5rem;
     border: none;
