@@ -56,6 +56,8 @@ Storage1
 |-- Item C
 ```
 
+Each item is associated with its storage with "storageId".
+
 ## 3. Item
 
 An `Item` represents an inventory item that user manages.
@@ -106,6 +108,10 @@ Each `InventoryHistory` record references the item through `itemId`.
 ```text
 Item 1 ───────< InventoryHistory
 ```
+
+### 3.4 Requirements
+
+name, storageId, storageUnit, and category are required to be filled when registered.
 
 ## 4. Pending Order
 
@@ -221,13 +227,15 @@ Bacon
 └── ...
 ```
 
+Each history is associated with "itemId".
+
 ### 5.4 User Actions
 
 These are examples of possible user actions:
 
 - UPDATE_QUANTITY
 - RECEIVE_PARTIAL_ORDER
-- COMPLE_ORDER
+- COMPLETE_ORDER
 
 ## 6. Relationships
 ### 6.1 Storage > Item
@@ -280,6 +288,18 @@ This indicates an item is low-stock when:
 qunatity < expectedQuantity
 ```
 
+For the filtering, it's calculated by:
+
+```text
+quantity < expectedQuantity
+```
+
+For the low-stock indicator on each item card, it's calculated by:
+
+```text
+quantity + upcomingQuantity < expectedQuantity
+```
+
 ## 8. Data lifecycle Examples
 
 ### 8.1 Updating Inventory
@@ -321,7 +341,7 @@ Received: 3
         ↓
 Current quantity: 7
 receivedQuantity: 3
-
+unreceivedQuantity: 2
         ↓
 The order remains pending
 ```

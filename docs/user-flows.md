@@ -12,6 +12,7 @@ The main workflows are:
 * Create a pending order
 * Receive a pending order
 * Delete an item
+* Delete a storage
 * View inventory history
 * Identify low-stock
 
@@ -55,7 +56,6 @@ A new `Storage` is created in this format.
 Storage {
 
     id,
-
     name
 
 }
@@ -148,6 +148,10 @@ Choose increase or decrease
 
 Enter a number to adjust quantity
 
+or
+
+Clicking on a UI button
+
   ↓
 
 Submit
@@ -168,7 +172,7 @@ Create InventoryHistory
 For valid input, user input must follow:
 
 ```text
-adjustment > 0
+adjustment >= 0
 
 if decreasing:
 
@@ -242,10 +246,6 @@ Enter ordered quantity
 
   ↓
 
-Enter purchasing unit
-
-  ↓
-
 Submit
 
   ↓
@@ -276,8 +276,6 @@ pendingOrders [
 
         receivedQuantity: 0,
 
-        purchasingUnit,
-
         orderDate
 
     }
@@ -286,6 +284,8 @@ pendingOrders [
 ```
 
 The current inventory quantity doesn't change at this point because the order has not yet been received.
+
+However, the unreceived quantity should be shown on the item card, separately from its current quantity.
 
 ## 6. Receive a Pending Order
 
@@ -504,8 +504,16 @@ Identify whether each item needs to be replenished based on expected quantity.
 
 ### 9.2 Rule
 
+For the filtering feature:
+
 ```text
 quantity < expectedQuantity
+```
+
+For the low-stock indicator on item cards:
+
+```text
+quantity + upcomingQuantity < expectedQuantity
 ```
 
 ### 9.3 Flow

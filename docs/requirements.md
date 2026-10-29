@@ -82,6 +82,11 @@ The user must be able to update the current quantity of an item.
 
 The user must be able to delete an item from the list of registered items.
 
+### FR-005 - Delete Storages
+
+The user must be able to delete a storage.
+The user must not be able to delete a storage if it has any items stored in.
+
 ### FR-006 - Record Inventory History
 
 The user must be able to record history of each inventory change and user activity.
@@ -102,9 +107,9 @@ The user must be able to view a current inventory state.
 Inventory information must contain:
 
 -Item
--Latest update
+-Latest update when applicable
 -Current quantity
--Expected quantity
+-Expected quantity when applicable
 -Storage location
 -Pending order status, when applicable
 -Replenishment status, when applicable
@@ -135,6 +140,9 @@ An item is considered low-stock when:
 
 current quantity < expected quantity
 
+if there are any pending orders, the unreceived quantity should be included in the current quantity.
+This helps prevent users from accidentally ordering items unnecessary.
+
 ### FR-013 - Notify Users of Low Stock
 
 The system must inform the user when an item requires attention because of its inventory state.
@@ -164,8 +172,9 @@ Each order must contain:
 -Id
 -Ordered quantity
 -Received quantity
--Purchasing unit
 -Order date
+
+Unit for each order must match the storage unit of the corresponding item.
 
 ### FR-015 — Display Pending Orders
 
@@ -173,13 +182,9 @@ The system must indicate when an item has a pending order.
 
 #### AC-015-1
 
-When the user checks an item's inventory, the system must display any pending order associated with that item.
+When the user checks an item's inventory, the system must display any pending orders associated with that item.
 
 #### AC-015-2
-
-When the user attempts to place an order for an item with an existing pending order, the system must inform the user of the existing order.
-
-#### AC-015-3
 
 The system must distinguish pending quantities from currently available inventory quantities.
 
@@ -199,8 +204,6 @@ The system must:
 -Update the received quantity of the pending order.
 -If the order was fully delivered, remove the order from the item's pending orders.
 -If the order was not fully delivered, keep its status as pending.
-
-The system must not require automatic conversion between purchasing units and storage units.
 
 #### AC-016-1
 
@@ -264,14 +267,7 @@ Potential future features include:
 
 ## 7. Open Questions
 
--What categories should be available for sorting and filtering?
--Which item properties should be required or optional?
--What storage units should the application support?
--What purchasing units should the application support?
--Should the system automatically convert between purchasing units and storage units?
 -Should users be able to attach a URL for reordering an item?
--Should expected quantity be required for every item?
 -Should users be able to change an item's storage location after registration?
 -Should an item be allowed to exist in multiple storage locations?
 -Should reorder URLs be associated with an item or with a specific supplier/order?
--Should the application support a distinction between low-stock and zero-stock states?
