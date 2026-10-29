@@ -12,7 +12,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     const { items } = appData;
     const [isVisible, setIsVisible] = useState(false);
     const { deeperSection, setDeeperSection, closeAllPanels } = useInventoryNavigation();//deeperSection holds null, pending, or history//
-    const [isClickable, setIsClickable] = useState();
+    const [isDisabled, setIsDisabled] = useState(false); // Checks whether the input has a number with at most one decimal place //
 
     useEffect(() => {
         if(inventoryView === "item") {
@@ -26,15 +26,16 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     const displayItem = items.find(item => item.id === selectedItem);
     const [tempQuan, setTempQuan] = useState(displayItem?.quantity ?? 0);//This is only used to display current quantity and reflects users' change responsively//
+
+    useEffect(() => {
+        if(displayItem){
+            setTempQuan(displayItem.quantity);
+        }
+    }, [displayItem])
+
     if(!displayItem){
         return null;
     }
-
-    console.log(tempQuan)
-
-    useEffect(() => {
-        setTempQuan(displayItem.quantity)
-    }, [items])
 
     const upcomingQuantity = calUpcomingQuantity(displayItem);
 
@@ -44,13 +45,12 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     function handleChange(e){
         const value = e.target.value;
-
-        setTempQuan(Number(value) * 10);
-
+        
         if(/^\d*\.?\d?$/.test(value)){
-            setIsClickable(false);
+            setIsDisabled(false);
+            setTempQuan(Number(value) * 10);
         } else {
-            setIsClickable(true);
+            setIsDisabled(true);
         }
     }
 
@@ -60,7 +60,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
         const confirmedQuanData = adjustInventory(appData, selectedItem, tempQuan);
 
         if(!confirmedQuanData.success){
-            console.log(confirmedQuanData.error);
+            console.error(confirmedQuanData.error);
             return;
         }
 
@@ -79,6 +79,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                     ){
                         setTempQuan(displayItem.quantity)
                         setInventoryView("item-list");
+                        setIsDisabled(false);
                     }
                 }}>
 
@@ -97,7 +98,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                                 type="button"
                                 name="decrease"
                                 onClick={() => setTempQuan(previous => previous - 10 )}
-                                disabled={tempQuan <= 0}
+                                disabled={tempQuan - 10 < 0}
                             >-</button>
 
                             <input
@@ -124,10 +125,14 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                                 <p className="additional-info"></p>
                             }
 
+                            {(isDisabled || tempQuan > 10000 || tempQuan < 0) && (
+                                <p className="error-message">有効な数字(0~1000、小数点第1位まで)を入力して下さい。</p>
+                            )}
+
                             <button
                                 type="submit"
                                 className="confirmation-btn"
-                                disabled={isClickable || displayItem.quantity === tempQuan}
+                                disabled={isDisabled || displayItem.quantity === tempQuan || tempQuan > 10000}
                             >確定
                             </button>                        
                         </div>

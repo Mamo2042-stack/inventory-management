@@ -36,7 +36,7 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
         }
     }
 
-    if(Number(newReceivedQuantity) <= 0){
+    if(!Number.isFinite(Number(newReceivedQuantity)) || Number(newReceivedQuantity) <= 0){
         return {
             success: false,
             error: "INVALID_QUANTITY"
@@ -47,6 +47,13 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
         return {
             success: false,
             error: "INSUFFICIENT_QUANTITY"
+        }
+    }
+
+    if(Number(newReceivedQuantity) * 10 + beforeAdd > 10000){
+        return {
+            success: false,
+            error: "INSUFFICIENT_SPACE_IN_STORAGE"
         }
     }
   

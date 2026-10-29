@@ -165,13 +165,14 @@ function ItemRegistration(){
                         type="number"
                         id="expected-quantity"
                         min="0"
+                        max="100"
                         value={userInput.expectedQuantity}
                         onChange={e => handleChange(e)}
                     />
                     <p>({userInput.storageUnit})</p>
                 </div>
                     {errorMsg.some(err => err === "INVALID_NUMBER") && (
-                        <p className="error-message">有効な数字(0~100)を入力して下さい。</p>
+                        <p className="error-message">有効な数字(0~100、小数点第1位まで)を入力して下さい。</p>
                     )}
                 </div>
 

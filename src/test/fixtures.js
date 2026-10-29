@@ -52,7 +52,7 @@ export const testAppData = {
         {
             id:"item-4",
             name: "Chicken",
-            storageId: "storage-2",
+            storageId: "storage-1",
             quantity: 30,
             expectedQuantity: 50,
             replenishmentMethod: "ORDER",

@@ -10,7 +10,7 @@ function adjustInventory (appData, itemId, changeTo) {
 
     const previousQuantity = selectedItem.quantity
 
-    if(changeTo < 0){
+    if(!Number.isFinite(changeTo) || changeTo < 0){
         return {
             success: false,
             error: "INVALID_QUANTITY"

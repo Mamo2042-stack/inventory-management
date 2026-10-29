@@ -25,7 +25,7 @@ function createOrder ( appData, itemId, orderData ){
         }
     }
 
-    if(Number(orderData) <= 0 || Number(orderData) > 100){
+    if(!Number.isFinite(Number(orderData)) || Number(orderData) <= 0 || Number(orderData) > 100){
         return {
             success: false,
             error: "INVALID_QUANTITY"

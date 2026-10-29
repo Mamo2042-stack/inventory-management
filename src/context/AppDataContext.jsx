@@ -3,13 +3,31 @@ import { testAppData } from '../test/fixtures';
 
 const AppDataContext = createContext(null);
 
+function isValidAppData(data){
+    return (
+        data !== null && 
+        typeof data === "object" && 
+        !Array.isArray(data) &&
+        Array.isArray(data.storages) &&
+        Array.isArray(data.items) &&
+        Array.isArray(data.inventoryHistory)
+    )
+}
+
 export function AppDataProvider({ children }){
     const [appData, setAppData] = useState(() => {
         try{
             const savedData = localStorage.getItem("inventory-management:appData")
         
             if(savedData !== null) {
-                return JSON.parse(savedData)
+                
+                const parsedData = JSON.parse(savedData);
+
+                if(isValidAppData(parsedData)){
+                    return parsedData;
+                }
+
+                console.error("Saved inventory data has an invalid data structure");
             }
         } catch (error){
             console.error("Fiailed to load saved inventorydata:", error);

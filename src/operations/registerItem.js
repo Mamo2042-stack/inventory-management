@@ -35,8 +35,8 @@ function registerItem (appData, itemData) {
         result.error.push("TOO_MANY_LETTERS_UNIT")
     }
 
-    if(Number(expectedQuantity)){
-        if(Number(expectedQuantity) < 0 || Number(expectedQuantity) > 100){
+    if(expectedQuantity){
+        if(!Number.isFinite(Number(expectedQuantity)) || !/^\d*\.?\d?$/.test(expectedQuantity) ||  Number(expectedQuantity) < 0 || Number(expectedQuantity) > 100){
             result.error.push("INVALID_NUMBER");
         }
     }
@@ -52,7 +52,7 @@ function registerItem (appData, itemData) {
         name: name,
         storageId: storageId,
         quantity: 0,
-        expectedQuantity: Number(expectedQuantity) * 10,
+        expectedQuantity: Number(expectedQuantity) * 10 ?? undefined,
         replenishmentMethod: replenishmentMethod,
         category: category,
         storageUnit: storageUnit,
