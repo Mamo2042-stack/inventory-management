@@ -17,6 +17,22 @@ describe("receiveOrder.js", () => {
         expect(result.data.items.find(item => item.id === "item-1").quantity / 10).toBe(8);
     });
 
+    if("should return an updated data with the corresponding item's quantity and order's received quantity are updated when the order is partially received", () => {
+        const result = receiveOrder(
+            appData,
+            "item-1",
+            301,
+            "1"
+        );
+
+        expect(result.success).toBe(true);
+        expect(result.type).toBe("PARTIAL");
+        const selectedItem = result.data.items.find(item => item.id === "item-1");
+        expect(selectedItem.quantity).toBe(60);
+        const selectedOrder = selectedItem.pendingOrders.find(order => order.id === 301);
+        expect(selectedOrder.receivedQuantity).toBe(40);
+    })
+
     it("should remove the order when it's fully received", () => {
         const result = receiveOrder(
             appData,

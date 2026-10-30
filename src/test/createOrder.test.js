@@ -16,7 +16,18 @@ describe("createOrder", () => {
         expect(result.data.items.find(item => item.id === "item-1").pendingOrders.length).toBe(3);
         });
 
-    it("should return an object that indicates error when the item's replenishment method is not ordering", () => {
+    it("should return an updated data with a new order when the input has one dicimal place", () => {
+        const result =createOrder(
+            appData,
+            "item-1",
+            "1.5"
+        );
+
+        expect(result.success).toBe(true);
+        expect(result.data.items.find(item => item.id === "item-1").pendingOrders[2].orderedQuantity).toBe(15)
+    })
+
+    it("should return an object that indicates error when the item's replenishment method is not ORDER", () => {
         const result = createOrder(
             appData, 
             "item-2",

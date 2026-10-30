@@ -175,5 +175,22 @@ describe("registerItem", () => {
         expect(error.some(err => err === "INVALID_NUMBER")).toBe(true);
         expect(error.some(err => err === "NO_STORAGE_UNIT")).toBe(true);
         expect(error.length).toBe(2);
+    });
+
+    it("should register an item when the expectedQuantity is empty",() => {
+        const result = registerItem(
+            appData,
+            {
+                name: "Apple",
+                storageId: "storage-1",
+                category: "vegetable",
+                expectedQuantity: "",
+                replenishmentMethod: "ORDER",
+                storageUnit: "kg"
+            }
+        );
+
+        expect(result.success).toBe(true);
+        expect(result.data.items.some(item => item.name === "Apple")).toBe(true);
     })
 })

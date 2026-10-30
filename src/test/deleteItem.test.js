@@ -6,14 +6,15 @@ describe("deleteItem", () => {
 
     const appData = testAppData;
 
-    it("should delete an item from a storage the item is stored", () => {
+    it("should delete an item from a storage the item is stored, and the relevant history", () => {
         const result = deleteItem(
             appData,
             "item-2"
         )
         
         expect(result.success).toBe(true);
-        expect(!result.data.items.some(item => item.id === "item-2"));
+        expect(result.data.items.some(item => item.id === "item-2")).toBe(false);
+        expect(result.data.inventoryHistory.some(history => history.itemId === "item-2")).toBe(false);
     });
 
     it("should return error when any items are not found", () => {
