@@ -1,29 +1,35 @@
 import { useState } from "react"
 import receiveOrder from "../../../operations/receiveOrder";
 import { useAppData } from "../../../context/AppDataContext";
+import { isValidQuantity } from "../../../utils/isValidQuantity";
 
 function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
     const { appData, setAppData } = useAppData();
     const [isChecked, setIsChecked] = useState(false);
     const { orderedQuantity, receivedQuantity } = order;
-    const [userInput, setUserInput] = useState((orderedQuantity - receivedQuantity) / 10);
+    const [userInput, setUserInput] = useState(String((orderedQuantity - receivedQuantity) / 10));
     const [errorMsg, setErrorMsg] = useState("");
     const [isDisabled , setIsDisabled] = useState(false);
 
     function handleCheckboxChange(e){
         setIsChecked(e.target.checked);
-        setUserInput((orderedQuantity - receivedQuantity) / 10);
+        setUserInput(String((orderedQuantity - receivedQuantity) / 10));
         setErrorMsg("");
     }
 
     function handleInputChange(e){
+
+        setErrorMsg("");
+
         const value = e.target.value;
         setUserInput(value);
 
-        if(/^\d*\.?\d?$/.test(value)){
-            setIsDisabled(false);
-        } else {
+        if(!isValidQuantity(value)){
             setIsDisabled(true);
+        } else if(Number(value) === 0){
+            setIsDisabled(true);
+        } else {
+            setIsDisabled(false);
         }
     }
 
@@ -35,15 +41,7 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
         const result = receiveOrder(appData, selectedItem, order.id, input);
         
         if(!result.success){
-            console.log(result.error);
-
-            if(result.error === "EMPTY_INPUT"){
-                setErrorMsg("有効な数字を入力して下さい。");
-            }
-
-            if(result.error === "INVALID_QUANTITY"){
-                setErrorMsg("1以上の数字を入力して下さい。");
-            }
+            console.error(result.error);
 
             if(result.error === "INSUFFICIENT_QUANTITY"){
                 setErrorMsg("注文数を超えています。");
@@ -99,6 +97,10 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
                         </div>
                     )}    
                 </div>
+
+                {isDisabled && (
+                    <p className="error-message">有効な数字(1~注文数、小数点第1位まで)を入力して下さい。</p>
+                )}
 
                 {errorMsg && (
                     <p className="error-message">{errorMsg}</p>
