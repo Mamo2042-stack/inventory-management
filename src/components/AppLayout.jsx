@@ -4,7 +4,7 @@ import DataError from "./DataError";
 import './AppLayout.css'
 
 function AppLayout () {
-    const { loadStatus } = useAppData;
+    const { loadStatus } = useAppData();
 
     if(loadStatus === "invalid"){
         return <DataError />;

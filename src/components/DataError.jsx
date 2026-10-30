@@ -1,7 +1,7 @@
 import { useAppData } from "../context/AppDataContext";
 
 function DataError(){
-    const { resetAppData } = useAppData;
+    const { resetAppData } = useAppData();
 
     return (
         <section>

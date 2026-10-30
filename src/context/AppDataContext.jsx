@@ -22,20 +22,20 @@ export function AppDataProvider({ children }){
         }
 
         saveAppData(appData)
-    }, [appData])
+    }, [appData, loadStatus])
 
     function resetAppData(){
         const initialData = {
             storages: [],
             items: [],
-            InventoryHistory: []
+            inventoryHistory: []
         };
 
         setAppData(initialData);
         setLoadStatus("missing");
     }
 
-    const value = { appData, setAppData, loadStatus, setLoadStatus, resetAppData };
+    const value = { appData, setAppData, loadStatus, resetAppData };
 
 
 
