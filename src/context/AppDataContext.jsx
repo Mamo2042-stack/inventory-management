@@ -1,44 +1,19 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { testAppData } from '../test/fixtures';
 import { saveAppData } from '../persistence/saveAppData';
+import { loadAppData } from '../persistence/loadAppData';
 
 const AppDataContext = createContext(null);
 
-function isValidAppData(data){
-    return (
-        data !== null && 
-        typeof data === "object" && 
-        !Array.isArray(data) &&
-        Array.isArray(data.storages) &&
-        Array.isArray(data.items) &&
-        Array.isArray(data.inventoryHistory)
-    )
-}
-
 export function AppDataProvider({ children }){
     const [appData, setAppData] = useState(() => {
-        try{
-            const savedData = localStorage.getItem("inventory-management:appData")
-        
-            if(savedData !== null) {
-                
-                const parsedData = JSON.parse(savedData);
+        const fetchedData = loadAppData();
 
-                if(isValidAppData(parsedData)){
-                    return parsedData;
-                }
-
-                console.error("Saved inventory data has an invalid data structure");
-            }
-        } catch (error){
-            console.error("Fiailed to load saved inventorydata:", error);
+        if(fetchedData.status === "invalid"){
+            console.error("Data fetching is failed");
+            return fetchedData.data;
+        } else {
+            return fetchedData.data;
         }
-
-        return {
-            storages: [],
-            items: [],
-            inventoryHistory: []
-        };
     });
 
     useEffect(() => {
