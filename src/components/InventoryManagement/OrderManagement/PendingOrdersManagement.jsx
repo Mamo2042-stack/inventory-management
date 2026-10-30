@@ -1,8 +1,8 @@
-import { useAppData } from "../../../context/AppDataContext";
+import { useAppData } from "../../../context/useAppData";
 import PendingOrderCard from "./PendingOrderCard";
 import CreateOrderForm from "./CreateOrderForm";
 import "./PendingOrderManagement.css"
-import { useInventoryNavigation } from "../../../context/InventoryNavigationContext";
+import { useInventoryNavigation } from "../../../context/useInventoryNavigation";
 
 
 function PendingOrdersManagement ({ selectedItem, setDeeperSection }){

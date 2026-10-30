@@ -1,8 +1,8 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { saveAppData } from '../persistence/saveAppData';
 import { loadAppData } from '../persistence/loadAppData';
 
-const AppDataContext = createContext(null);
+export const AppDataContext = createContext(null);
 
 export function AppDataProvider({ children }){
     const [initialLoad] = useState(() => loadAppData());
@@ -37,8 +37,6 @@ export function AppDataProvider({ children }){
 
     const value = { appData, setAppData, loadStatus, resetAppData };
 
-
-
     return (
         <AppDataContext.Provider value={value}>
             {children}
@@ -46,15 +44,4 @@ export function AppDataProvider({ children }){
     )
 }
 
-export function useAppData() {
-    const context = useContext(AppDataContext);
-
-    if(context === null){
-        throw new Error(
-            "useAppData must be used within an AppDataProvider"
-        );
-    }
-
-    return context;
-}
 

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import receiveOrder from "../../../operations/receiveOrder";
-import { useAppData } from "../../../context/AppDataContext";
+import { useAppData } from "../../../context/useAppData";
 import { isValidQuantity } from "../../../utils/isValidQuantity";
 
 function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){

@@ -1,7 +1,6 @@
+import { createContext, useState } from "react";
 
-import { createContext, useContext, useState } from "react";
-
-const InventoryNavigationContext = createContext(null);
+export const InventoryNavigationContext = createContext(null);
 
 export function InventoryNavigationProvider({ children }) {
     const [inventoryView, setInventoryView] = useState("item-list");
@@ -29,16 +28,4 @@ export function InventoryNavigationProvider({ children }) {
             {children}
         </InventoryNavigationContext.Provider>
     );
-}
-
-export function useInventoryNavigation() {
-    const context = useContext(InventoryNavigationContext);
-
-    if (context === null) {
-        throw new Error(
-            "useInventoryNavigation must be used within InventoryNavigationProvider"
-        );
-    }
-
-    return context;
 }

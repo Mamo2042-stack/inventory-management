@@ -3,7 +3,7 @@ import ItemList from "./ItemList";
 import ItemInteraction from "./ItemInteraction";
 import { useNavigate } from "react-router";
 import "./InventoryManagement.css"
-import { useInventoryNavigation } from "../../context/InventoryNavigationContext";
+import { useInventoryNavigation } from "../../context/useInventoryNavigation";
 
 function InventoryManagement(){
     const { inventoryView, setInventoryView, closeAllPanels } = useInventoryNavigation();

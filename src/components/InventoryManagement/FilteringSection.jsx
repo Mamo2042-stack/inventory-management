@@ -1,4 +1,4 @@
-import { useAppData } from "../../context/AppDataContext";
+import { useAppData } from "../../context/useAppData";
 import { CATEGORIES } from "../../constants/categories";
 
 function FilteringSection({ userInput, setUserInput }){

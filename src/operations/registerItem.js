@@ -1,4 +1,5 @@
 import { isValidQuantity } from "../utils/isValidQuantity";
+import { CATEGORIES } from "../constants/categories";
 
 function registerItem (appData, itemData) {
     const {name, storageId, category, expectedQuantity, replenishmentMethod, storageUnit} = itemData;
@@ -29,6 +30,10 @@ function registerItem (appData, itemData) {
         result.error.push("NO_STORAGE");
     }
 
+    if(!CATEGORIES.some(cate => cate.type === category)){
+        result.error.push("INVALID_CATEGORY");
+    }
+
     if(!storageUnit.trim()){
         result.error.push("NO_STORAGE_UNIT");
     }
@@ -51,6 +56,9 @@ function registerItem (appData, itemData) {
         result.error.push("INVALID_QUANTITY");
     }
 
+    if(!["ORDER", "PURCHASE"].includes(replenishmentMethod)){
+        result.error.push("INVALID_REPLENISHMENTMETHOD");
+    }
 
     if(result.error.length){
         return result;

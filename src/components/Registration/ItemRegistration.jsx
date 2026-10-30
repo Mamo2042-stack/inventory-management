@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useAppData } from "../../context/AppDataContext";
+import { useAppData } from "../../context/useAppData";
 import { useState } from "react";
 import registerItem from "../../operations/registerItem";
 import { CATEGORIES } from "../../constants/categories";
@@ -128,6 +128,10 @@ function ItemRegistration(){
                         value={userInput.category}
                         onChange={e => handleChange(e)}
                     >
+
+                        <option value="">
+                            カテゴリーを選択して下さい。
+                        </option>
                         {categories.map(category => (
                             <option
                                 key={category.type}
