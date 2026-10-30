@@ -1,10 +1,9 @@
 export function isValidQuantity(input){
-// input is expected to be string 
-// this accepts an empty input as zero //
+// input is expected to be string //
 
 const quantityPattern =  /^\d+(\.\d)?$/;
 
-if(!quantityPattern.test(input) || typeof input !== "string"){
+if(typeof input !== "string" || !quantityPattern.test(input) ){
     return false;
 }
 
