@@ -38,7 +38,15 @@ function registerItem (appData, itemData) {
     }
 
     if(!isValidQuantity(expectedQuantity)){
-        result.error.push("INVALID_NUMBER");
+        if(typeof expectedQuantity === "string"){
+
+            if(expectedQuantity.trim() !== ""){ // excludes an empty input //
+                result.error.push("INVALID_NUMBER");         
+            }
+
+        } else {
+            result.error.push("INVALID_NUMBER");
+        }
     } else if(Number(expectedQuantity) < 0 || Number(expectedQuantity) > 1000){
         result.error.push("INVALID_QUANTITY");
     }
