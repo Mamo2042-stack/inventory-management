@@ -35,7 +35,6 @@ describe("adjustInventory", () => {
             "item-1",
             5
         );
-
         expect(result.data.items[0].quantity).toBe(5);
         expect(result.data.inventoryHistory[0].userAction).toBe("INCREASE_QUANTITY")
     });
@@ -148,4 +147,30 @@ describe("adjustInventory", () => {
         expect(result.success).toBe(false);
         expect(result.error).toBe("INVALID_QUANTITY");
     })
+
+    it("should not change the item's quantity when the input is invalid", () => {
+        const appDataForThis = {
+            ...testAppData,
+            items: testAppData.items.map(item =>
+                item.id === "item-1"
+                    ? { ...item, quantity: 500 }
+                    : item
+            )
+        };
+
+        const originalQuantity = appDataForThis.items.find(
+            item => item.id === "item-1"
+        ).quantity;
+
+        const result = adjustInventory(appDataForThis, "item-1", -100);
+
+        expect(result.success).toBe(false);
+
+        const updatedItem = result.data?.items?.find(
+            item => item.id === "item-1"
+        );
+
+        // If the operation returns the original data on failure:
+        expect(updatedItem?.quantity ?? originalQuantity).toBe(originalQuantity);
+    });
 });
