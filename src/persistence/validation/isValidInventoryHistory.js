@@ -20,7 +20,7 @@ export function isValidInventoryHistory(history){
         return false;
     }
 
-    const { id, itemId, userAction, previousQuantity, newQuantity, timeStamp } = history;
+    const { id, itemId, userAction, previousQuantity, newQuantity, timestamp } = history;
 
     if(
         typeof id !== "string" ||
@@ -28,12 +28,14 @@ export function isValidInventoryHistory(history){
         typeof userAction !== "string" ||
         typeof previousQuantity !== "number" ||
         typeof newQuantity !== "number" ||
-        typeof timeStamp !== "string"
+        typeof timestamp !== "string"
     ){
         return false;
     }
 
-    if(userAction !== ("INCREASE_QUANTITY" || "DECREASE_QUANTITY" || "RECEIVE_FULL_ORDER" || "RECEIVE_PARTIAL_ORDER")){
+    const validActions = ["INCREASE_QUANTITY", "DECREASE_QUANTITY", "RECEIVE_FULL_ORDER", "RECEIVE_PARTIAL_ORDER"]
+
+    if(!validActions.includes(userAction)){
         return false;
     }
 
@@ -49,7 +51,7 @@ export function isValidInventoryHistory(history){
         return false;
     }
 
-    if(!isValidDate(timeStamp)){
+    if(!isValidDate(timestamp)){
         return false;
     }
 

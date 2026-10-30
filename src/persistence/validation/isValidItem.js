@@ -38,6 +38,10 @@ export function isValidItem(item){
         return false;
     }
 
+    if(id.trim() === "" || storageId.trim() === ""){
+        return false;
+    }
+
     if(name.trim() === "" || name.length > 10){
         return false;
     }
@@ -46,13 +50,13 @@ export function isValidItem(item){
         return false;
     }
 
-    if(!expectedQuantity === undefined){
+    if(expectedQuantity !== undefined){
         if(!Number.isSafeInteger(expectedQuantity) || expectedQuantity < 0 || expectedQuantity > 10000){
             return false;
         }
     }
 
-    if(replenishmentMethod !== ("ORDER" || "PURCHACE")){
+    if(!["ORDER", "PURCHACE"].includes(replenishmentMethod)){
         return false;
     }
 
