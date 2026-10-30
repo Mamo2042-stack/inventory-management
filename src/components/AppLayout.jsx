@@ -1,7 +1,15 @@
 import { Outlet, Link } from "react-router"
+import { useAppData } from "../context/AppDataContext";
+import DataError from "./DataError";
 import './AppLayout.css'
 
 function AppLayout () {
+    const { loadStatus } = useAppData;
+
+    if(loadStatus === "invalid"){
+        return <DataError />;
+    }
+
     return (
         <div className="app-layout">
             <header className="app-header">

@@ -5,22 +5,39 @@ import { loadAppData } from '../persistence/loadAppData';
 const AppDataContext = createContext(null);
 
 export function AppDataProvider({ children }){
-    const [appData, setAppData] = useState(() => {
-        const fetchedData = loadAppData();
+    const [initialLoad] = useState(() => loadAppData());
 
-        if(fetchedData.status === "invalid"){
-            console.error("Data fetching is failed");
-            return fetchedData.data;
-        } else {
-            return fetchedData.data;
-        }
-    });
+    const [appData, setAppData] = useState(
+        initialLoad.status === "invalid" ?
+        null 
+        :
+        initialLoad.data
+    );
+
+    const [loadStatus, setLoadStatus] = useState(initialLoad.status);
 
     useEffect(() => {
+        if(loadStatus === "invalid"){
+            return;
+        }
+
         saveAppData(appData)
     }, [appData])
 
-    const value = { appData, setAppData };
+    function resetAppData(){
+        const initialData = {
+            storages: [],
+            items: [],
+            InventoryHistory: []
+        };
+
+        setAppData(initialData);
+        setLoadStatus("missing");
+    }
+
+    const value = { appData, setAppData, loadStatus, setLoadStatus, resetAppData };
+
+
 
     return (
         <AppDataContext.Provider value={value}>
