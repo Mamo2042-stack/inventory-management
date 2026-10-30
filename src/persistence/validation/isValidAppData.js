@@ -4,12 +4,12 @@ import { isValidInventoryHistory } from "./isValidInventoryHistory";
 
 function isValidData(appData){
     return (
-        data !== null && 
-        typeof data === "object" && 
-        !Array.isArray(data) &&
-        Array.isArray(data.storages) &&
-        Array.isArray(data.items) &&
-        Array.isArray(data.inventoryHistory)
+        appData !== null && 
+        typeof appData === "object" && 
+        !Array.isArray(appData) &&
+        Array.isArray(appData.storages) &&
+        Array.isArray(appData.items) &&
+        Array.isArray(appData.inventoryHistory)
     )
 }
 
