@@ -1,3 +1,5 @@
+import receiveOrder from "../operations/receiveOrder";
+
 export const testAppData = {
     storages: [
         { id: "storage-1", name: "Freezer A" },
@@ -53,12 +55,25 @@ export const testAppData = {
             id:"item-4",
             name: "Chicken",
             storageId: "storage-1",
-            quantity: 30,
+            quantity: 9900,
             expectedQuantity: 50,
             replenishmentMethod: "ORDER",
             category: "meat",
             storageUnit: "kg",
-            pendingOrders: []
+            pendingOrders: [
+                {
+                    id: 303,
+                    orderedQuantity: 300,
+                    receivedQuantity: 0,
+                    orderDate: "2026-10-17T05:30:45.123Z"                   
+                },
+                {
+                    id: 304,
+                    orderedQuantity: 40,
+                    receivedQuantity: 20,
+                    orderDate: "2026-10-17T05:30:45.123Z"
+                }
+            ]
         }
     ],
     inventoryHistory: []

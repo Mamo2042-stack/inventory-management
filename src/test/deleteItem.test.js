@@ -13,7 +13,7 @@ describe("deleteItem", () => {
         )
         
         expect(result.success).toBe(true);
-        console.log(result.data);
+        expect(!result.data.items.some(item => item.id === "item-2"));
     });
 
     it("should return error when any items are not found", () => {

@@ -1,3 +1,5 @@
+import { isValidQuantity } from "../utils/isValidQuantity";
+
 function createOrder ( appData, itemId, orderData ){
     const selectedItem = appData.items.find(item => item.id === itemId);
 
@@ -18,6 +20,15 @@ function createOrder ( appData, itemId, orderData ){
         }
     }
 
+    const isValid = isValidQuantity(orderData);
+
+    if(!isValid){
+        return {
+            success: false,
+            error: "INVALID_NUMBER"
+        }
+    }
+
     if(orderData.trim() === ""){
         return {
             success: false,
@@ -25,7 +36,7 @@ function createOrder ( appData, itemId, orderData ){
         }
     }
 
-    if(!Number.isFinite(Number(orderData)) || Number(orderData) <= 0 || Number(orderData) > 100){
+    if(Number(orderData) <= 0 || Number(orderData) > 100){
         return {
             success: false,
             error: "INVALID_QUANTITY"

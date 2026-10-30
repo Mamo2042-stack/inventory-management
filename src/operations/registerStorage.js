@@ -3,7 +3,7 @@ function registerStorage(appData, storageData){
     const normalizedName = name.trim().normalize("NFKC");
 
     //Validation//
-    if(!name.trim()){
+    if(name.trim() === ""){
         return {
             success: false,
             error: "EMPTY_STRING"

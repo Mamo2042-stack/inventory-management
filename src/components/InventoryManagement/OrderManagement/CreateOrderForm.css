@@ -42,7 +42,7 @@
 }
 
 
-.new-quantity {
+.new-quantity > div{
     display: flex;
     flex-direction: row;
     justify-content: center;

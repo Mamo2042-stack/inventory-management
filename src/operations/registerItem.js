@@ -1,3 +1,5 @@
+import { isValidQuantity } from "../utils/isValidQuantity";
+
 function registerItem (appData, itemData) {
     const {name, storageId, category, expectedQuantity, replenishmentMethod, storageUnit} = itemData;
     let result = {
@@ -35,10 +37,10 @@ function registerItem (appData, itemData) {
         result.error.push("TOO_MANY_LETTERS_UNIT")
     }
 
-    if(expectedQuantity){
-        if(!Number.isFinite(Number(expectedQuantity)) || !/^\d*\.?\d?$/.test(expectedQuantity) ||  Number(expectedQuantity) < 0 || Number(expectedQuantity) > 100){
-            result.error.push("INVALID_NUMBER");
-        }
+    if(!isValidQuantity(expectedQuantity)){
+        result.error.push("INVALID_NUMBER");
+    } else if(Number(expectedQuantity) < 0 || Number(expectedQuantity) > 1000){
+        result.error.push("INVALID_QUANTITY");
     }
 
 

@@ -23,7 +23,7 @@ The main technical goals are:
 | Language | Java Script |
 | Styling | CSS |
 | Persistence | Browser `localStorage` |
-| Version Control | Git |
+| Version Control | Git, Github |
 
 The MVP does not require a backend or database.
 
@@ -361,7 +361,7 @@ Business validation is performed in the operation layer.
 For example, `adjustInventory()` must reject:
 
 - Item ids that don't exist
-- Quantity less than or equal to zero
+- Quantity less than zero
 - Decrease by a nubmer larger than a current quantity
 
 The UI may perform additional validation to provide an immediate indicater for users to notify the invalid input, but this is not the authoritative source of business rules.

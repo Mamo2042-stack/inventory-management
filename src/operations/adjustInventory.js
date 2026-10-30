@@ -1,3 +1,5 @@
+import { isValidQuantity } from "../utils/isValidQuantity";
+
 function adjustInventory (appData, itemId, changeTo) {
     const selectedItem = appData.items.find(item => item.id === itemId );
 
@@ -10,7 +12,16 @@ function adjustInventory (appData, itemId, changeTo) {
 
     const previousQuantity = selectedItem.quantity
 
-    if(!Number.isFinite(changeTo) || changeTo < 0){
+    const isValid = isValidQuantity(String(changeTo));
+
+    if(!isValid){
+        return {
+            success: false,
+            error: "INVALID_NUMBER"
+        }
+    }
+
+    if(changeTo < 0 || changeTo > 10000){
         return {
             success: false,
             error: "INVALID_QUANTITY"

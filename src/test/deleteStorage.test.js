@@ -11,8 +11,8 @@ describe("deleteStorage", () => {
             "storage-2"
         )
 
-        console.log(result)
         expect(result.success).toBe(true);
+        expect(!result.data.storages.some(storage => storage.id === "storage-2"))
     })
 
     it("should return an object with an error message when condition is not satisfied", () => {
