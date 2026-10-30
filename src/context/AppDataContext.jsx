@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { testAppData } from '../test/fixtures';
+import { saveAppData } from '../persistence/saveAppData';
 
 const AppDataContext = createContext(null);
 
@@ -41,14 +42,7 @@ export function AppDataProvider({ children }){
     });
 
     useEffect(() => {
-        try{ 
-        localStorage.setItem(
-            "inventory-management:appData",
-            JSON.stringify(appData)
-        )
-    } catch (error){
-        console.error("Failed to save inventory data:", error);
-    }
+        saveAppData(appData)
     }, [appData])
 
     const value = { appData, setAppData };
