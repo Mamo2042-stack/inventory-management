@@ -6,6 +6,7 @@ import InventoryHistoryView from "./HistoryManagement/InventoryHistoryView";
 import calUpcomingQuantity from "../../utils/calUpcomingQuan";
 import "./ItemInteraction.css"
 import { useInventoryNavigation } from "../../context/InventoryNavigationContext";
+import { isValidQuantity } from "../../utils/isValidQuantity";
 
 function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     const { appData, setAppData } = useAppData();
@@ -45,12 +46,20 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     function handleChange(e){
         const value = e.target.value;
-        
-        if(/^\d*\.?\d?$/.test(value)){
-            setIsDisabled(false);
+
+// set tempQuan for display //
+
+        setTempQuan(value);
+
+// validation for input data type. Stores data in number type only when the data is valid //
+        if(!isValidQuantity(value)){
+            setIsDisabled(true);
+        } else if(Number(value) < 0 || Number(value) > 1000){
+            setIsDisabled(true);
             setTempQuan(Number(value) * 10);
         } else {
-            setIsDisabled(true);
+            setIsDisabled(false);
+            setTempQuan(Number(value) * 10);
         }
     }
 
@@ -98,7 +107,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                                 type="button"
                                 name="decrease"
                                 onClick={() => setTempQuan(previous => previous - 10 )}
-                                disabled={tempQuan - 10 < 0}
+                                disabled={isDisabled || tempQuan - 10 < 0}
                             >-</button>
 
                             <input
@@ -107,7 +116,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                                 min="0"
                                 max="1000"
                                 step="0.1"
-                                value={tempQuan / 10}
+                                value={typeof tempQuan === "number" ? tempQuan / 10 : tempQuan}
                                 onChange={e => handleChange(e)}
                             />
 
@@ -115,6 +124,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                                 type="button"
                                 name="increase"
                                 onClick={() => setTempQuan(previous => previous + 10)}
+                                disabled={isDisabled || tempQuan + 10 > 10000}
                             >+
                             </button>
 

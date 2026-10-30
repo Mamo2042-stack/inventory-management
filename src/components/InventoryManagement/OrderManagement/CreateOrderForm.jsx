@@ -2,6 +2,7 @@ import { useAppData } from "../../../context/AppDataContext";
 import { useState } from "react";
 import createOrder from "../../../operations/createOrder";
 import "./CreateOrderForm.css"
+import { isValidQuantity } from "../../../utils/isValidQuantity";
 
 function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
     const [userInput, setUserInput] = useState("1");
@@ -10,15 +11,17 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
     const [isDisabled, setIsDisabled] = useState(false);
 
     function handleChange(e){
+        setErrorMsg("");
 
         const value = e.target.value;
-
         setUserInput(value);
 
-        if(/^\d*\.?\d?$/.test(value)){
-            setIsDisabled(false);
-        } else {
+        if(!isValidQuantity(value)){
             setIsDisabled(true);
+        } else if(Number(value) > 100 || Number(value) <= 0){
+            setIsDisabled(true);
+        } else { 
+            setIsDisabled(false);
         }
     }
 
@@ -53,19 +56,23 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
                 noValidate
             >
                 <div className="new-quantity">
-                    <label htmlFor="order-quantity">数量:</label>
-                    <input
-                        type="number"
-                        min="1"
-                        max="100"
-                        step="1"
-                        id="order-quantity"
-                        value={userInput}
-                        required
-                        onChange={e => handleChange(e)}
-                    />
-                    <p>{storageUnit}</p>
-                
+                    <div>
+                        <label htmlFor="order-quantity">数量:</label>
+                        <input
+                            type="number"
+                            min="1"
+                            max="100"
+                            step="1"
+                            id="order-quantity"
+                            value={userInput}
+                            required
+                            onChange={e => handleChange(e)}
+                        />
+                        <p>{storageUnit}</p>
+                    </div>
+                    {isDisabled && (
+                        <p className="error-message">有効な数字(1~100、小数点第1位まで)を<br />入力して下さい。</p>
+                    )}
 
                     {errorMsg && (
                         <p className="error-message">{errorMsg}</p>

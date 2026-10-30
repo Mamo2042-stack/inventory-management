@@ -3,6 +3,8 @@ import adjustInventory from "../operations/adjustInventory";
 import { testAppData } from "./fixtures";
 
 describe("adjustInventory", () => {
+    const testData = testAppData;
+    
     it("should return updated appData when inventory increases", () => {
         const appData = {
     storages: [
@@ -58,9 +60,10 @@ describe("adjustInventory", () => {
     );
 
     expect(result.data.items[0].quantity).toBe(2);
+    expect(result.data.inventoryHistory[0].userAction).toBe("DECREASE_QUANTITY");
     });
 
-    it("should return error object when a quantity is below or equal to zero", () => {
+    it("should return error object when a quantity is below zero", () => {
     const appData = {
         storages: [],
         items: [
@@ -112,8 +115,37 @@ describe("adjustInventory", () => {
             "item-1",
             8
         );
-
-        console.log(result.data)
         expect(result.data.inventoryHistory[0].userAction).toBe("INCREASE_QUANTITY")
     });
+
+    it("should return an error object when the input is NaN", () => {
+        const result = adjustInventory(
+            testData,
+            "item-1",
+            NaN
+        );
+
+        expect(result.success).toBe(false);
+        expect(result.error).toBe("INVALID_QUANTITY");
+    });
+
+    it("should return an error object when the input is infinite", () => {
+        const result = adjustInventory(
+            testData,
+            "item-1",
+            Infinity
+        );
+        expect(result.success).toBe(false);
+        expect(result.error).toBe("INVALID_QUANTITY");
+    })
+
+    it("should return an error object when the input is over 10000", () => {
+        const result = adjustInventory(
+            testData,
+            "item-1",
+            10001
+        );
+        expect(result.success).toBe(false);
+        expect(result.error).toBe("INVALID_QUANTITY");
+    })
 });
