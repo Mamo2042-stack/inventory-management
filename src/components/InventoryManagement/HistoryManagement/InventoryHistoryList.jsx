@@ -1,4 +1,4 @@
-import { useAppData } from "../../../context/AppDataContext";
+import { useAppData } from "../../../context/useAppData";
 import formatDateTime from "../../../utils/formatDateTime";
 
 function InventoryHistoryList({ selectedItem }){

@@ -1,5 +1,5 @@
 import DeleteItemCard from "./DeleteItemCard";
-import { useAppData } from "../../context/AppDataContext";
+import { useAppData } from "../../context/useAppData";
 
 function DeleteItemList({ setSelectedItem, setIsModalOpen }){
     const { appData } = useAppData();

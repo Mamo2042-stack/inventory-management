@@ -1,6 +1,6 @@
 import registerStorage from "../../operations/registerStorage";
 import { useNavigate } from "react-router";
-import { useAppData } from "../../context/AppDataContext";
+import { useAppData } from "../../context/useAppData";
 import { useState } from "react";
 import "./StorageRegistration.css"
 
@@ -15,7 +15,7 @@ function StorageRegistration (){
     const navigate = useNavigate();
 
     function handelChange (e){
-        const {name, value} = e.target;
+        const {value} = e.target;
 
         setUserInput(previous => ({
             ...previous,

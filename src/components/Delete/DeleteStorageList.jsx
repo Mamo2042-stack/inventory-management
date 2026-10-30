@@ -1,5 +1,5 @@
 import DeleteStorageCard from "./DeleteStorageCard";
-import { useAppData } from "../../context/AppDataContext"
+import { useAppData } from "../../context/useAppData"
 
 function DeleteStorageList({ setSelectedStorage, setIsModalOpen }){
     const { appData } = useAppData();

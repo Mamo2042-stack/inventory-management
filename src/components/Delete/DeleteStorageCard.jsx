@@ -1,4 +1,4 @@
-import { useAppData } from "../../context/AppDataContext"
+import { useAppData } from "../../context/useAppData"
 
 function DeleteStorageCard({ storageData, setSelectedStorage, setIsModalOpen }){
     const { appData } = useAppData();

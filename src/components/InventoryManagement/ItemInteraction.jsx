@@ -1,11 +1,11 @@
-import { useAppData } from "../../context/AppDataContext";
+import { useAppData } from "../../context/useAppData";
 import { useState, useEffect } from "react";
 import adjustInventory from "../../operations/adjustInventory";
 import PendingOrdersManagement from "./OrderManagement/PendingOrdersManagement";
 import InventoryHistoryView from "./HistoryManagement/InventoryHistoryView";
 import calUpcomingQuantity from "../../utils/calUpcomingQuan";
 import "./ItemInteraction.css"
-import { useInventoryNavigation } from "../../context/InventoryNavigationContext";
+import { useInventoryNavigation } from "../../context/useInventoryNavigation";
 import { isValidQuantity } from "../../utils/isValidQuantity";
 
 function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
@@ -27,12 +27,6 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     const displayItem = items.find(item => item.id === selectedItem);
     const [tempQuan, setTempQuan] = useState(displayItem?.quantity ?? 0);//tempQuan is supposed to hold user inputs in tenth in number type when appropriate//
-
-    useEffect(() => {
-        if(displayItem){
-            setTempQuan(displayItem.quantity);
-        }
-    }, [displayItem])
 
     if(!displayItem){
         return null;

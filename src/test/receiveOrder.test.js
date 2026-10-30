@@ -17,7 +17,7 @@ describe("receiveOrder.js", () => {
         expect(result.data.items.find(item => item.id === "item-1").quantity / 10).toBe(8);
     });
 
-    if("should return an updated data with the corresponding item's quantity and order's received quantity are updated when the order is partially received", () => {
+    it("should return an updated data with the corresponding item's quantity and order's received quantity are updated when the order is partially received", () => {
         const result = receiveOrder(
             appData,
             "item-1",

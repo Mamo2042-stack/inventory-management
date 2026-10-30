@@ -1,5 +1,3 @@
-import receiveOrder from "../operations/receiveOrder";
-
 export const testAppData = {
     storages: [
         { id: "storage-1", name: "Freezer A" },
