@@ -16,7 +16,7 @@ export function isValidItem(item){
         !Object.hasOwn(item, "storageId") ||
         !Object.hasOwn(item, "quantity") ||
         !Object.hasOwn(item, "expectedQuantity") ||
-        !Object.hasOwn(item, "replenishmethod") ||
+        !Object.hasOwn(item, "replenishmentMethod") ||
         !Object.hasOwn(item, "category") ||
         !Object.hasOwn(item, "storageUnit") 
     ) {
@@ -30,7 +30,7 @@ export function isValidItem(item){
         typeof name !== "string" ||
         typeof storageId !== "string" ||
         typeof quantity !== "number" ||
-        typeof expectedQuantity !== ("number" || undefined) ||
+        typeof expectedQuantity !== "number" ||
         typeof replenishmentMethod !== "string" ||
         typeof category !== "string" ||
         typeof storageUnit !== "string"
@@ -50,13 +50,11 @@ export function isValidItem(item){
         return false;
     }
 
-    if(expectedQuantity !== undefined){
-        if(!Number.isSafeInteger(expectedQuantity) || expectedQuantity < 0 || expectedQuantity > 10000){
-            return false;
-        }
+    if(!Number.isSafeInteger(expectedQuantity) || expectedQuantity < 0 || expectedQuantity > 10000){
+        return false;
     }
 
-    if(!["ORDER", "PURCHACE"].includes(replenishmentMethod)){
+    if(!["ORDER", "PURCHASE"].includes(replenishmentMethod)){
         return false;
     }
 

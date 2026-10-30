@@ -57,12 +57,17 @@ function registerItem (appData, itemData) {
     }
     //End of Validation//
 
+    const convertedExpectedQuantity = 
+        expectedQuantity.trim() === "" || Number(expectedQuantity) === 0 ?
+        0 :
+        Number(expectedQuantity) * 10;
+
     let newItem = {
         id: crypto.randomUUID(),
         name: name,
         storageId: storageId,
         quantity: 0,
-        expectedQuantity: Number(expectedQuantity) * 10 ?? undefined,
+        expectedQuantity: convertedExpectedQuantity,
         replenishmentMethod: replenishmentMethod,
         category: category,
         storageUnit: storageUnit,

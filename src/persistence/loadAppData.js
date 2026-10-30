@@ -1,15 +1,6 @@
-const STORAGE_KEY = "inventory-management:appData";
+import { isValidAppData } from "./validation/isValidAppData";
 
-function isValidAppData(data){
-    return (
-        data !== null && 
-        typeof data === "object" && 
-        !Array.isArray(data) &&
-        Array.isArray(data.storages) &&
-        Array.isArray(data.items) &&
-        Array.isArray(data.inventoryHistory)
-    )
-}
+const STORAGE_KEY = "inventory-management:appData";
 
 export function loadAppData(){
     try{
