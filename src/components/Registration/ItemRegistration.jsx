@@ -42,7 +42,7 @@ function ItemRegistration(){
         
         if(!result.success){
             setErrorMsg(result.error);
-            console.log(result.error);
+            console.error(result.error);
             return;
         }
 
@@ -171,7 +171,7 @@ function ItemRegistration(){
                     />
                     <p>({userInput.storageUnit})</p>
                 </div>
-                    {errorMsg.some(err => err === "INVALID_NUMBER" || "INVALID_QUANTITY") && (
+                    {errorMsg.some(err => err === "INVALID_NUMBER" || err === "INVALID_QUANTITY") && (
                         <p className="error-message">有効な数字(0~1000、小数点第1位まで)を入力して下さい。</p>
                     )}
                 </div>

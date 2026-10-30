@@ -26,7 +26,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     }, [inventoryView, selectedItem])
 
     const displayItem = items.find(item => item.id === selectedItem);
-    const [tempQuan, setTempQuan] = useState(displayItem?.quantity ?? 0);//This is only used to display current quantity and reflects users' change responsively//
+    const [tempQuan, setTempQuan] = useState(displayItem?.quantity ?? 0);//tempQuan is supposed to hold user inputs in tenth in number type when appropriate//
 
     useEffect(() => {
         if(displayItem){
