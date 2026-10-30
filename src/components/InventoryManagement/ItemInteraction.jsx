@@ -100,6 +100,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                     <h4>数量変更</h4>
 
                     <form 
+                        id="quantity-control-panel"
                         onSubmit={handleSubmit}
                     >
                         <div className="quantity-control">
