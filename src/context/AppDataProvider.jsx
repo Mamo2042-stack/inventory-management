@@ -1,8 +1,7 @@
-import { createContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { AppDataContext } from './AppDataContext';
 import { saveAppData } from '../persistence/saveAppData';
 import { loadAppData } from '../persistence/loadAppData';
-
-export const AppDataContext = createContext(null);
 
 export function AppDataProvider({ children }){
     const [initialLoad] = useState(() => loadAppData());

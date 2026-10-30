@@ -1,6 +1,5 @@
-import { createContext, useState } from "react";
-
-export const InventoryNavigationContext = createContext(null);
+import { useState } from "react";
+import { InventoryNavigationContext } from "./InventoryNavigationContext";
 
 export function InventoryNavigationProvider({ children }) {
     const [inventoryView, setInventoryView] = useState("item-list");
