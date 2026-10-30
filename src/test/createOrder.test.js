@@ -33,7 +33,7 @@ describe("createOrder", () => {
             "-1"
         );
         expect(result.success).toBe(false);
-        expect(result.error).toBe("INVALID_QUANTITY");
+        expect(result.error).toBe("INVALID_NUMBER");
     });
 
     it("should return an error object when the input has more than one decimal places", () => {
@@ -43,7 +43,7 @@ describe("createOrder", () => {
             "1.11"
         );
         expect(result.success).toBe(false);
-        expect(result.error).toBe("INVALID_QUANTITY");
+        expect(result.error).toBe("INVALID_NUMBER");
     });
 
     it("should return an error object when the input is NaN", () => {
@@ -52,6 +52,16 @@ describe("createOrder", () => {
             "item-1",
             NaN
         );
+        expect(result.success).toBe(false);
+        expect(result.error).toBe("INVALID_NUMBER");
+    });
+
+    it("should return an error object when the input is over the quantity capacity", () => {
+        const result = createOrder(
+            appData,
+            "item-1",
+            "101"
+        )
         expect(result.success).toBe(false);
         expect(result.error).toBe("INVALID_QUANTITY");
     })

@@ -1,3 +1,5 @@
+import { isValidQuantity } from "../utils/isValidQuantity";
+
 function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
     const selectedItem = appData.items.find(item => item.id === itemId);
 
@@ -29,14 +31,14 @@ function receiveOrder(appData, itemId, orderId, newReceivedQuantity){
         }
     }
 
-    if(newReceivedQuantity === ""){
+    if(!isValidQuantity(newReceivedQuantity)){
         return {
             success: false,
-            error: "EMPTY_INPUT"
+            error: "INVALID_NUMBER"
         }
     }
 
-    if(!Number.isFinite(Number(newReceivedQuantity)) || Number(newReceivedQuantity) <= 0){
+    if(Number(newReceivedQuantity) <= 0){
         return {
             success: false,
             error: "INVALID_QUANTITY"

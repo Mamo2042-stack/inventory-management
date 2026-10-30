@@ -126,7 +126,7 @@ describe("adjustInventory", () => {
         );
 
         expect(result.success).toBe(false);
-        expect(result.error).toBe("INVALID_QUANTITY");
+        expect(result.error).toBe("INVALID_NUMBER");
     });
 
     it("should return an error object when the input is infinite", () => {
@@ -136,7 +136,7 @@ describe("adjustInventory", () => {
             Infinity
         );
         expect(result.success).toBe(false);
-        expect(result.error).toBe("INVALID_QUANTITY");
+        expect(result.error).toBe("INVALID_NUMBER");
     })
 
     it("should return an error object when the input is over 10000", () => {
