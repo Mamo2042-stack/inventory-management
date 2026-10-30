@@ -17,13 +17,13 @@ export const testAppData = {
             storageUnit: "box",
             pendingOrders: [
                 {
-                    id: 301,
+                    id: "301",
                     orderedQuantity: 100,
                     receivedQuantity: 50,
                     orderDate: "2026-10-12T00:30:45.123Z"
                 },
                 {
-                    id:302,
+                    id: "302",
                     orderedQuantity: 30,
                     receivedQuantity: 0,
                     orderDate: "2026-10-17T05:30:45.123Z"
@@ -31,7 +31,7 @@ export const testAppData = {
             ]
         },
         {
-            id:"item-2",
+            id: "item-2",
             name: "Bread",
             storageId: "storage-1",
             quantity: 20,
@@ -62,13 +62,13 @@ export const testAppData = {
             storageUnit: "kg",
             pendingOrders: [
                 {
-                    id: 303,
+                    id: "303",
                     orderedQuantity: 300,
                     receivedQuantity: 0,
                     orderDate: "2026-10-17T05:30:45.123Z"                   
                 },
                 {
-                    id: 304,
+                    id: "304",
                     orderedQuantity: 40,
                     receivedQuantity: 20,
                     orderDate: "2026-10-17T05:30:45.123Z"
