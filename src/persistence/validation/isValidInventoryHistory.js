@@ -15,7 +15,7 @@ export function isValidInventoryHistory(history){
         !Object.hasOwn(history, "userAction") ||
         !Object.hasOwn(history, "previousQuantity") ||
         !Object.hasOwn(history, "newQuantity") ||
-        !Object.hasOwn(history, "timeStamp")
+        !Object.hasOwn(history, "timestamp")
     ){
         return false;
     }
