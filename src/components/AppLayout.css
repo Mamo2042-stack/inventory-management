@@ -6,17 +6,20 @@
 
 .app-header {
     background-color: var(--color-header);
-    padding: 16px 24px;
+    padding: 16px var(--page-padding);
 }
 
 .app-nav {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 16px 24px;
     flex-wrap: wrap;
 }
 
 .app-nav a {
+    display: inline-block;
+    font-size: var(--font-size-nav);
+    padding: 8px 4px;
     color: #ffffff;
     text-decoration: none;
     font-weight: 500;
@@ -31,8 +34,10 @@
     flex-direction: column;
     flex: 1;
     min-height: 0;
-    width: calc(100% - 32px);
-    max-width: 1200px;
+
+    width: 100%;
+    max-width: var(--content-max-width);
+
     margin-inline: auto;
-    padding-block: 32px;
+    padding-inline: 2rem var(--page-padding);
 }
