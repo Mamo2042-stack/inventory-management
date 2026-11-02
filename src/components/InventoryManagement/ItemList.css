@@ -1,10 +1,11 @@
 .inventory-management-section {
-    width: 90%;
+    width: 100%;
     margin: auto;
 }
 
 .item-controlers {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     min-width: 0;
     width: 100%;
@@ -25,9 +26,29 @@
 
 .storage-name {
     text-align: center;
+    font-size: var(--font-size-h2);
     width: 100%;
     background-color: #ffb380;
     border-radius: 5px 5px 0 0;
     margin: 0 0 10px 0;
     padding: 10px;
+}
+
+@media (max-width: 480px) {
+    .item-controlers{
+        align-items: flex-start;
+        gap: 0;
+        
+        margin-top: 20px;
+    }
+
+    .item-controlers > .search-section,
+    .item-controlers > .search-section > input {
+        width: 100%;
+    }
+
+    .filter-and-sort-section {  
+        display: flex;
+        justify-content: flex-end;
+    }
 }
