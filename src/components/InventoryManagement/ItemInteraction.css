@@ -8,7 +8,7 @@
     background-color: #fff;
     border-radius: 20px;
 
-    min-width: 600px;
+    min-width: 0;
     width: 50vw;
     min-height: 500px;
     height: 70vh;
@@ -36,7 +36,6 @@
 }
 
 .item-interaction h3 {
-    font-size: 1.5rem;
     text-align: center;
     background-color: #ffb380;
     border-radius: 10px 10px 0 0;
@@ -48,6 +47,12 @@
 .item-interaction h4 {
     text-align: center;
     flex-shrink: 0;
+}
+
+#quantity-control-panel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .quantity-control {
@@ -155,4 +160,24 @@
 
 .exit:hover {
     background-color: azure;
+}
+
+.invalid-error-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.invalid-error-container > .second-line{
+    align-self: center;
+}
+
+@media (max-width: 480px){
+    .item-interaction{
+        left: 5vw;
+        width: 90vw;
+    }
+
+    .invalid-error-container{
+        flex-direction: column;
+    }
 }

@@ -122,25 +122,28 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                                 disabled={isDisabled || tempQuan + 10 > 10000}
                             >+
                             </button>
-
-                            {upcomingQuantity ? (
-                                <p className="additional-info"> + (注文済み {upcomingQuantity / 10})</p>
-                                ) 
-                                : 
-                                <p className="additional-info"></p>
-                            }
-
-                            {(isDisabled || tempQuan > 10000 || tempQuan < 0) && (
-                                <p className="error-message">有効な数字(0~1000、小数点第1位まで)を入力して下さい。</p>
-                            )}
-
-                            <button
-                                type="submit"
-                                className="confirmation-btn"
-                                disabled={isDisabled || displayItem.quantity === tempQuan || tempQuan > 10000}
-                            >確定
-                            </button>                        
                         </div>
+
+                        {upcomingQuantity ? (
+                            <p className="additional-info"> + (注文済み {upcomingQuantity / 10})</p>
+                            ) 
+                            : 
+                            <p className="additional-info"></p>
+                        }
+
+                        {(isDisabled || tempQuan > 10000 || tempQuan < 0) && (
+                            <div className="invalid-error-container">
+                                <span className="error-message first-line">有効な数字(0~1000、小数点第1位まで)</span>
+                                <span className="error-message second-line">を入力して下さい。</span>
+                            </div>
+                        )}
+
+                        <button
+                            type="submit"
+                            className="confirmation-btn"
+                            disabled={isDisabled || displayItem.quantity === tempQuan || tempQuan > 10000}
+                        >確定
+                        </button>                         
                     </form>
                 
                     <div className="deeper-section">
