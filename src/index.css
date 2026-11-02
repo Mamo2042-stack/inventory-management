@@ -50,6 +50,8 @@ body,
     --color-seasoning: #A78BFA;
     --color-others: #9E9E9E;
 
+    --color-low-stock: #617AFF;
+
 /*Layout*/
     --content-max-width: 1200px;
     --page-padding: 2rem;
@@ -64,6 +66,8 @@ body,
         --font-size-nav: 1rem;
         --font-size-h1: 1.75rem;
         --font-size-h2: 1.375rem;
+
+        --color-font-secondary: #ADADAD;
     }
 }
 

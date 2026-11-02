@@ -81,3 +81,10 @@
 hr {
     margin-top: 30px;
 }
+
+@media (max-width: 480px) {
+    .item-list-controls select {
+        padding: 5px;
+        border-radius: 3px;
+    }
+}

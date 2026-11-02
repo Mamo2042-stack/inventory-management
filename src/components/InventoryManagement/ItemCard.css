@@ -20,6 +20,11 @@
     line-height: 1.4;
 }
 
+.low-stock-icon {
+    color:  var(--color-low-stock);
+    margin: 0;
+}
+
 .secondary-content {
     margin-top: 10px;
     display: flex;
@@ -42,11 +47,21 @@
     font-size: 1.4rem;
 }
 
-.low-stock--indicator {
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #617AFF;
-    color: #ffffff;
+.low-stock-indicator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.low-stock-message {
+    color: var(--color-low-stock);
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.low-stock-icon--mobile {
+    display: none;
 }
 
 .current-quantity {
@@ -55,4 +70,107 @@
 
 .additional-info {
     font-size: 1.2rem;
+}
+
+.last-history-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.last-history {
+    margin: 0;
+}
+
+@media (max-width: 480px){
+
+    .item-card {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .secondary-content {
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+
+        min-height: 0;
+    }
+
+    .main-content {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+
+        min-width: 20%;
+        height: 100%;
+
+    }
+
+    .main-content p {
+        font-size: var(--font-size--body);
+        
+        margin: 0;
+    }
+
+    .main-content > .current-quantity-display {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        flex: 1;
+
+        margin-top: 18px;
+    }
+
+    .main-content > .expected-quantity {
+        color: var(--color-font-secondary);
+    }
+
+    .current-quantity {
+        font-size: 1.4rem;
+    }
+
+    .quantity-without-orders {
+        display: flex;
+
+        margin-bottom: 8px;
+    }
+
+    .quantity-without-orders > .title {
+        display: none;
+    }
+
+    .current-quantity-display > .additional-info {
+        font-size: 0.7rem;
+    }
+
+    .item-name {
+        padding: 0 5px;
+        border: none;
+    }
+
+    .low-stock-icon--desktop {
+        display: none;
+    }
+
+    .low-stock-icon--mobile {
+        display: inline-block;
+    }
+
+    .low-stock-message{
+        font-size: 1rem;
+    }
+
+    .last-history,
+    .last-history-icon {
+        color: var(--color-font-secondary)
+    }
+
+    .first-line {
+        width: 100%;
+        text-align: center;
+    }
 }

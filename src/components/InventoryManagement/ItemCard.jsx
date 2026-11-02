@@ -1,6 +1,7 @@
 import formatDateTime from "../../utils/formatDateTime";
 import calUpcomingQuantity from "../../utils/calUpcomingQuan";
 import "./ItemCard.css"
+import { RotateCwClock, CircleAlert} from "lucide-react";
 
 function ItemCard ({ item, setSelectedItem, setInventoryView, history }) {
     function handleClick (){
@@ -37,29 +38,47 @@ function ItemCard ({ item, setSelectedItem, setInventoryView, history }) {
             className={className}
         >
             <div className="secondary-content">
-                <h3 className="item-name">{item.name}</h3>
+                <h3 className="item-name">{item.name}</h3>                    
 
-                {isLowStock && (
-                <p className="low-stock--indicator">再入荷</p>
-                )}
 
-                {hasHistory && (
-                    <p>最終更新:{lastUpdateDate}</p>
-                )}
+                {isLowStock ? (
+                        <div className="low-stock-indicator">
+                            <CircleAlert className="low-stock-icon low-stock-icon--desktop"/>
+                            <CircleAlert className="low-stock-icon low-stock-icon--mobile" size={15}/>
+                            <p className="low-stock-message">low-stock</p>
+                        </div>
+                    ) :
+                    (
+                        <div></div>
+                    )
+                }
+
+                {hasHistory ? (
+                    <div className="last-history-container">
+                        <RotateCwClock className="last-history-icon" size={15}/>
+                        <p className="last-history">{lastUpdateDate}</p>
+                    </div>
+                ) :
+                (
+                    <div></div>
+                )
+                }
+                
             </div>
 
             <div className="main-content">
-                <p>
-                    在庫数:<span className="current-quantity"> {item.quantity / 10} </span>{item.storageUnit}
+                <p className="current-quantity-display">
+                   <span className="quantity-without-orders"><span className="title">在庫数:</span><span className="current-quantity"> {item.quantity / 10} </span>{item.storageUnit}</span>
                     {upcomingQuantity ?  
-                    <span className="additional-info"> + (注文済み: {upcomingQuantity / 10}{item.storageUnit})</span> 
+                    <span className="additional-info"> + 注文済: {upcomingQuantity / 10}{item.storageUnit}</span>
                     :
                     ""                  
                     }
                 </p>
-                <p>
-                    {item.expectedQuantity ?
-                        `最低在庫数: ${item.expectedQuantity / 10} ${item.storageUnit}`
+                
+                <p className="expected-quantity">
+                    {item.expectedQuantity ? 
+                        <span><span className="first-line">最低在庫数: </span> {item.expectedQuantity / 10} {item.storageUnit}</span>
                         :
                         ""
                     }

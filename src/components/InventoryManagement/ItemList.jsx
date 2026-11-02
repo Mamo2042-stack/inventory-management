@@ -8,6 +8,8 @@ import SearchSection from "./SearchSection";
 import searchItems from "../../operations/searchItems";
 import "./ItemList.css"
 import "./ItemListControl.css"
+import { SlidersHorizontal } from "lucide-react";
+
 
 function ItemList ({ setSelectedItem, setInventoryView }){
     const { appData } = useAppData();
@@ -26,6 +28,7 @@ function ItemList ({ setSelectedItem, setInventoryView }){
     const { storages, items, inventoryHistory } = sortedItems;
     const [isControlOpen, setIsControlOpen] = useState(false);
 
+
     return (
         <section className="inventory-management-section">
             <div className="item-controlers">
@@ -36,12 +39,12 @@ function ItemList ({ setSelectedItem, setInventoryView }){
                     />
                 </div>
     
-                <div>
+                <div className="filter-and-sort-section">
                     <button
                         type="button"
                         onClick={() => setIsControlOpen(prev => !prev)}
                         className="control-panel-button"
-                    > フィルター | ソート 
+                    > <SlidersHorizontal size={15}/>
                     </button>
 
                     {isControlOpen && (
