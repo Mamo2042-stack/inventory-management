@@ -9,11 +9,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 0;
     gap: 20px;
 
     width: 50%;
-    height: 50%;
+    min-height: 0;
     border-radius: 20px;
 }
 
@@ -27,14 +26,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    flex: 1;
     width: 100%;
-    min-height: 0;
-}
-
-.new-order-form button {
-    width: 30%;
-    padding: 10px 15px;
 }
 
 .new-order-form button:disabled {
@@ -45,9 +37,10 @@
 .new-quantity > div{
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
 }
 
 .new-quantity.error-message {
@@ -73,4 +66,17 @@
 
 .close-create-order-button:hover {
     background-color: azure;
+}
+
+.create-order-button{
+    margin:20px 0 20px 0;
+}
+
+@media (max-width: 480px){
+    .create-order-panel{
+        left: 10%;
+
+        width: 80%;
+    }  
+
 }

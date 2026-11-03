@@ -36,14 +36,14 @@ function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
             <div className="buttons">
                 <button
                     type="button"
-                    className="add-order-btn"
+                    className="add-order-btn clickable-button"
                     onClick={() => setAnyDetailModal("create")}
                 >注文を追加する
                 </button>
 
                 <button
                     type="button"
-                    className="exit-to-regular"
+                    className="exit-to-regular clickable-button"
                     onClick={() => {
                         setDeeperSection(null)
                         setAnyDetailModal(null)
