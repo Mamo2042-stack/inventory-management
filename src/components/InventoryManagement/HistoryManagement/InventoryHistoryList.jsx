@@ -20,8 +20,11 @@ function InventoryHistoryList({ selectedItem }){
                     const message = actions[history.userAction];
 
                     return (
-                        <div key={history.id}>
-                            <h4>{date} : {message}</h4>
+                        <div key={history.id} className="individual-history">
+                            <h4>
+                                <span className="first-line">{date} :</span>
+                                <span className="second-line"> {message}</span>
+                            </h4>
                             
                             <h5>在庫変動</h5>
                             <p>{history.previousQuantity / 10}  → {history.newQuantity / 10}</p>
