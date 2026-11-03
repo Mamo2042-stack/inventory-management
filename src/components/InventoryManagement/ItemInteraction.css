@@ -1,4 +1,7 @@
 .item-interaction {
+    display: flex;
+    flex-direction: column;
+    
     position: fixed;
     top: 15vh;
     left: 25vw;
@@ -8,11 +11,10 @@
     background-color: #fff;
     border-radius: 20px;
 
-    min-width: 0;
     width: 50vw;
-    min-height: 500px;
+    min-width: 400px;
     height: 70vh;
-    max-height: 700px;
+    min-height: 450px;
 
     transform: translateY(70%);
     visibility: hidden;
@@ -28,77 +30,84 @@
 }
 
 .regular-section {
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 80%;
+    flex: 1;
+  
+    width: 100%;
 }
 
 .item-interaction h3 {
     text-align: center;
     background-color: #ffb380;
     border-radius: 10px 10px 0 0;
+
     padding: 10px 20px;
     margin-top: 0;
+
     width: 100%;
 }
 
 .item-interaction h4 {
     text-align: center;
-    flex-shrink: 0;
 }
 
 #quantity-control-panel{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+
+    flex: 1;
+
 }
 
 .quantity-control {
     display: flex;
     flex-direction: row;
-    flex: 1;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 0 60px;
+    flex-wrap: nowrap;
+    gap: 0 40px;
 
     width: 100%;
 }
 
 .quantity-control > .error-message {
     width: 100%;
+    min-width: 0;
     text-align: center;
     margin-top: 10px;
 }
 
 .quantity-control button:not(.confirmation-btn) {
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
     border: none;
     border-radius: 50px;
-    background-color: #FFE6D1;
-    transform: scale(3);
+    background-color: var(--color-button);
+
+    font-size: 2.5rem;
 }
 
 .quantity-control button:hover:not(.confirmation-btn) {
-    background-color: #FFC99E;
+    background-color: var(--color-button-hover);
 }
 
 .quantity-control button:disabled {
-    background-color: #fff;
+    background-color: var(--color-button-disabled);
 }
 
 .quantity-control button:disabled:hover {
-    background-color: #fff;
+    background-color: var(--color-button-disabled);
 }
 
 .quantity {
     font-size: 2.5rem;
     border: none;
     text-align: center;
-    width: 30%;
+    padding: 0;
 }
 
 /* Chrome, Safari, Edge, and other WebKit/Blink browsers */
@@ -119,43 +128,43 @@
 .confirmation-btn {
     margin-top: 20px;
     padding: 10px 30px;
-    background-color: #fff;
+    min-height: 0;
+    
+    background-color: var(--color-button);
     border: none;
     border-radius: 10px;
 }
 
-.confirmation-btn:not(:disabled) {
-    background-color: #FFE6D1;
-}
-
-.confirmation-btn:not(:disabled):hover {
+.confirmation-btn:hover {
     background-color: #FFC99E;
 }
 
+.confirmation-btn:disabled {
+    background-color: var(--color-button-disabled);
+}
 .deeper-section {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    flex-shrink: 0;
 
     width: 100%;
 }
 
 .deeper-section button {
-    margin-top: 40px;
-    padding: 10px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .exit {
     position: absolute;
-    top: 3%;
-    right: 5%;
-    transform: scale(2);
+    top: 0;
+    right: 2.5%;
 
     border: none;
     border-radius: 10px;
     background: none;
-    padding: 4px 8px;
+    padding: 8px 16px;
+    font-size: 2rem;
 }
 
 .exit:hover {
@@ -165,6 +174,10 @@
 .invalid-error-container{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    min-height: 0;
 }
 
 .invalid-error-container > .second-line{
@@ -174,10 +187,28 @@
 @media (max-width: 480px){
     .item-interaction{
         left: 5vw;
+       
         width: 90vw;
+        min-width: 320px;
+        min-height: 450px;
     }
 
     .invalid-error-container{
         flex-direction: column;
+    }
+
+    .quantity {
+        font-size: 2rem;
+    }
+
+    .quantity-control {
+        gap: 0 20px;
+    }
+
+    .quantity-control button:not(.confirmation-btn) {
+        width: 50px;
+        height: 50px;
+
+        font-size: 2rem;
     }
 }

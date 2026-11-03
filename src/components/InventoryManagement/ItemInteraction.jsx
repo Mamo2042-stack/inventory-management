@@ -34,6 +34,13 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     const upcomingQuantity = calUpcomingQuantity(displayItem);
 
+    useEffect(() => {
+        if(displayItem){
+            setTempQuan(displayItem.quantity);
+            setIsDisabled(false)
+        }
+    }, [selectedItem, displayItem?.quantity])
+
     function handleClick(e){
         setDeeperSection(e.target.name);
     }
@@ -140,7 +147,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
                         <button
                             type="submit"
-                            className="confirmation-btn"
+                            className="confirmation-btn clickable-button"
                             disabled={isDisabled || displayItem.quantity === tempQuan || tempQuan > 10000}
                         >確定
                         </button>                         
@@ -150,6 +157,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                         {displayItem.replenishmentMethod === "ORDER" && (
                             <button
                                 type="button"
+                                className="clickable-button"
                                 name="pending"
                                 onClick={(e) => handleClick(e)}
                             >⬅︎ 注文
@@ -159,6 +167,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                         <button
                             type="button"
                             name="history"
+                            className="clickable-button"
                             onClick={(e) => handleClick(e)}
                         >ヒストリー ➡
                         </button>
