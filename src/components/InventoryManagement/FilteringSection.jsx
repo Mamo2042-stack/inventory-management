@@ -38,6 +38,7 @@ function FilteringSection({ userInput, setUserInput }){
                     <h3>カテゴリー別</h3>
                     <select
                         id="category_selection"
+                        className="selection"
                         value={userInput.category}
                         onChange={handleCategoryChange}
                     >
@@ -55,30 +56,34 @@ function FilteringSection({ userInput, setUserInput }){
 
                 <div>
                     <h3>ストレージ別</h3>
-                    {storages?.map(storage => (
-                        <div key={storage.id}>
+                    <div className="checkbox-container">
+                        {storages?.map(storage => (
+                            <div key={storage.id}>
+                                <input
+                                    key={storage.id}
+                                    type="checkbox"
+                                    id={`storage-${storage.id}`}
+                                    className="checkbox" 
+                                    name={storage.id}
+                                    checked={userInput.storages.includes(storage.id)}
+                                    onChange={e => handleStoragesChange(e, storage.id)}
+                                />
+                                <label htmlFor={`storage-${storage.id}`}>{storage.name}</label>
+                            </div>
+                        ))}
+                        <div>
                             <input
-                                key={storage.id}
                                 type="checkbox"
-                                id={`storage-${storage.id}`} 
-                                name={storage.id}
-                                checked={userInput.storages.includes(storage.id)}
-                                onChange={e => handleStoragesChange(e, storage.id)}
+                                id="under_expected"
+                                className="checkbox"
+                                checked={userInput.onlyExpected}
+                                onChange={handleCheckChange}
                             />
-                            <label htmlFor={`storage-${storage.id}`}>{storage.name}</label>
+                            <label htmlFor="under_expected">最低在庫数より少ない</label>                            
                         </div>
-                    ))}
-                </div>
 
-                <div>
-                    <input
-                        type="checkbox"
-                        id="under_expected"
-                        checked={userInput.onlyExpected}
-                        onChange={handleCheckChange}
-                    />
-                    <label htmlFor="under_expected">最低在庫数より少ない</label>                    
-                </div>
+                    </div>
+                </div>          
         </div>
     )
 }

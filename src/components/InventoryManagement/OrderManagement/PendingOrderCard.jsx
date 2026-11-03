@@ -13,7 +13,7 @@ function PendingOrderCard ({ order, unit, selectedItem }){
         <div className={`order-card ${isReceiving ? "is-open" : ""}`}>
             <button
                 type="button"
-                className="order-button"
+                className="order-button clickable-button"
                 onClick={() => {
                     setIsReceiving(prev => !prev)
                 }}

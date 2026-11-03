@@ -9,6 +9,7 @@ function SortingSection({ sortingOption, setSortingOption }){
             <h2>並び替え</h2>
 
             <select
+                className="selection"
                 value={sortingOption}
                 onChange={handleChange}
             >

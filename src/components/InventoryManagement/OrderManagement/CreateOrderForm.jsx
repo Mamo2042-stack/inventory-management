@@ -58,20 +58,27 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
                 <div className="new-quantity">
                     <div>
                         <label htmlFor="order-quantity">数量:</label>
+                        <div className="quantity-and-unit">
                         <input
                             type="number"
                             min="1"
                             max="100"
                             step="1"
                             id="order-quantity"
+                            className="form-input"
                             value={userInput}
                             required
                             onChange={e => handleChange(e)}
                         />
                         <p>{storageUnit}</p>
+                        </div>
                     </div>
+
                     {isDisabled && (
-                        <p className="error-message">有効な数字(1~100、小数点第1位まで)を<br />入力して下さい。</p>
+                        <div className="invalid-error-container">
+                        <span className="error-message first-line">有効な数字(1~100、小数点第1位まで)</span>
+                        <span className="error-message second-line">を入力して下さい。</span>
+                        </div>
                     )}
 
                     {errorMsg && (
@@ -81,7 +88,7 @@ function CreateOrderForm ({ storageUnit, setAnyDetailModal, selectedItem }){
 
                 <button
                     type="submit"
-                    className="create-order-button"
+                    className="create-order-button clickable-button"
                     disabled={isDisabled}
                 >確定</button>
             </form>

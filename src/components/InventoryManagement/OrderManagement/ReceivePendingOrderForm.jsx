@@ -70,6 +70,7 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
                     <input
                         type="checkbox"
                         id="is-partial-receive"
+                        className="checkbox"
                         checked={isChecked}
                         onChange={handleCheckboxChange}              
                     />
@@ -87,6 +88,7 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
                                     max={(orderedQuantity - receivedQuantity) / 10}
                                     min="1"
                                     id="received-quantity"
+                                    className="form-input"
                                     value={userInput}
                                     required
                                     onChange={e => handleInputChange(e)}
@@ -99,7 +101,7 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
                 </div>
 
                 {isDisabled && (
-                    <p className="error-message">有効な数字(1~注文数、小数点第1位まで)を入力して下さい。</p>
+                    <p className="error-message">(1~注文数、小数点第1位まで)を入力して下さい。</p>
                 )}
 
                 {errorMsg && (
@@ -108,7 +110,7 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
                 
                 <button
                     type="submit"
-                    className="receipt-button"
+                    className="receipt-button clickable-button"
                     disabled={isDisabled}
                 >{!isChecked ? "全て受取" : "登録"}
                 </button>

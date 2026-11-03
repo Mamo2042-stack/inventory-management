@@ -23,6 +23,8 @@ body,
     --font-size-h2: 1.5rem;
     --font-size-h3: 1.25rem;
     --font-size-h4: 1.125rem;
+    --font-size-h5: 1.065rem;
+    --font-size-h6: 1.03rem;
     --font-size-link: 1.8rem;
 
 /*Colors*/
@@ -34,6 +36,7 @@ body,
 
     --color-button: #FFE6D1;
     --color-button-hover: #FFC99E;
+    --color-button-disabled: #fff;
 
     --color-input: #FFF2EB;
 
@@ -182,6 +185,10 @@ button:hover {
     background-color: var(--color-button-hover);
 }
 
+.clickable-button{
+    padding: 10px 20px;
+}
+
 .back-to-previous-button {
     padding: 10px 20px;
     background-color: var(--color-button);
@@ -205,4 +212,58 @@ button:hover {
     z-index: 900;
 
     background-color: rgb(0 0 0 / 30%);
+}
+
+.quantity-and-unit{
+    white-space: nowrap;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.selection {
+    min-width: 44px;
+    min-height: 44px;
+
+    padding: 5px 10px;
+}
+
+@media (max-width:480px){
+    .form-input {
+        width: 100%;
+        min-width: 44px;
+        min-height: 44px;
+
+        padding: 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+
+        border: 1px solid #aaa;
+        border-radius: 6px;
+    }
+
+    .clickable-button{
+        min-height: 44px;
+        min-width: 44px;
+
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        line-height: 1.25;
+    }
+
+    .back-to-previous-button{
+        padding: 0.75rem 1rem;
+    }
+
+    .selection {
+        padding: 0.75rem 1rem;
+        line-height: 1.25;
+        border-radius: 6px;
+    }
+
+    .checkbox {
+        min-width: 20px;
+        min-height: 20px;
+    }
 }

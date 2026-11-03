@@ -19,7 +19,7 @@ function InventoryManagement(){
                 setInventoryView={setInventoryView}
             />
 
-            <div>
+            <div className="item-interaction-container">
                 {inventoryView === "item" && (
                     <div 
                         className="interaction-backdrop"

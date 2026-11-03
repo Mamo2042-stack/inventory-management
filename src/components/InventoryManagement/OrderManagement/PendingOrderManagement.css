@@ -4,10 +4,9 @@
     justify-content: space-between;
 
     width: 100%;
-    min-height: 0;
-    height: 80%;
     border-radius: 20px;
-
+    flex: 1;
+    min-height: 0;
     position: relative;
 }
 
@@ -18,7 +17,6 @@
 
     width: 80%;
     flex: 1;
-    min-width: 0;
     min-height: 0;
     margin: 0 auto;
 
@@ -28,7 +26,6 @@
 
 .order-card {
     width: 100%;
-    min-width: 0;
     margin-bottom: 10px;
 }
 
@@ -51,18 +48,16 @@
     flex-direction: column;
     align-items: stretch;
     width: 100%;
-    min-width: 0;
 }
 
 .receipt h6{
-    font-size: 0.8rem;
+    font-size: var(--font-size-h6);
     text-align: center;
     margin: 0 0 10px 0;
 }
 
 .receipt-button {
     width: 100%;
-    min-width: 0;
     margin-top: 20px;
     border: none;
     border-radius: 10px;
@@ -90,8 +85,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+
     width: 100%;
-    height: 40px;
 }
 
 .buttons {
@@ -99,11 +96,8 @@
     flex-direction: row;
     justify-content: space-around;
     flex-shrink: 0;
-    margin: 0;
-}
-
-.buttons button {
-    padding: 10px 20px;
+    
+    margin: 40px 0 20px 0;
 }
 
 .create-order-backdrop {
@@ -129,4 +123,3 @@ fieldset {
     flex-direction: row;
     justify-content: space-between;
 }
-
