@@ -68,7 +68,11 @@ function ItemCard ({ item, setSelectedItem, setInventoryView, history }) {
 
             <div className="main-content">
                 <p className="current-quantity-display">
-                   <span className="quantity-without-orders"><span className="title">在庫数:</span><span className="current-quantity"> {item.quantity / 10} </span>{item.storageUnit}</span>
+                    <span className="quantity-without-orders">
+                        <span className="title">在庫数:</span>
+                        <span className="current-quantity"> {item.quantity / 10} </span>
+                        {item.storageUnit}
+                    </span>
                     {upcomingQuantity ?  
                     <span className="additional-info"> + 注文済: {upcomingQuantity / 10}{item.storageUnit}</span>
                     :
@@ -78,7 +82,10 @@ function ItemCard ({ item, setSelectedItem, setInventoryView, history }) {
                 
                 <p className="expected-quantity">
                     {item.expectedQuantity ? 
-                        <span><span className="first-line">最低在庫数: </span> {item.expectedQuantity / 10} {item.storageUnit}</span>
+                        <span>
+                            <span className="first-line">最低在庫数: </span>
+                            <span className="second-line">{item.expectedQuantity / 10} {item.storageUnit}</span>
+                        </span>
                         :
                         ""
                     }

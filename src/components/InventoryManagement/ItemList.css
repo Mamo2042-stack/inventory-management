@@ -1,5 +1,10 @@
 .inventory-management-section {
+    display: flex;
+    flex-direction: column;
+
     width: 100%;
+    min-width: min-content;
+    
     margin: auto;
 }
 
@@ -14,12 +19,16 @@
 
 .storage-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+
     width: 100%;
+    min-width: min-content;
+
     margin-bottom: 30px;
+    
     border: 2px solid #ffb380;
     border-radius: 10px;
 }
@@ -35,6 +44,14 @@
 }
 
 @media (max-width: 480px) {
+    .inventory-management-section {
+        min-width: min-content;
+    }
+
+    .storage-container {
+        min-width: min-content;
+    }
+
     .item-controlers{
         align-items: flex-start;
         gap: 0;

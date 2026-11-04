@@ -1,14 +1,15 @@
 .inventory-management {
     display: flex;
     flex-direction: column;
+    align-items: center;
    
     width: 100%;
-   
+    min-width: min-content;
 }
 
 .inventory-management h1 {
     text-align: center;
-    margin: auto;
+    margin: 20px auto 0;
     width: 100%;
 }
 
@@ -23,8 +24,4 @@
     z-index: 900;
 
     background-color: rgb(0 0 0 / 30%);
-}
-
-.back-to-home-button {
-    padding: 10px 20px;
 }
