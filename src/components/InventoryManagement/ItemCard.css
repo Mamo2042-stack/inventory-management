@@ -1,13 +1,12 @@
 .item-card p {
-    display: block;
     line-height: 1.2rem;
 }
 
 .item-card {
-    width: 90%;
+    margin: 0 10px 10px 10px;
+    min-height: max-content;
+    width: calc(100% - 20px);
     min-width: 0;
-    height: 8rem;
-    margin-bottom: 10px;
 }
 
 .item-card:hover {
@@ -18,6 +17,8 @@
     margin: 0;
     padding: 0 15px;
     line-height: 1.4;
+
+    white-space: nowrap;
 }
 
 .low-stock-icon {
@@ -33,6 +34,7 @@
     width: 100%;
     justify-content: left;
     gap: 10px;
+
     min-height: 2rem;
     height: auto;
 }
@@ -40,7 +42,13 @@
 .main-content {
     display: flex;
     flex-direction: row;
-    gap: 50px;
+    justify-content: center;
+    gap: 20px;  
+    flex-wrap: nowrap;
+    
+    width: 100%;
+    min-width: 0;
+    margin: 0;
 }
 
 .main-content p {
@@ -68,8 +76,8 @@
     font-size: 1.7rem;
 }
 
-.additional-info {
-    font-size: 1.2rem;
+.current-quantity-display > .additional-info {
+    width: auto;
 }
 
 .last-history-container {
@@ -83,12 +91,35 @@
     margin: 0;
 }
 
-@media (max-width: 480px){
+.current-quantity-display,
+.expected-quantity > span {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;    
+}
 
+.current-quantity-display,
+.expected-quantity {
+    flex: 1 1 max-content; 
+    min-width: 0;
+}
+
+.expected-quantity .first-line,
+.expected-quantity .second-line,
+.quantity-without-orders,
+.additional-info {
+    white-space: nowrap;
+}
+
+@media (max-width: 480px){
     .item-card {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
+        gap: 10px;
+
+        max-width: 480px;
     }
 
     .secondary-content {
@@ -97,16 +128,16 @@
         align-items: flex-start;
 
         min-height: 0;
+        min-width: min-content;
     }
 
     .main-content {
         flex-direction: column;
-        justify-content: center;
-        gap: 0;
+        justify-content: space-between;
+        gap: 30px;
 
-        min-width: 20%;
-        height: 100%;
-
+        margin-top: 15px;
+        min-width: min-content;
     }
 
     .main-content p {
@@ -115,15 +146,12 @@
         margin: 0;
     }
 
-    .main-content > .current-quantity-display {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        flex: 1;
-
-        margin-top: 18px;
+    .current-quantity-display {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
     }
+
 
     .main-content > .expected-quantity {
         color: var(--color-font-secondary);
@@ -135,8 +163,6 @@
 
     .quantity-without-orders {
         display: flex;
-
-        margin-bottom: 8px;
     }
 
     .quantity-without-orders > .title {
@@ -144,7 +170,8 @@
     }
 
     .current-quantity-display > .additional-info {
-        font-size: 0.7rem;
+        color: var(--color-font-secondary);
+        width: 100%;
     }
 
     .item-name {
@@ -169,8 +196,11 @@
         color: var(--color-font-secondary)
     }
 
+    .expected-quantity span {
+        gap: 5px;
+    }
+
     .first-line {
-        width: 100%;
         text-align: center;
     }
 }
