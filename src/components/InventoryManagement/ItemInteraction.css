@@ -12,7 +12,7 @@
     border-radius: 20px;
 
     width: 50vw;
-    min-width: 400px;
+    min-width: min-content;
     height: 70vh;
     min-height: 450px;
 
@@ -36,11 +36,12 @@
     flex: 1;
   
     width: 100%;
+    min-width: min-content;
 }
 
 .item-interaction h3 {
     text-align: center;
-    background-color: #ffb380;
+    background-color: var(--color-primary);
     border-radius: 10px 10px 0 0;
 
     padding: 10px 20px;
@@ -60,7 +61,6 @@
     justify-content: center;
 
     flex: 1;
-
 }
 
 .quantity-control {
@@ -72,6 +72,8 @@
     gap: 0 40px;
 
     width: 100%;
+    min-width: max-content;
+    margin: 0 5px 0 5px;
 }
 
 .quantity-control > .error-message {
@@ -189,7 +191,7 @@
         left: 5vw;
        
         width: 90vw;
-        min-width: 320px;
+        min-width: min-content;
         min-height: 450px;
     }
 

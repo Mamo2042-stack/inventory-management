@@ -50,6 +50,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    flex: 1 1 max-content;
+}
+
+.individual-history > h4 span {
+    white-space: nowrap;
 }
 
 @media (max-width: 480px) {

@@ -26,6 +26,8 @@
 
 .order-card {
     width: 100%;
+    min-width: min-content;
+    
     margin-bottom: 10px;
 }
 
@@ -51,7 +53,6 @@
 }
 
 .receipt h6{
-    font-size: var(--font-size-h6);
     text-align: center;
     margin: 0 0 10px 0;
 }
@@ -86,9 +87,17 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
 
     width: 100%;
+
+
+    margin-top: 10px;
+}
+
+.order-quantity p {
+    white-space: nowrap;
+    margin: 0
 }
 
 .buttons {
