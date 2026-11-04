@@ -48,7 +48,10 @@ function StorageRegistration (){
 
     return (
         <section className="storage-registration-section">
-            <h1>ストレージ情報を登録する</h1>
+            <h1>
+                <span>ストレージ情報を</span>
+                <span>登録する</span>
+            </h1>
 
             <form 
                 className="storage-registration-form"
@@ -62,6 +65,7 @@ function StorageRegistration (){
                     <input
                         type="text"
                         id="storage-name"
+                        className="form-input"
                         maxLength={15}
                         value={userInput.name}
                         onChange={e => handelChange(e)}
@@ -102,7 +106,10 @@ function StorageRegistration (){
                 )}    
 
                 <div className={`success-modal ${isSuccessModalOpen ? "is-open" : ""}`}>
-                    <p>ストレージが登録されました。</p>
+                    <p className="success-message">
+                        <span>ストレージが</span>
+                        <span>登録されました。</span>
+                    </p>
 
                     <button
                         type="button"

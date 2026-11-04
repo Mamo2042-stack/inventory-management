@@ -7,6 +7,12 @@
 
     flex: 1;
     min-height: 500px;
+    min-width: min-content;
+}
+
+.item-registration > h1,
+.label {
+    white-space: nowrap;
 }
 
 .item-registration-form {
@@ -26,7 +32,7 @@
     align-items: center;
     width: 100%;
     margin-bottom: 40px;
-}
+}   
 
 .item-registration-form input,
 .item-registration-form select {
@@ -83,7 +89,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
     gap: 6px;
 
     margin-bottom: 0;
@@ -92,11 +97,11 @@
 .replenishment-method-field label {
     width: auto;
     margin: 0;
-    white-space: nowrap;
 }
 
 .replenishment-method-field input[type="radio"] {
-    width: auto;
+    width: 18px;
+    height: 18px;
     margin: 0;
     padding: 0;
     flex-shrink: 0;
@@ -109,3 +114,23 @@
     font-size: 1.2rem;
 }
 
+@media (max-width: 480px){
+    .item-registration-form input,
+    .item-registration-form select,
+    .quantity-with-unit,
+    .replenishment-method-field {
+        width: 80%;
+        min-width: min-content;
+    }
+
+    .replenishment-method-field {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+
+    .replenishment-method-field > div {
+        justify-content: flex-start;
+    }
+}

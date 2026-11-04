@@ -69,11 +69,12 @@ function ItemRegistration(){
                 noValidate
             >
                 <div>
-                    <label htmlFor="name">名前</label>
+                    <label htmlFor="name" className="label">名前</label>
                     <input
                         name="name"
                         type="text"
                         id="name"
+                        className="form-input"
                         maxLength={10}
                         value={userInput.name}
                         onChange={e => handleChange(e)}
@@ -95,10 +96,11 @@ function ItemRegistration(){
                 </div>
 
                 <div>
-                    <label htmlFor="place">保管先ストレージ</label>
+                    <label htmlFor="place" className="label">保管先ストレージ</label>
                     <select 
                         id="place" 
                         name="storageId"
+                        className="selection"
                         value={userInput.storageId}
                         onChange={e => handleChange(e)}
                     >
@@ -121,10 +123,11 @@ function ItemRegistration(){
                 </div>    
 
                 <div>
-                    <label htmlFor="category">カテゴリー</label>    
+                    <label htmlFor="category" className="label">カテゴリー</label>    
                     <select 
                         id="category" 
                         name="category" 
+                        className="selection"
                         value={userInput.category}
                         onChange={e => handleChange(e)}
                     >
@@ -143,10 +146,11 @@ function ItemRegistration(){
                 </div>
 
                 <div>
-                    <label htmlFor="storage-unit">単位</label>
+                    <label htmlFor="storage-unit" className="label">単位</label>
                     <input
                         name="storageUnit"
                         id="storage-unit"
+                        className="form-input"
                         type="text"
                         maxLength={8}
                         value={userInput.storageUnit}
@@ -162,12 +166,13 @@ function ItemRegistration(){
                     </div>
 
                 <div>
-                <label htmlFor="expected-quantity">最低在庫数</label>
+                <label htmlFor="expected-quantity" className="label">最低在庫数</label>
                 <div className="quantity-with-unit">
                     <input
                         name="expectedQuantity"
                         type="number"
                         id="expected-quantity"
+                        className="form-input"
                         min="0"
                         max="100"
                         value={userInput.expectedQuantity}
@@ -181,44 +186,44 @@ function ItemRegistration(){
                 </div>
 
                 <fieldset className="replenishment-method-field">
-                    <legend>リストック方法</legend>
+                    <legend className="label">リストック方法</legend>
 
                     <div>
-                    <input
-                        name="replenishmentMethod"
-                        className="replenishmethod-option"
-                        type="radio"
-                        value="ORDER" 
-                        id="order-radio"
-                        checked={userInput.replenishmentMethod === "ORDER"}
-                        onChange={e => handleChange(e)}
-                    />
-                    <label htmlFor="order-radio">オーダー</label>
+                        <input
+                            name="replenishmentMethod"
+                            className="replenishmethod-option"
+                            type="radio"
+                            value="ORDER" 
+                            id="order-radio"
+                            checked={userInput.replenishmentMethod === "ORDER"}
+                            onChange={e => handleChange(e)}
+                        />
+                        <label htmlFor="order-radio" className="label">オーダー</label>
                     </div>
 
                     <div>
-                    <input 
-                        name="replenishmentMethod"
-                        className="replenishment-option"
-                        type="radio"
-                        value="PURCHASE"
-                        id="purchase-radio"
-                        checked={userInput.replenishmentMethod === "PURCHASE"}
-                        onChange={e => handleChange(e)}
-                    />
-                    <label htmlFor="purchase-radio">買い出し</label>
+                        <input 
+                            name="replenishmentMethod"
+                            className="replenishment-option"
+                            type="radio"
+                            value="PURCHASE"
+                            id="purchase-radio"
+                            checked={userInput.replenishmentMethod === "PURCHASE"}
+                            onChange={e => handleChange(e)}
+                        />
+                        <label htmlFor="purchase-radio" className="label">買い出し</label>
                     </div>
                 </fieldset>
 
                 <button
-                    className="submit-button"
+                    className="submit-button clickable-button"
                     type="submit"
                 >登録
                 </button>
             </form>
 
             <button
-                className="back-to-previous-button"
+                className="back-to-previous-button clickable-button"
                 onClick={handleClick}
             >⬅︎
             </button>
@@ -230,7 +235,9 @@ function ItemRegistration(){
 
 
             <div className={`success-modal ${isSuccessModalOpen ? "is-open" : ""}`}>
-                <p>食材が登録されました。</p>
+                <p className="success-message">
+                    <span>食材が</span>
+                    <span>登録されました。</span></p>
 
                 <button
                     type="button"

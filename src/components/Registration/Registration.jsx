@@ -14,7 +14,7 @@ function Registration (){
 
             <button
                 type="button"
-                className="back-to-previous-button"
+                className="back-to-previous-button clickable"
                 onClick={() => navigate("/")}
             >⬅︎
             </button>

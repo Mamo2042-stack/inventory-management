@@ -5,7 +5,19 @@
     align-items: center;
     flex: 1;
 
-    min-height: 500px;
+    min-height: min-content;
+    min-width: min-content;
+}
+
+.storage-registration-section > h1 {
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    white-space: nowrap;
 }
 
 .storage-registration-form {
@@ -17,8 +29,8 @@
     flex: 1;
 
     width: 80%;
+    min-width: min-content;
     padding: 20px;
-
 }
 
 /* Submission button coloring */
@@ -44,13 +56,19 @@
     font-size: 1.3rem;
 
     width: 100%;
+    min-width: min-content;
+}
+
+.storage-name-input-section > label {
+    white-space: nowrap;
 }
 
 /* input element */
-.storage-name-input-section input {
+.storage-name-input-section > input {
     padding: 10px;
     margin-top: 15px;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
 
     border-radius: 10px;
     border: none;
@@ -63,6 +81,3 @@
     outline: none;
 }
 
-.storage-registration-section > h1 {
-    margin: 0;
-}
