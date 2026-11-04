@@ -3,9 +3,7 @@
     flex-direction: column;
     
     position: fixed;
-    top: 15vh;
-    left: 25vw;
-
+    inset: 50% 0 0 50%;
     z-index: 1000;
 
     background-color: #fff;
@@ -16,14 +14,14 @@
     height: 70vh;
     min-height: 450px;
 
-    transform: translateY(70%);
+    transform: translate(-50%, calc(-50% + 100%));
     visibility: hidden;
     opacity: 0;
     transition: transform 0.5s ease, visibility 0.5s ease, opacity 0.5s ease;
 }
 
 .item-interaction.is-open {
-    transform: translateY(0);
+    transform: translate(-50%, -50%);
     visibility: visible;
     opacity: 1;
     transition: transform 0.5s ease, visibility 0.5s ease, opacity 0.5s ease;
@@ -188,8 +186,6 @@
 
 @media (max-width: 480px){
     .item-interaction{
-        left: 5vw;
-       
         width: 90vw;
         min-width: min-content;
         min-height: 450px;
