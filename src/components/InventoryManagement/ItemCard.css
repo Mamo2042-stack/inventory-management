@@ -65,7 +65,8 @@
 .low-stock-message {
     color: var(--color-low-stock);
     font-size: 1.2rem;
-    margin: 0;
+    margin: 0;    
+    font-weight: var(--font-weight-medium);
 }
 
 .low-stock-icon--mobile {
@@ -74,6 +75,7 @@
 
 .current-quantity {
     font-size: 1.7rem;
+    font-weight: var(--font-weight-medium);
 }
 
 .current-quantity-display > .additional-info {
@@ -89,6 +91,10 @@
 
 .last-history {
     margin: 0;
+}
+
+.current-quantity-display {
+    gap: 10px;
 }
 
 .current-quantity-display,
@@ -136,12 +142,13 @@
         justify-content: space-between;
         gap: 30px;
 
-        margin-top: 15px;
+        padding: 15px 0 15px 0;
         min-width: min-content;
+        min-height: 160px;
     }
 
     .main-content p {
-        font-size: var(--font-size--body);
+        font-size: var(--font-size-body);
         
         margin: 0;
     }
@@ -154,6 +161,9 @@
 
 
     .main-content > .expected-quantity {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
         color: var(--color-font-secondary);
     }
 
@@ -196,7 +206,7 @@
         color: var(--color-font-secondary)
     }
 
-    .expected-quantity span {
+    .expected-quantity > span {
         gap: 5px;
     }
 
