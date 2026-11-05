@@ -2,6 +2,7 @@ import { useAppData } from "../../context/useAppData"
 import { useState } from "react";
 import deleteItem from "../../operations/deleteItem";
 import { useNavigate } from "react-router";
+import { SquareExclamationPoint } from "lucide-react";
 
 function DeleteItemForm({ itemId, isModalOpen, setIsModalOpen }){
     const { appData, setAppData } = useAppData();
@@ -37,27 +38,32 @@ function DeleteItemForm({ itemId, isModalOpen, setIsModalOpen }){
         <div className={`confirmation-modal ${isModalOpen ? "is-open" : ""}`}>
             {itemId && !hasSucceeded && (
                 <div className="confirmation-section">
-                    <p className="confirmation-message">本当に削除しますか？</p>
-
+                    
                     <div>
-                    {itemData.hasStock && (
-                        <p>在庫が残っています。</p>
-                    )}
+                        <p className="confirmation-message">
+                            <SquareExclamationPoint />
+                            本当に削除しますか？
+                        </p>
 
-                    {itemData.hasPending && (
-                        <p>未受取の注文があります。</p>
-                    )}
+                        {itemData.hasStock && (
+                            <p>在庫が残っています。</p>
+                        )}
 
-                    <button
-                        type="button"
-                        onClick={handleConfirmClick}
-                    >確定
-                    </button>
+                        {itemData.hasPending && (
+                            <p>未受取の注文があります。</p>
+                        )}
+
+                        <button
+                            type="button"
+                            className="clickable-button"
+                            onClick={handleConfirmClick}
+                        >確定
+                        </button>
                     </div>
 
                     <button
                         type="button"
-                        className="back-to-previous-button"
+                        className="back-to-previous-button clickable-button"
                         onClick={() => setIsModalOpen(false)}
                     >⬅︎
                     </button>
