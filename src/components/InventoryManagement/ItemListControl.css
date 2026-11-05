@@ -3,7 +3,7 @@
 
     border: none;
     border-radius: 20px;
-    background-color: #FFE6D1;
+    background-color: var(--color-input);
 
     padding: 10px 15px 10px 15px;
 }
@@ -33,10 +33,13 @@
     box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
 
     width: 320px;
-    min-width: 0;
+    min-width: min-content;
     max-width: 90vw;
-    height: 100vh;
+    height: 100dvh;
     box-sizing: border-box;
+
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
 
     /*Initial, closed state*/
     transform: translateX(100%);
@@ -61,13 +64,13 @@
 .control-panel-button {
     border-radius: 20px;
     border: none;
-    background-color: #FFE6D1;
+    background-color: var(--color-button);
 
     padding: 10px 15px 10px 15px;
 }
 
 .control-panel-button:hover {
-    background-color: #FFC99E;
+    background-color: var(--color-button-hover);
 }
 
 .item-list-controls button {
