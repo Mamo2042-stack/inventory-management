@@ -21,11 +21,15 @@ function DeleteStorageForm({ selectedStorage, isModalOpen, setIsModalOpen }){
         setIsSuccessModalOpen(true)
     }
 
+    const selectedStorageData = appData.storages.find(storage => storage.id === selectedStorage)
+
     return (
         <div className={`confirmation-modal ${isModalOpen ? "is-open" : ""}`}>
             {!isSuccessModalOpen && (
                 <div className="confirmation-section">
                     <div>
+                        <p className="selected-storage-name">{selectedStorageData?.name}</p>
+
                         <p className="confirmation-message">
                             <SquareExclamationPoint />
                             本当に削除しますか？

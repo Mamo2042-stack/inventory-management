@@ -38,8 +38,9 @@ function DeleteItemForm({ itemId, isModalOpen, setIsModalOpen }){
         <div className={`confirmation-modal ${isModalOpen ? "is-open" : ""}`}>
             {itemId && !hasSucceeded && (
                 <div className="confirmation-section">
-                    
                     <div>
+                        <p className="selected-item-name">{selectedItem?.name}</p>
+
                         <p className="confirmation-message">
                             <SquareExclamationPoint />
                             本当に削除しますか？

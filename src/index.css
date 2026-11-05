@@ -16,6 +16,8 @@ body,
 
 /*Fonts*/
     --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
 
     --font-size-body: 1rem;
     --font-size-nav: 1rem;
@@ -32,13 +34,14 @@ body,
     --color-header: #FF8938;
     --color-background: #fdfaf7;
     --color-font: #222222;
+    --color-a: #fff;
     --color-a-background: #FFE6D1;
 
     --color-button: #FFE6D1;
     --color-button-hover: #FFC99E;
     --color-button-disabled: #fdfaf7;
 
-    --color-input: #FFF2EB;
+    --color-input: #FFE6D1;
 
     --color-meat: #FF6B6B;
     --color-mear-hover: #FFF0F0;
@@ -262,6 +265,8 @@ button:disabled {
     .back-to-previous-button{
         padding: 0.75rem 1rem;
         margin-bottom: 30px;
+
+        display: none;
     }
 
     .selection {

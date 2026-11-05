@@ -7,6 +7,8 @@ function Registration (){
 
     return(
         <div className="registration-home">
+            <h1>登録</h1>
+
             <nav>
                 <Link to="/registration/storage">ストレージ</Link>
                 <Link to="/registration/item">食材</Link>

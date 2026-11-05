@@ -9,13 +9,17 @@
     min-height: max-content;
 }
 
+.registration-home > h1 {
+    margin-top: 50px;
+}
+
 .registration-home nav{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
 
     width: 100%;
-    margin-top: 200px;
 }
 
 /* success modal */
@@ -61,10 +65,8 @@
     pointer-events: auto;
 }
 
-.success-modal button {
-    padding: 10px 15px;
-    margin: 0 0 20px;
-    flex-shrink: 0;
+.success-modal > .back-to-previous-button {
+    display: inline-block;
 }
 
 .success-message {
@@ -95,8 +97,6 @@
         align-items: center;
         justify-content: space-evenly;
         flex: 1;
-
-        margin-top: 50px;
     }
 
     .success-modal {

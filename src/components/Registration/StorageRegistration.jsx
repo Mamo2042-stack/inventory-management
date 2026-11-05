@@ -113,6 +113,7 @@ function StorageRegistration (){
 
                     <button
                         type="button"
+                        className="back-to-previous-button clickable-button"
                         onClick={() => {
                             navigate("/")
                             setIsSuccessModalOpen(false)

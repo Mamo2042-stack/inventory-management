@@ -19,14 +19,18 @@
 .app-nav a {
     display: inline-block;
     font-size: var(--font-size-nav);
+    color: var(--color-a);
     padding: 8px 4px;
-    color: #ffffff;
     text-decoration: none;
     font-weight: 500;
 }
 
 .app-nav a:hover {
     text-decoration: underline;
+}
+
+.icon-for-mobile {
+    display: none;
 }
 
 .app-main {
@@ -40,4 +44,42 @@
 
     margin-inline: auto;
     padding-inline: var(--page-padding);
+}
+
+@media (max-width: 480px) {
+    .app-layout {
+        flex-direction: column-reverse;
+
+        --mobile-header-height: 70px;
+    }
+
+    .app-header {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+
+        width: 100vw;
+        height: var(--mobile-header-height);
+    }
+
+    .app-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .nav-link > p {
+        display: none;
+    }
+
+    .icon-for-mobile {
+        display: inline-block;
+    }
+
+    .app-main {
+        padding-bottom: calc(
+            var(--mobile-header-height) + env(safe-area-inset-bottom)
+        );
+    }
 }
