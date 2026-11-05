@@ -32,13 +32,14 @@ body,
     --color-header: #FF8938;
     --color-background: #fdfaf7;
     --color-font: #222222;
+    --color-a: #fff;
     --color-a-background: #FFE6D1;
 
     --color-button: #FFE6D1;
     --color-button-hover: #FFC99E;
     --color-button-disabled: #fdfaf7;
 
-    --color-input: #FFF2EB;
+    --color-input: #FFE6D1;
 
     --color-meat: #FF6B6B;
     --color-mear-hover: #FFF0F0;
@@ -105,7 +106,7 @@ h4 {
 }
 
 a {
-    color: var(--color-font);
+    color: var(--color-a);
     text-decoration: none;
 
     transition: all 0.3s;

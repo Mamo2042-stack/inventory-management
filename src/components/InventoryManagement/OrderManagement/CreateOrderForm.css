@@ -3,7 +3,7 @@
     top: 25%;
     left: 25%;
     z-index: 1000;
-    background-color: #fff;
+    background-color: var(--color-background);
 
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@
 }
 
 .new-order-form button:disabled {
-    background-color: #fff;
+    background-color: var(--color-button-disabled);
 }
 
 
@@ -65,7 +65,7 @@
 }
 
 .close-create-order-button:hover {
-    background-color: azure;
+    background-color: var(--color-button-disabled);
 }
 
 .create-order-button{

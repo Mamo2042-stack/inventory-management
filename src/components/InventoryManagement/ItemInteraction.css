@@ -136,7 +136,7 @@
 }
 
 .confirmation-btn:hover {
-    background-color: #FFC99E;
+    background-color: var(--color-button-hover);
 }
 
 .confirmation-btn:disabled {
