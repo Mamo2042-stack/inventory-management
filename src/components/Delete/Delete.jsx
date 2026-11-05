@@ -16,7 +16,7 @@ function Delete () {
 
             <button
                 type="button"
-                className="back-to-previous-button"
+                className="back-to-previous-button clickable-button"
                 onClick={() => navigate("/")}
             >⬅︎
             </button>
