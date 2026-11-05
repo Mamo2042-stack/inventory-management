@@ -5,8 +5,12 @@
     align-items: center;
 
     flex: 1;
-    min-height: 500px;
+    min-height: min-content;
     width: 100%;
+}
+
+.delete > h1 {
+    margin-top: 20px;
 }
 
 .delete > nav {
@@ -22,9 +26,9 @@
 /* confirmation section */
 .confirmation-modal {
     position: fixed;
-    top: 25vh;
-    left: 25vw;
+    inset: 50% 0 0 50%;
     z-index: 1000;
+
     background-color: #fff;
 
     display: flex;
@@ -32,13 +36,15 @@
     justify-content: center;
     align-items: center;
 
-    min-width: 300px;
+    min-width: min-content;
     width: 50vw;
-    min-height: 300px;
+    min-height: min-content;
     height: 50vh;
     border-radius: 20px;
 
-    transform: translateY(100%);
+    padding: 30px 30px 0 30px;
+
+    transform: translate(-50%, calc(-50% + 100%));
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -48,7 +54,7 @@
 
 .confirmation-modal.is-open {
     /*Open state */
-    transform: translateY(0);
+    transform: translate(-50%, -50%);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -63,7 +69,13 @@
 }
 
 .confirmation-message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     font-size: 1.3rem;
+
+    white-space: nowrap;
 }
 
 .confirmation-section > div {
@@ -75,10 +87,35 @@
     flex: 1;
 }
 
+.confirmation-section > div > p {
+    margin: 5px;
+}
+
 .confirmation-section > div > button {
-    margin-top: 20px;
+    margin: 20px 0 20px 0;
 }
 
 .confirmation-modal button:not(.back-to-previous-button) {
     padding: 10px 15px;
+}
+
+/* success message section */
+.success-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    padding: 30px;
+}
+
+.success-section > p {
+    white-space: nowrap;
+}
+
+@media (max-width: 480px){
+    .delete > nav {
+        flex-direction: column;
+    }
 }

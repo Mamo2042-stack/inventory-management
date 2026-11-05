@@ -36,7 +36,7 @@ body,
 
     --color-button: #FFE6D1;
     --color-button-hover: #FFC99E;
-    --color-button-disabled: #fff;
+    --color-button-disabled: #fdfaf7;
 
     --color-input: #FFF2EB;
 
@@ -188,6 +188,10 @@ button:hover {
     background-color: var(--color-button-hover);
 }
 
+button:disabled {
+    background-color: var(--color-button-disabled);
+}
+
 .clickable-button{
     padding: 10px 20px;
 }
@@ -257,6 +261,7 @@ button:hover {
 
     .back-to-previous-button{
         padding: 0.75rem 1rem;
+        margin-bottom: 30px;
     }
 
     .selection {

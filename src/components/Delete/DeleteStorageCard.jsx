@@ -13,14 +13,17 @@ function DeleteStorageCard({ storageData, setSelectedStorage, setIsModalOpen }){
         <>
             <button
                 type="button"
-                className="storage-card"
+                className="storage-card clickable-button"
                 disabled={hasItems}
                 onClick={handleClick}
             >
                 <p>{storageData.name}</p>
 
                 {hasItems && (
-                    <p>ストレージ内の食材を削除してください。</p>
+                    <p className="has-item-message">
+                        <span>ストレージ内の食材を</span>
+                        <span>削除してください。</span>
+                    </p>
                 )}
 
             </button>

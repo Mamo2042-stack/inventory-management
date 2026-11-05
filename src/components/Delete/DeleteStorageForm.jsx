@@ -2,6 +2,7 @@ import { useAppData } from "../../context/useAppData";
 import { useState } from "react";
 import deleteStorage from "../../operations/deleteStorage";
 import { useNavigate } from "react-router";
+import { SquareExclamationPoint } from "lucide-react";
 
 function DeleteStorageForm({ selectedStorage, isModalOpen, setIsModalOpen }){
     const { appData, setAppData } = useAppData();
@@ -25,10 +26,14 @@ function DeleteStorageForm({ selectedStorage, isModalOpen, setIsModalOpen }){
             {!isSuccessModalOpen && (
                 <div className="confirmation-section">
                     <div>
-                        <p className="confirmation-message">本当に削除しますか？</p>
+                        <p className="confirmation-message">
+                            <SquareExclamationPoint />
+                            本当に削除しますか？
+                        </p>
 
                         <button
                             type="button"
+                            className="clickable-button"
                             onClick={handleClick}
                         >確定
                         </button>
@@ -36,7 +41,7 @@ function DeleteStorageForm({ selectedStorage, isModalOpen, setIsModalOpen }){
 
                     <button
                         type="button"
-                        className="back-to-previous-button"
+                        className="back-to-previous-button clickable-button"
                         onClick={() => setIsModalOpen(false)}
                     >⬅︎
                     </button>
