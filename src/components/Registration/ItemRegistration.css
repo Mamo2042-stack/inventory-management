@@ -6,8 +6,12 @@
     gap: 50px;
 
     flex: 1;
-    min-height: 500px;
+    min-height: min-content;
     min-width: min-content;
+}
+
+.item-registration > h1 {
+    margin-top: 50px;
 }
 
 .item-registration > h1,
@@ -115,6 +119,10 @@
 }
 
 @media (max-width: 480px){
+    .item-registration {
+        padding-bottom: 40px;
+    }
+    
     .item-registration-form input,
     .item-registration-form select,
     .quantity-with-unit,

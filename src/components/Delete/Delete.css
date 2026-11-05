@@ -10,7 +10,7 @@
 }
 
 .delete > h1 {
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .delete > nav {
@@ -117,5 +117,10 @@
 @media (max-width: 480px){
     .delete > nav {
         flex-direction: column;
+    }
+
+    .confirmation-section > .back-to-previous-button,
+    .success-section > .back-to-previous-button {
+        display: inline-block;
     }
 }
