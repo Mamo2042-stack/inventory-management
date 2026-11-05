@@ -6,8 +6,15 @@
     gap: 20px;
 
     flex: 1;
-    min-height: 500px;
+    min-height: min-content;
     width: 100%;
+    min-width: min-content;
+}
+
+.storage-delete > h1 {
+    margin-top: 20px;
+
+    white-space: nowrap;
 }
 
 .storages-container {
@@ -17,24 +24,40 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
-    max-height: 60vh;
 
+    max-height: 60vh;
     width: 80%;
+    min-width: min-content;
 
     overflow-y: auto;
 }
 
 .storage-card {
     width: 300px;
-    height: 80px;
-
-    padding: 10px;
+    min-width: min-content;
+    height: 132px;
+    min-height: min-content;
 
 }
 
 .storage-card:disabled {
-    background-color: #fdfaf7;
     border: 1px dotted;
+}
+
+.has-item-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.has-item-message > span {
+    white-space: nowrap;
+    /* how to have p elements take only neccessary width */
 }
 
 .empty-box { 
@@ -43,11 +66,5 @@
 }
 
 /* success message section */
-.success-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
+
 
