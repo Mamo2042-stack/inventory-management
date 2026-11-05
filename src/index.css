@@ -16,6 +16,8 @@ body,
 
 /*Fonts*/
     --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
 
     --font-size-body: 1rem;
     --font-size-nav: 1rem;
@@ -106,7 +108,7 @@ h4 {
 }
 
 a {
-    color: var(--color-a);
+    color: var(--color-font);
     text-decoration: none;
 
     transition: all 0.3s;
@@ -263,6 +265,8 @@ button:disabled {
     .back-to-previous-button{
         padding: 0.75rem 1rem;
         margin-bottom: 30px;
+
+        display: none;
     }
 
     .selection {
