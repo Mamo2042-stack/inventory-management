@@ -20,7 +20,9 @@ export function AppDataProvider({ children }){
             return;
         }
 
-        saveAppData(appData)
+        const result = saveAppData(appData);
+
+        setLoadStatus(result);
     }, [appData, loadStatus])
 
     function resetAppData(){
@@ -34,7 +36,7 @@ export function AppDataProvider({ children }){
         setLoadStatus("missing");
     }
 
-    const value = { appData, setAppData, loadStatus, resetAppData };
+    const value = { appData, setAppData, loadStatus, setLoadStatus, resetAppData };
 
     return (
         <AppDataContext.Provider value={value}>
