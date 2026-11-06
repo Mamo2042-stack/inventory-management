@@ -27,7 +27,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     const displayItem = items.find(item => item.id === selectedItem);
     const [tempQuan, setTempQuan] = useState(displayItem?.quantity ?? 0);//tempQuan is supposed to hold user inputs in tenth in number type when appropriate//
-    
+
     useEffect(() => {
         if(displayItem){
             setTempQuan(displayItem.quantity);
@@ -41,8 +41,6 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     const upcomingQuantity = calUpcomingQuantity(displayItem);
 
-
-
     function handleClick(e){
         setDeeperSection(e.target.name);
     }
@@ -54,10 +52,12 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
         setTempQuan(value);
 
-// validation for input data type. Stores data in number type only when the data is valid //
+// validation for input data type. Stores data in number type only when the data is valid, otherwise in string //
         if(!isValidQuantity(value)){
+            // if the user input is invalid number. This prevents users from submitting invalid numbers //
             setIsDisabled(true);
         } else if(Number(value) < 0 || Number(value) > 1000){
+            // if the user input is out of the range //
             setIsDisabled(true);
             setTempQuan(Number(value) * 10);
         } else {

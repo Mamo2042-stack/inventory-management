@@ -1,5 +1,3 @@
-import { isValidQuantity } from "../utils/isValidQuantity";
-
 function adjustInventory (appData, itemId, changeTo) {
     const selectedItem = appData.items.find(item => item.id === itemId );
 
@@ -12,7 +10,7 @@ function adjustInventory (appData, itemId, changeTo) {
 
     const previousQuantity = selectedItem.quantity
 
-    const isValid = isValidQuantity(String(changeTo));
+    const isValid = Number.isSafeInteger(changeTo);
 
     if(!isValid){
         return {
