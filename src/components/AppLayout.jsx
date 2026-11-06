@@ -1,6 +1,7 @@
 import { Outlet, Link } from "react-router"
 import { useAppData } from "../context/useAppData";
 import DataError from "./DataError";
+import { SaveDataError } from "./SaveDataError";
 import './AppLayout.css'
 import { House, PenLine, FileText, Trash } from "lucide-react";
 
@@ -9,6 +10,10 @@ function AppLayout () {
 
     if(loadStatus === "invalid"){
         return <DataError />;
+    }
+
+    if(loadStatus === "unsaved_invaid" || loadStatus === "unsaved_failure"){
+        return <SaveDataError />
     }
 
     return (
