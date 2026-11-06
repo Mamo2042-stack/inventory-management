@@ -11,8 +11,8 @@
 
     width: 50vw;
     min-width: min-content;
-    height: 70vh;
-    min-height: 450px;
+    min-height: min-content;
+    height: 80dvh;
 
     transform: translate(-50%, calc(-50% + 100%));
     visibility: hidden;
@@ -188,7 +188,6 @@
     .item-interaction{
         width: 90vw;
         min-width: min-content;
-        min-height: 450px;
     }
 
     .invalid-error-container{
