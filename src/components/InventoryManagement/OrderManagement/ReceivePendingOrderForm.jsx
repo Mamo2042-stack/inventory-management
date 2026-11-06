@@ -9,12 +9,12 @@ function ReceivePendingOrderForm ({ order, setIsReceiving, selectedItem }){
     const { orderedQuantity, receivedQuantity } = order;
     const [userInput, setUserInput] = useState(String((orderedQuantity - receivedQuantity) / 10));
     const [errorMsg, setErrorMsg] = useState("");
-    const [isDisabled , setIsDisabled] = useState(false);
-
+    const [isDisabled , setIsDisabled] = useState(false);/* this determines whether the submit button is disabled conditionally */
     function handleCheckboxChange(e){
         setIsChecked(e.target.checked);
         setUserInput(String((orderedQuantity - receivedQuantity) / 10));
         setErrorMsg("");
+        setIsDisabled(false);
     }
 
     function handleInputChange(e){
