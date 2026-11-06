@@ -20,7 +20,9 @@ export function AppDataProvider({ children }){
             return;
         }
 
-        saveAppData(appData)
+        const result = saveAppData(appData);
+
+        setLoadStatus(result);
     }, [appData, loadStatus])
 
     function resetAppData(){

@@ -1,16 +1,11 @@
 import { isValidAppData } from "./validation/isValidAppData";
-import { useAppData } from "../context/useAppData";
 
 const STORAGE_KEY = "inventory-management:appData"
 
 export function saveAppData(appData){
-
-    const { setLoadStatus } = useAppData();
-
     if(!isValidAppData(appData)){
         console.error("Invalid data is detected");
-        setLoadStatus("unsaved_invalid")
-        return;
+        return "unsaved_invalid";
     }
 
     try{ 
@@ -18,8 +13,9 @@ export function saveAppData(appData){
             STORAGE_KEY,
             JSON.stringify(appData)
         )
+        return "loaded";
     } catch (error){
         console.error("Failed to save inventory data:", error);
-        setLoadStatus("unsaved_failure")
+        return "unsaved_failure";
     }
 }
