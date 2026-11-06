@@ -27,6 +27,13 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     const displayItem = items.find(item => item.id === selectedItem);
     const [tempQuan, setTempQuan] = useState(displayItem?.quantity ?? 0);//tempQuan is supposed to hold user inputs in tenth in number type when appropriate//
+    
+    useEffect(() => {
+        if(displayItem){
+            setTempQuan(displayItem.quantity);
+            setIsDisabled(false)
+        }
+    }, [selectedItem, displayItem?.quantity])
 
     if(!displayItem){
         return null;
@@ -34,12 +41,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     const upcomingQuantity = calUpcomingQuantity(displayItem);
 
-    useEffect(() => {
-        if(displayItem){
-            setTempQuan(displayItem.quantity);
-            setIsDisabled(false)
-        }
-    }, [selectedItem, displayItem?.quantity])
+
 
     function handleClick(e){
         setDeeperSection(e.target.name);
