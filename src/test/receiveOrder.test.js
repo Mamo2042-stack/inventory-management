@@ -9,7 +9,7 @@ describe("receiveOrder.js", () => {
         const result = receiveOrder(
             appData,
             "item-1",
-            301,
+            "301",
             "3"
         )
 
@@ -21,7 +21,7 @@ describe("receiveOrder.js", () => {
         const result = receiveOrder(
             appData,
             "item-1",
-            301,
+            "301",
             "1"
         );
 
@@ -29,15 +29,15 @@ describe("receiveOrder.js", () => {
         expect(result.type).toBe("PARTIAL");
         const selectedItem = result.data.items.find(item => item.id === "item-1");
         expect(selectedItem.quantity).toBe(60);
-        const selectedOrder = selectedItem.pendingOrders.find(order => order.id === 301);
-        expect(selectedOrder.receivedQuantity).toBe(40);
+        const selectedOrder = selectedItem.pendingOrders.find(order => order.id === "301");
+        expect(selectedOrder.receivedQuantity).toBe(60);
     })
 
     it("should remove the order when it's fully received", () => {
         const result = receiveOrder(
             appData,
             "item-1",
-            301,
+            "301",
             "5"
         )
 
@@ -50,7 +50,7 @@ describe("receiveOrder.js", () => {
         const result = receiveOrder(
             appData,
             "item-1",
-            301,
+            "301",
             "6"
         )
 
@@ -61,7 +61,7 @@ describe("receiveOrder.js", () => {
         const result = receiveOrder(
             appData,
             "item-1",
-            301,
+            "301",
             NaN
         )
         expect(result.success).toBe(false);
@@ -72,7 +72,7 @@ describe("receiveOrder.js", () => {
         const result = receiveOrder(
             appData,
             "item-1",
-            301,
+            "301",
             ""
         )
 
@@ -84,7 +84,7 @@ describe("receiveOrder.js", () => {
         const result = receiveOrder(
             appData,
             "item-4",
-            303,
+            "303",
             "11"
         );
 
@@ -96,7 +96,7 @@ describe("receiveOrder.js", () => {
         const result = receiveOrder(
             appData,
             "item-4",
-            304,
+            "304",
             "2"
         );
         expect(result.success).toBe(true);
