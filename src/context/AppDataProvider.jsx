@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { AppDataContext } from './AppDataContext';
 import { saveAppData } from '../persistence/saveAppData';
 import { loadAppData } from '../persistence/loadAppData';
@@ -15,13 +15,15 @@ export function AppDataProvider({ children }){
 
     const [loadStatus, setLoadStatus] = useState(initialLoad.status);
 
+    const skipNextSave = useRef(false); // this determines whether savingData should be called in effect //
+
     useEffect(() => {
         if(loadStatus === "invalid"){
             return;
         }
 
-        if(loadStatus === "retrieved") {
-            setLoadStatus("loaded");
+        if(skipNextSave.current){ // skip data saving after data restoration //
+            skipNextSave.current = false;
             return;
         }
 
@@ -40,7 +42,13 @@ export function AppDataProvider({ children }){
         setLoadStatus("missing");
     }
 
-    const value = { appData, setAppData, loadStatus, setLoadStatus, resetAppData };
+    function restoreAppData(data){
+        skipNextSave.current = true;
+        setAppData(data);
+        setLoadStatus("loaded");
+    }
+
+    const value = { appData, setAppData, loadStatus, setLoadStatus, resetAppData, restoreAppData };
 
     return (
         <AppDataContext.Provider value={value}>

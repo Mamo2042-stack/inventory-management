@@ -3,13 +3,18 @@ import { useNavigate } from "react-router";
 import { loadAppData } from "../persistence/loadAppData";
 
 export function SaveDataError () {
-    const { setAppData,loadStatus, setLoadStatus } = useAppData();
+    const { setAppData,loadStatus, setLoadStatus, restoreAppData } = useAppData();
     const navigate = useNavigate();
 
     function handleClick(){
         const previousSavedData = loadAppData(); 
-        setAppData(previousSavedData);
-        setLoadStatus("retrieved");
+
+        if(previousSavedData.status === "invalid") {
+            setLoadStatus("invalid");
+            return;
+        }     
+        
+        restoreAppData(previousSavedData.data);
         navigate("/");
     }
 
