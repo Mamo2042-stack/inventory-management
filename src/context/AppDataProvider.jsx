@@ -20,10 +20,14 @@ export function AppDataProvider({ children }){
             return;
         }
 
-        const result = saveAppData(appData);
+        if(loadStatus === "retrieved") {
+            setLoadStatus("loaded");
+            return;
+        }
 
+        const result = saveAppData(appData);
         setLoadStatus(result);
-    }, [appData, loadStatus])
+    }, [appData])
 
     function resetAppData(){
         const initialData = {
