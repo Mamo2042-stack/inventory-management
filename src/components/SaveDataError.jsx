@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { loadAppData } from "../persistence/loadAppData";
 
 export function SaveDataError () {
-    const { setAppData,loadStatus, setLoadStatus, restoreAppData } = useAppData();
+    const {loadStatus, setLoadStatus, restoreAppData } = useAppData();
     const navigate = useNavigate();
 
     function handleClick(){

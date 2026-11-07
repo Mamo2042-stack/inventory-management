@@ -18,9 +18,7 @@ export function AppDataProvider({ children }){
     const skipNextSave = useRef(false); // this determines whether savingData should be called in effect //
 
     useEffect(() => {
-        if(loadStatus === "invalid"){
-            return;
-        }
+        if(appData === null) return;
 
         if(skipNextSave.current){ // skip data saving after data restoration //
             skipNextSave.current = false;
