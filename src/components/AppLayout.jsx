@@ -12,7 +12,7 @@ function AppLayout () {
         return <DataError />;
     }
 
-    if(loadStatus === "unsaved_invaid" || loadStatus === "unsaved_failure"){
+    if(loadStatus === "unsaved_invalid" || loadStatus === "unsaved_failure"){
         return <SaveDataError />
     }
 
