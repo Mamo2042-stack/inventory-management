@@ -17,23 +17,30 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
 
     useEffect(() => {
         if(inventoryView === "item") {
-            requestAnimationFrame(() => {
+           const frameId = requestAnimationFrame(() => {
                 setIsVisible(true);
             });
-        } else {
-            setIsVisible(false);
-        }
-    }, [inventoryView, selectedItem])
+
+            return () => {
+                cancelAnimationFrame(frameId);
+            };
+        } 
+
+        setIsVisible(false);
+        
+    }, [inventoryView])
 
     const displayItem = items.find(item => item.id === selectedItem);
     const [tempQuan, setTempQuan] = useState(displayItem?.quantity ?? 0);//tempQuan is supposed to hold user inputs in tenth in number type when appropriate//
+    const itemQuantity = displayItem?.quantity; // represents the current item's quantity on each render //
 
     useEffect(() => {
-        if(displayItem){
-            setTempQuan(displayItem.quantity);
+        if(itemQuantity !== undefined){
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- Reset the quantity editor when the selected item's stored quantity changes.
+            setTempQuan(itemQuantity);
             setIsDisabled(false)
         }
-    }, [selectedItem, displayItem?.quantity])
+    }, [itemQuantity])
 
     if(!displayItem){
         return null;
