@@ -38,7 +38,7 @@
 ![在庫変動履歴画面](./docs/screenshots/history-view.png)
 
 ### モバイル表示
-![在庫管理画面-モバイル](./docs/screenshots/inventory-mobile.jpg)
+![在庫管理画面-モバイル](./docs/screenshots/inventory-mobile.png)
 
 ## 4. 技術スタック
 
