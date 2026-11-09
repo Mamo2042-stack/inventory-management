@@ -143,6 +143,10 @@ function ItemRegistration(){
                             </option>
                         ))}
                     </select>
+
+                    {errorMsg.some(err => err === "INVALID_CATEGORY") && (
+                        <p className="error-message">カテゴリーを選択して下さい。</p>
+                    )}
                 </div>
 
                 <div>
