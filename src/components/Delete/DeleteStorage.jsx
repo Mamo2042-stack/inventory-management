@@ -3,6 +3,7 @@ import DeleteStorageList from "./DeleteStorageList";
 import DeleteStorageForm from "./DeleteStorageForm";
 import { useNavigate } from "react-router";
 import "./DeleteStorage.css"
+import { ArrowBigLeft } from "lucide-react";
 
 function DeleteStorage (){
     const [selectedStorage, setSelectedStorage] = useState(null);
@@ -35,7 +36,7 @@ function DeleteStorage (){
                 type="button"
                 className="back-to-previous-button clickable-button"
                 onClick={() => navigate("/delete")}
-            >⬅︎          
+            ><ArrowBigLeft size={20}/>          
             </button>
         </section>
     )

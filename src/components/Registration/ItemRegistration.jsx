@@ -4,6 +4,7 @@ import { useState } from "react";
 import registerItem from "../../operations/registerItem";
 import { CATEGORIES } from "../../constants/categories";
 import "./ItemRegistration.css"
+import { ArrowBigLeft } from "lucide-react";
 
 function ItemRegistration(){
     const [userInput, setUserInput] = useState({
@@ -229,7 +230,7 @@ function ItemRegistration(){
             <button
                 className="back-to-previous-button clickable-button"
                 onClick={handleClick}
-            >⬅︎
+            ><ArrowBigLeft />
             </button>
 
             {isSuccessModalOpen && (
@@ -250,7 +251,7 @@ function ItemRegistration(){
                         setIsSuccessModalOpen(false)
                         navigate("/")
                 }
-                }>⬅︎ ホーム
+                }><span className="on-the-same-line"><ArrowBigLeft size={20} /> ホーム</span>
                 </button>
             </div>
         </section>

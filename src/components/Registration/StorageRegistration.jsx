@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useAppData } from "../../context/useAppData";
 import { useState } from "react";
 import "./StorageRegistration.css"
+import { ArrowBigLeft, Home } from "lucide-react";
 
 function StorageRegistration (){
     const [userInput, setUserInput] = useState({
@@ -91,7 +92,7 @@ function StorageRegistration (){
             <button
                 className="back-to-previous-button"
                 onClick={handleClick}
-            >⬅︎
+            ><ArrowBigLeft />
             </button>
 
 
@@ -118,7 +119,7 @@ function StorageRegistration (){
                             navigate("/")
                             setIsSuccessModalOpen(false)
                         }}
-                    >⬅︎ ホーム
+                    ><span className="on-the-same-line"><ArrowBigLeft size={20}/> ホーム</span>
                     </button>
                 </div>
             </div>

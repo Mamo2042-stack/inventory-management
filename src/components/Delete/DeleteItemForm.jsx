@@ -2,7 +2,7 @@ import { useAppData } from "../../context/useAppData"
 import { useState } from "react";
 import deleteItem from "../../operations/deleteItem";
 import { useNavigate } from "react-router";
-import { SquareExclamationPoint } from "lucide-react";
+import { SquareExclamationPoint, ArrowBigLeft } from "lucide-react";
 
 function DeleteItemForm({ itemId, isModalOpen, setIsModalOpen }){
     const { appData, setAppData } = useAppData();
@@ -66,7 +66,7 @@ function DeleteItemForm({ itemId, isModalOpen, setIsModalOpen }){
                         type="button"
                         className="back-to-previous-button clickable-button"
                         onClick={() => setIsModalOpen(false)}
-                    >⬅︎
+                    ><ArrowBigLeft size={18} />
                     </button>
                 </div>
             )}

@@ -4,6 +4,7 @@ import ItemInteraction from "./ItemInteraction";
 import { useNavigate } from "react-router";
 import "./InventoryManagement.css"
 import { useInventoryNavigation } from "../../context/useInventoryNavigation";
+import { ArrowBigLeft } from "lucide-react";
 
 function InventoryManagement(){
     const { inventoryView, setInventoryView, closeAllPanels } = useInventoryNavigation();
@@ -39,7 +40,7 @@ function InventoryManagement(){
                 type="button"
                 className="back-to-previous-button clickable-button"
                 onClick={() => navigate("/")}
-            >⬅︎
+            ><ArrowBigLeft size={20} />
             </button>
         </div>
     )

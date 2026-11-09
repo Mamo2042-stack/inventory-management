@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import "./Delete.css"
+import { ArrowBigLeft } from "lucide-react";
 
 function Delete () {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Delete () {
                 type="button"
                 className="back-to-previous-button clickable-button"
                 onClick={() => navigate("/")}
-            >⬅︎
+            ><ArrowBigLeft size={20}/>
             </button>
         </section>
     )

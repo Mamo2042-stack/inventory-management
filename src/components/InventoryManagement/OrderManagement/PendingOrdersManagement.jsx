@@ -3,6 +3,7 @@ import PendingOrderCard from "./PendingOrderCard";
 import CreateOrderForm from "./CreateOrderForm";
 import "./PendingOrderManagement.css"
 import { useInventoryNavigation } from "../../../context/useInventoryNavigation";
+import { MoveRight } from "lucide-react";
 
 
 function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
@@ -48,7 +49,7 @@ function PendingOrdersManagement ({ selectedItem, setDeeperSection }){
                         setDeeperSection(null)
                         setAnyDetailModal(null)
                     }}
-                >➡︎
+                ><MoveRight size={18} />
                 </button>
             </div>
             

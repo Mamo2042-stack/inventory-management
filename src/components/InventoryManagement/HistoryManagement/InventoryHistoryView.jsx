@@ -1,5 +1,6 @@
 import InventoryHistoryList from "./InventoryHistoryList";
 import "./InventoryHistoryView.css"
+import { MoveLeft } from "lucide-react";
 
 function InventoryHistoryView({ setDeeperSection, selectedItem }){
 
@@ -12,7 +13,7 @@ function InventoryHistoryView({ setDeeperSection, selectedItem }){
             <button
                 type="button"
                 onClick={() => setDeeperSection(null)}
-            >⬅︎
+            ><MoveLeft size={18} />
             </button>
         </section>
     )
