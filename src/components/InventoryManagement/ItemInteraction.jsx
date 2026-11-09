@@ -50,7 +50,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     const upcomingQuantity = calUpcomingQuantity(displayItem);
 
     function handleClick(e){
-        setDeeperSection(e.target.name);
+        setDeeperSection(e.currentTarget.name);
     }
 
     function handleChange(e){
