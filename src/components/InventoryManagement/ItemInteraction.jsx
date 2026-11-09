@@ -25,7 +25,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                 cancelAnimationFrame(frameId);
             };
         } 
-
+// eslint-disable-next-line react-hooks/set-state-in-effect -- Set the item interaction panel when closed after the animation
         setIsVisible(false);
         
     }, [inventoryView])
