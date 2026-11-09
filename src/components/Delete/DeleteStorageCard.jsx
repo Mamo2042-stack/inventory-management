@@ -1,12 +1,13 @@
 import { useAppData } from "../../context/useAppData"
 
-function DeleteStorageCard({ storageData, setSelectedStorage, setIsModalOpen }){
+function DeleteStorageCard({ storageData, setSelectedStorage, setIsModalOpen, setCloseModalOrBackHome }){
     const { appData } = useAppData();
     const hasItems = appData.items.some(item => item.storageId === storageData.id);
 
     function handleClick(){
         setSelectedStorage(storageData.id);
         setIsModalOpen(true);
+        setCloseModalOrBackHome("close_modal")
     }
 
     return (

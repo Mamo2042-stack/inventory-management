@@ -4,7 +4,7 @@ import deleteStorage from "../../operations/deleteStorage";
 import { useNavigate } from "react-router";
 import { SquareExclamationPoint, ArrowBigLeft } from "lucide-react";
 
-function DeleteStorageForm({ selectedStorage, isModalOpen, setIsModalOpen }){
+function DeleteStorageForm({ selectedStorage, isModalOpen, setIsModalOpen, setCloseModalOrBackHome }){
     const { appData, setAppData } = useAppData();
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
     const navigate = useNavigate();
@@ -18,7 +18,8 @@ function DeleteStorageForm({ selectedStorage, isModalOpen, setIsModalOpen }){
         }
 
         setAppData(result.data);
-        setIsSuccessModalOpen(true)
+        setIsSuccessModalOpen(true);
+        setCloseModalOrBackHome("back_home")
     }
 
     const selectedStorageData = appData.storages.find(storage => storage.id === selectedStorage)

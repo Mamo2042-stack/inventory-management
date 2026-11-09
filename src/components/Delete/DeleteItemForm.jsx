@@ -4,7 +4,7 @@ import deleteItem from "../../operations/deleteItem";
 import { useNavigate } from "react-router";
 import { SquareExclamationPoint, ArrowBigLeft } from "lucide-react";
 
-function DeleteItemForm({ itemId, isModalOpen, setIsModalOpen }){
+function DeleteItemForm({ itemId, isModalOpen, setIsModalOpen, setCloseModalOrBackHome }){
     const { appData, setAppData } = useAppData();
     const [hasSucceeded, setHasSucceeded] = useState(false);
     const navigate = useNavigate();
@@ -32,6 +32,7 @@ function DeleteItemForm({ itemId, isModalOpen, setIsModalOpen }){
 
         setAppData(result.data);
         setHasSucceeded(true);
+        setCloseModalOrBackHome("back_home");
     }
 
     return (

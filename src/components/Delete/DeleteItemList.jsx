@@ -1,7 +1,7 @@
 import DeleteItemCard from "./DeleteItemCard";
 import { useAppData } from "../../context/useAppData";
 
-function DeleteItemList({ setSelectedItem, setIsModalOpen }){
+function DeleteItemList({ setSelectedItem, setIsModalOpen, setCloseModalOrBackHome }){
     const { appData } = useAppData();
     const { storages } = appData;
 
@@ -23,6 +23,7 @@ function DeleteItemList({ setSelectedItem, setIsModalOpen }){
                                     item={item}
                                     setSelectedItem={setSelectedItem}
                                     setIsModalOpen={setIsModalOpen}
+                                    setCloseModalOrBackHome={setCloseModalOrBackHome}
                                 />
                             ))}
 

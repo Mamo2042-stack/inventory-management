@@ -8,7 +8,25 @@ import { ArrowBigLeft } from "lucide-react";
 function DeleteStorage (){
     const [selectedStorage, setSelectedStorage] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [closeModalOrBackHome, setCloseModalOrBackHome] = useState(undefined);
     const navigate = useNavigate();
+
+    function handleClick(){
+        if(!closeModalOrBackHome){
+            return;
+        }
+
+        if(closeModalOrBackHome === "close_modal"){
+            setIsModalOpen(false);
+            return;
+        }
+        
+        if(closeModalOrBackHome === "back_home"){
+            setIsModalOpen(false);
+            navigate("/");
+            return;
+        }
+    }
 
     return (
         <section className="storage-delete">
@@ -17,12 +35,13 @@ function DeleteStorage (){
             <DeleteStorageList
                 setSelectedStorage={setSelectedStorage}
                 setIsModalOpen={setIsModalOpen}
+                setCloseModalOrBackHome={setCloseModalOrBackHome}
             />
 
             {isModalOpen && (
                 <div 
                     className="backdrop-container"
-                    onClick={() => setIsModalOpen(false)}
+                    onClick={handleClick}
                 />
             )}
 
@@ -30,6 +49,7 @@ function DeleteStorage (){
                 selectedStorage={selectedStorage}
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
+                setCloseModalOrBackHome={setCloseModalOrBackHome}
             />
 
             <button

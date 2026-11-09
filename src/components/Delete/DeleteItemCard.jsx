@@ -1,7 +1,8 @@
-function DeleteItemCard({ item, setSelectedItem, setIsModalOpen }){
+function DeleteItemCard({ item, setSelectedItem, setIsModalOpen, setCloseModalOrBackHome }){
     function handleClick (){
         setSelectedItem(item.id);
         setIsModalOpen(true);
+        setCloseModalOrBackHome("close_modal");
     }  
 
     const className = [

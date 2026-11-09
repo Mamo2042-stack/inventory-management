@@ -8,7 +8,25 @@ import { ArrowBigLeft } from "lucide-react";
 function DeleteItem(){
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [closeModalOrBackHome, setCloseModalOrBackHome] = useState(undefined);    
     const navigate = useNavigate();
+
+    function handleClick(){
+        if(!closeModalOrBackHome){
+            return;
+        }
+
+        if(closeModalOrBackHome === "close_modal"){
+            setIsModalOpen(false);
+            return;
+        }
+        
+        if(closeModalOrBackHome === "back_home"){
+            setIsModalOpen(false);
+            navigate("/");
+            return;
+        }
+    }
 
     return (
         <section className="delete-item">
@@ -17,12 +35,13 @@ function DeleteItem(){
             <DeleteItemList
                 setSelectedItem={setSelectedItem}
                 setIsModalOpen={setIsModalOpen}
+                setCloseModalOrBackHome={setCloseModalOrBackHome}
             />
 
             {isModalOpen && (
                 <div 
                     className="backdrop-container"
-                    onClick={() => setIsModalOpen(false)}
+                    onClick={handleClick}
                 />
             )}
 
@@ -30,6 +49,7 @@ function DeleteItem(){
                 itemId={selectedItem}
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
+                setCloseModalOrBackHome={setCloseModalOrBackHome}
             />
 
             <button
