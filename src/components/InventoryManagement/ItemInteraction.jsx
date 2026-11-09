@@ -7,6 +7,7 @@ import calUpcomingQuantity from "../../utils/calUpcomingQuan";
 import "./ItemInteraction.css"
 import { useInventoryNavigation } from "../../context/useInventoryNavigation";
 import { isValidQuantity } from "../../utils/isValidQuantity";
+import { MoveLeft, MoveRight } from "lucide-react";
 
 function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
     const { appData, setAppData } = useAppData();
@@ -169,7 +170,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                                 className="clickable-button"
                                 name="pending"
                                 onClick={(e) => handleClick(e)}
-                            >⬅︎ 注文
+                            ><span className="on-the-same-line"><MoveLeft size={18} /> 注文</span>
                             </button>
                         )}
 
@@ -178,7 +179,7 @@ function ItemInteraction ({ selectedItem, inventoryView, setInventoryView }){
                             name="history"
                             className="clickable-button"
                             onClick={(e) => handleClick(e)}
-                        >ヒストリー ➡
+                        ><span className="on-the-same-line">履歴 <MoveRight size={18}/></span> 
                         </button>
                     </div>      
                 </div>

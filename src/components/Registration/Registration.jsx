@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import "./Registration.css"
+import { ArrowBigLeft } from "lucide-react";
 
 function Registration (){
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Registration (){
                 type="button"
                 className="back-to-previous-button clickable"
                 onClick={() => navigate("/")}
-            >⬅︎
+            ><ArrowBigLeft />
             </button>
         </div>
     )

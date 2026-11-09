@@ -3,6 +3,7 @@ import DeleteItemForm from "./DeleteItemForm";
 import DeleteItemList from "./DeleteItemList";
 import { useNavigate } from "react-router";
 import "./DeleteItem.css"
+import { ArrowBigLeft } from "lucide-react";
 
 function DeleteItem(){
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +36,7 @@ function DeleteItem(){
                 type="button"
                 className="back-to-previous-button clickable-button"
                 onClick={() => navigate("/delete")}
-            >⬅︎
+            ><ArrowBigLeft size={20}/>
             </button>
 
         </section>

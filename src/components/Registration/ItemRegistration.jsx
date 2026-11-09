@@ -4,6 +4,7 @@ import { useState } from "react";
 import registerItem from "../../operations/registerItem";
 import { CATEGORIES } from "../../constants/categories";
 import "./ItemRegistration.css"
+import { ArrowBigLeft } from "lucide-react";
 
 function ItemRegistration(){
     const [userInput, setUserInput] = useState({
@@ -143,6 +144,10 @@ function ItemRegistration(){
                             </option>
                         ))}
                     </select>
+
+                    {errorMsg.some(err => err === "INVALID_CATEGORY") && (
+                        <p className="error-message">カテゴリーを選択して下さい。</p>
+                    )}
                 </div>
 
                 <div>
@@ -225,7 +230,7 @@ function ItemRegistration(){
             <button
                 className="back-to-previous-button clickable-button"
                 onClick={handleClick}
-            >⬅︎
+            ><ArrowBigLeft />
             </button>
 
             {isSuccessModalOpen && (
@@ -246,7 +251,7 @@ function ItemRegistration(){
                         setIsSuccessModalOpen(false)
                         navigate("/")
                 }
-                }>⬅︎ ホーム
+                }><span className="on-the-same-line"><ArrowBigLeft size={20} /> ホーム</span>
                 </button>
             </div>
         </section>
